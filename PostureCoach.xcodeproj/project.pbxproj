@@ -15,6 +15,7 @@
 		165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165CE2742AC165C4002F8385 /* Assets.xcassets */; };
 		165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */; };
 		165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165CE2812AC1DC81002F8385 /* SignupViewController.swift */; };
+		16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		165CE2772AC165C4002F8385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		165CE2792AC165C4002F8385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		165CE2812AC1DC81002F8385 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				165CE2682AC165C3002F8385 /* AppDelegate.swift */,
 				165CE26A2AC165C3002F8385 /* SceneDelegate.swift */,
+				16AE78FE2AC29F7500A16443 /* ExerciseClassifier */,
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
@@ -71,6 +74,14 @@
 				165CE2712AC165C3002F8385 /* PostureCoach.xcdatamodeld */,
 			);
 			path = PostureCoach;
+			sourceTree = "<group>";
+		};
+		16AE78FE2AC29F7500A16443 /* ExerciseClassifier */ = {
+			isa = PBXGroup;
+			children = (
+				16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */,
+			);
+			path = ExerciseClassifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */,
+				16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */,
 				165CE2732AC165C3002F8385 /* PostureCoach.xcdatamodeld in Sources */,
 				165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */,
 				165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */,
