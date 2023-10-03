@@ -65,6 +65,7 @@ class GameManager {
     var holeRegion = CGRect.null
     var recordedVideoSource: AVAsset?
     var playerStats = PlayerStats()
+    var upperStats = UpperStats()
     var lastThrowMetrics = ThrowMetrics()
     var pointToMeterMultiplier = Double.nan
     var previewImage = UIImage()

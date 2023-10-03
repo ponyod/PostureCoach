@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FD1518B2AC2B5D50091E765 /* first.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD1518A2AC2B5D50091E765 /* first.storyboard */; };
+		0F28CC7B2ACCAAB7003A913F /* ExercisesSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		16526EB42ACC06A5008F6A49 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAC2ACC06A5008F6A49 /* Common.swift */; };
@@ -43,7 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0FD1518A2AC2B5D50091E765 /* first.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = first.storyboard; sourceTree = "<group>"; };
+		0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExercisesSelectView.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		16526EAC2ACC06A5008F6A49 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		16526EAD2ACC06A5008F6A49 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -124,11 +124,11 @@
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
-				0FD1518A2AC2B5D50091E765 /* first.storyboard */,
 				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
 				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
 				16526ECF2ACC073A008F6A49 /* SetupViewController.xib */,
 				16526ECC2ACC073A008F6A49 /* SummaryViewController.xib */,
+				0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */,
 				165CE2742AC165C4002F8385 /* Assets.xcassets */,
 				165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */,
 				165CE2792AC165C4002F8385 /* Info.plist */,
@@ -222,10 +222,10 @@
 				16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */,
 				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
+				0F28CC7B2ACCAAB7003A913F /* ExercisesSelectView.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
 				16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */,
 				165CE2702AC165C3002F8385 /* Main.storyboard in Resources */,
-				0FD1518B2AC2B5D50091E765 /* first.storyboard in Resources */,
 				16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +407,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M8262GB64;
+				DEVELOPMENT_TEAM = CHWBKK9R3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -415,6 +415,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,7 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M8262GB64;
+				DEVELOPMENT_TEAM = CHWBKK9R3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -443,6 +444,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

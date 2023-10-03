@@ -65,6 +65,15 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
             gameManager.playerStats = newValue
         }
     }
+    
+    var upperStats: UpperStats {
+            get {
+                return gameManager.upperStats
+            }
+            set {
+                gameManager.upperStats = newValue
+            }
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
