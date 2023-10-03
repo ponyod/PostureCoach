@@ -10,6 +10,27 @@
 		0FD1518B2AC2B5D50091E765 /* first.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD1518A2AC2B5D50091E765 /* first.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
+		16526EB42ACC06A5008F6A49 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAC2ACC06A5008F6A49 /* Common.swift */; };
+		16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAD2ACC06A5008F6A49 /* GameViewController.swift */; };
+		16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */; };
+		16526EB72ACC06A5008F6A49 /* SourcePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAF2ACC06A5008F6A49 /* SourcePickerViewController.swift */; };
+		16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EB02ACC06A5008F6A49 /* RootViewController.swift */; };
+		16526EB92ACC06A5008F6A49 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EB12ACC06A5008F6A49 /* GameManager.swift */; };
+		16526EBA2ACC06A5008F6A49 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EB22ACC06A5008F6A49 /* CameraViewController.swift */; };
+		16526EBB2ACC06A5008F6A49 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EB32ACC06A5008F6A49 /* SummaryViewController.swift */; };
+		16526EC42ACC071D008F6A49 /* OverlayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EBC2ACC071D008F6A49 /* OverlayLabel.swift */; };
+		16526EC52ACC071D008F6A49 /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EBD2ACC071D008F6A49 /* JointSegmentView.swift */; };
+		16526EC62ACC071D008F6A49 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EBE2ACC071D008F6A49 /* ProgressView.swift */; };
+		16526EC72ACC071D008F6A49 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EBF2ACC071D008F6A49 /* BoundingBoxView.swift */; };
+		16526EC82ACC071D008F6A49 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EC02ACC071D008F6A49 /* AnimatedTransitioning.swift */; };
+		16526EC92ACC071D008F6A49 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EC12ACC071D008F6A49 /* DashboardView.swift */; };
+		16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EC22ACC071D008F6A49 /* VideoOutputViews.swift */; };
+		16526ECB2ACC071D008F6A49 /* TrajectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EC32ACC071D008F6A49 /* TrajectoryView.swift */; };
+		16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16526ECC2ACC073A008F6A49 /* SummaryViewController.xib */; };
+		16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16526ECD2ACC073A008F6A49 /* GameViewController.xib */; };
+		16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16526ECE2ACC073A008F6A49 /* CameraViewController.xib */; };
+		16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16526ECF2ACC073A008F6A49 /* SetupViewController.xib */; };
+		16526ED52ACC0776008F6A49 /* PostureActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */; };
 		165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165CE2682AC165C3002F8385 /* AppDelegate.swift */; };
 		165CE26B2AC165C3002F8385 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165CE26A2AC165C3002F8385 /* SceneDelegate.swift */; };
 		165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165CE26C2AC165C3002F8385 /* ViewController.swift */; };
@@ -24,6 +45,27 @@
 /* Begin PBXFileReference section */
 		0FD1518A2AC2B5D50091E765 /* first.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = first.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		16526EAC2ACC06A5008F6A49 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		16526EAD2ACC06A5008F6A49 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		16526EAF2ACC06A5008F6A49 /* SourcePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourcePickerViewController.swift; sourceTree = "<group>"; };
+		16526EB02ACC06A5008F6A49 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		16526EB12ACC06A5008F6A49 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		16526EB22ACC06A5008F6A49 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		16526EB32ACC06A5008F6A49 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		16526EBC2ACC071D008F6A49 /* OverlayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLabel.swift; sourceTree = "<group>"; };
+		16526EBD2ACC071D008F6A49 /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
+		16526EBE2ACC071D008F6A49 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		16526EBF2ACC071D008F6A49 /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
+		16526EC02ACC071D008F6A49 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
+		16526EC12ACC071D008F6A49 /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		16526EC22ACC071D008F6A49 /* VideoOutputViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOutputViews.swift; sourceTree = "<group>"; };
+		16526EC32ACC071D008F6A49 /* TrajectoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrajectoryView.swift; sourceTree = "<group>"; };
+		16526ECC2ACC073A008F6A49 /* SummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryViewController.xib; sourceTree = "<group>"; };
+		16526ECD2ACC073A008F6A49 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		16526ECE2ACC073A008F6A49 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		16526ECF2ACC073A008F6A49 /* SetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PostureActionClassifier.mlmodel; sourceTree = "<group>"; };
 		165CE2652AC165C3002F8385 /* PostureCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostureCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		165CE2682AC165C3002F8385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		165CE26A2AC165C3002F8385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,16 +112,37 @@
 			children = (
 				165CE2682AC165C3002F8385 /* AppDelegate.swift */,
 				165CE26A2AC165C3002F8385 /* SceneDelegate.swift */,
+				16526EB22ACC06A5008F6A49 /* CameraViewController.swift */,
+				16526EAC2ACC06A5008F6A49 /* Common.swift */,
+				16526EB12ACC06A5008F6A49 /* GameManager.swift */,
+				16526EAD2ACC06A5008F6A49 /* GameViewController.swift */,
+				16526EB02ACC06A5008F6A49 /* RootViewController.swift */,
+				16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */,
+				16526EAF2ACC06A5008F6A49 /* SourcePickerViewController.swift */,
+				16526EB32ACC06A5008F6A49 /* SummaryViewController.swift */,
 				16AE78FE2AC29F7500A16443 /* ExerciseClassifier */,
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
 				0FD1518A2AC2B5D50091E765 /* first.storyboard */,
+				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
+				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
+				16526ECF2ACC073A008F6A49 /* SetupViewController.xib */,
+				16526ECC2ACC073A008F6A49 /* SummaryViewController.xib */,
 				165CE2742AC165C4002F8385 /* Assets.xcassets */,
 				165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */,
 				165CE2792AC165C4002F8385 /* Info.plist */,
 				165CE2712AC165C3002F8385 /* PostureCoach.xcdatamodeld */,
 				0FE635962AC51FCB00DA6266 /* Model.swift */,
+				16526EC02ACC071D008F6A49 /* AnimatedTransitioning.swift */,
+				16526EBF2ACC071D008F6A49 /* BoundingBoxView.swift */,
+				16526EC12ACC071D008F6A49 /* DashboardView.swift */,
+				16526EBD2ACC071D008F6A49 /* JointSegmentView.swift */,
+				16526EBC2ACC071D008F6A49 /* OverlayLabel.swift */,
+				16526EBE2ACC071D008F6A49 /* ProgressView.swift */,
+				16526EC32ACC071D008F6A49 /* TrajectoryView.swift */,
+				16526EC22ACC071D008F6A49 /* VideoOutputViews.swift */,
+				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -156,10 +219,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */,
+				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
+				16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */,
 				165CE2702AC165C3002F8385 /* Main.storyboard in Resources */,
 				0FD1518B2AC2B5D50091E765 /* first.storyboard in Resources */,
+				16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,13 +237,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16526EB42ACC06A5008F6A49 /* Common.swift in Sources */,
+				16526EC52ACC071D008F6A49 /* JointSegmentView.swift in Sources */,
 				0FE635972AC51FCB00DA6266 /* Model.swift in Sources */,
+				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
+				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
 				165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */,
 				16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */,
+				16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */,
+				16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */,
+				16526EB72ACC06A5008F6A49 /* SourcePickerViewController.swift in Sources */,
 				165CE2732AC165C3002F8385 /* PostureCoach.xcdatamodeld in Sources */,
+				16526EC92ACC071D008F6A49 /* DashboardView.swift in Sources */,
+				16526ED52ACC0776008F6A49 /* PostureActionClassifier.mlmodel in Sources */,
 				165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */,
 				165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */,
+				16526EBA2ACC06A5008F6A49 /* CameraViewController.swift in Sources */,
 				165CE26B2AC165C3002F8385 /* SceneDelegate.swift in Sources */,
+				16526EB92ACC06A5008F6A49 /* GameManager.swift in Sources */,
+				16526EBB2ACC06A5008F6A49 /* SummaryViewController.swift in Sources */,
+				16526EC42ACC071D008F6A49 /* OverlayLabel.swift in Sources */,
+				16526EC62ACC071D008F6A49 /* ProgressView.swift in Sources */,
+				16526EC82ACC071D008F6A49 /* AnimatedTransitioning.swift in Sources */,
+				16526ECB2ACC071D008F6A49 /* TrajectoryView.swift in Sources */,
+				16526EC72ACC071D008F6A49 /* BoundingBoxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +407,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M8262GB64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -350,6 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M8262GB64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
