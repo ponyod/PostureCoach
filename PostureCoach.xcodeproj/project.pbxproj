@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F28CC7B2ACCAAB7003A913F /* ExercisesSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
+		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
+		0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */; };
+		0FEB8F682ACCF6AC0098F7AC /* LatPullDownView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */; };
+		0FEB8F6F2ACCF7DA0098F7AC /* ChestPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */; };
+		0FEB8F742ACCFFB80098F7AC /* PostureCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */; };
+		0FEB8F762ACD013E0098F7AC /* MachineCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */; };
+		0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */; };
+		0FEB8F7A2ACD024F0098F7AC /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */; };
+		0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */; };
 		16526EB42ACC06A5008F6A49 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAC2ACC06A5008F6A49 /* Common.swift */; };
 		16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAD2ACC06A5008F6A49 /* GameViewController.swift */; };
 		16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */; };
@@ -43,8 +51,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExercisesSelectView.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
+		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
+		0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LatPullDownView.storyboard; sourceTree = "<group>"; };
+		0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChestPressView.storyboard; sourceTree = "<group>"; };
+		0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostureCoachView.storyboard; sourceTree = "<group>"; };
+		0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MachineCoachView.storyboard; sourceTree = "<group>"; };
+		0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportView.storyboard; sourceTree = "<group>"; };
+		0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommunityView.storyboard; sourceTree = "<group>"; };
+		0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		16526EAC2ACC06A5008F6A49 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		16526EAD2ACC06A5008F6A49 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +107,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FEB8F702ACCF9650098F7AC /* MachineCoach */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MachineCoach;
+			sourceTree = "<group>";
+		};
+		0FEB8F722ACCF9DA0098F7AC /* PostureCoach */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PostureCoach;
+			sourceTree = "<group>";
+		};
 		165CE25C2AC165C3002F8385 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +140,8 @@
 		165CE2672AC165C3002F8385 /* PostureCoach */ = {
 			isa = PBXGroup;
 			children = (
+				0FEB8F722ACCF9DA0098F7AC /* PostureCoach */,
+				0FEB8F702ACCF9650098F7AC /* MachineCoach */,
 				165CE2682AC165C3002F8385 /* AppDelegate.swift */,
 				165CE26A2AC165C3002F8385 /* SceneDelegate.swift */,
 				16526EB22ACC06A5008F6A49 /* CameraViewController.swift */,
@@ -124,11 +156,19 @@
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
+				0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */,
+				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
+				0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */,
+				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
+				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
+				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
+				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
+				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
+				0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */,
 				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
 				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
 				16526ECF2ACC073A008F6A49 /* SetupViewController.xib */,
 				16526ECC2ACC073A008F6A49 /* SummaryViewController.xib */,
-				0F28CC7A2ACCAAB7003A913F /* ExercisesSelectView.storyboard */,
 				165CE2742AC165C4002F8385 /* Assets.xcassets */,
 				165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */,
 				165CE2792AC165C4002F8385 /* Info.plist */,
@@ -219,13 +259,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FEB8F682ACCF6AC0098F7AC /* LatPullDownView.storyboard in Resources */,
+				0FEB8F742ACCFFB80098F7AC /* PostureCoachView.storyboard in Resources */,
+				0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */,
 				16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */,
 				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
+				0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
-				0F28CC7B2ACCAAB7003A913F /* ExercisesSelectView.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
+				0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */,
+				0FEB8F762ACD013E0098F7AC /* MachineCoachView.storyboard in Resources */,
 				16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */,
+				0FEB8F6F2ACCF7DA0098F7AC /* ChestPressView.storyboard in Resources */,
 				165CE2702AC165C3002F8385 /* Main.storyboard in Resources */,
+				0FEB8F7A2ACD024F0098F7AC /* CommunityView.storyboard in Resources */,
 				16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +287,7 @@
 				16526EB42ACC06A5008F6A49 /* Common.swift in Sources */,
 				16526EC52ACC071D008F6A49 /* JointSegmentView.swift in Sources */,
 				0FE635972AC51FCB00DA6266 /* Model.swift in Sources */,
+				0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */,
 				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
 				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
 				165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */,

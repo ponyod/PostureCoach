@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ERs-FW-oeq">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--자세코치-->
+        <scene sceneID="Aa4-aK-haH">
+            <objects>
+                <viewController id="ERs-FW-oeq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dcg-Yb-4GX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세잡아줘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WD7-hw-rj1">
+                                <rect key="frame" x="16" y="103" width="361" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pose" translatesAutoresizingMaskIntoConstraints="NO" id="fxf-yp-kEL">
+                                <rect key="frame" x="92" y="160" width="209" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJD-yb-aTY">
+                                <rect key="frame" x="16" y="456" width="361" height="248"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jo-VI-VsJ">
+                                        <rect key="frame" x="16" y="0.0" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="체스트프레스"/>
+                                        <connections>
+                                            <segue destination="IsS-7K-afX" kind="show" id="R9T-gr-rQg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ9-MN-Kg6">
+                                        <rect key="frame" x="16" y="66" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="랫풀다운"/>
+                                        <connections>
+                                            <segue destination="eYV-7J-ZaQ" kind="show" id="M7x-WM-j74"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYO-dE-U4N">
+                                        <rect key="frame" x="16" y="132" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="레그프레스"/>
+                                        <connections>
+                                            <segue destination="x5G-h2-jZw" kind="show" id="Ut2-GG-42A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-rF-dBU">
+                                        <rect key="frame" x="16" y="198" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="레그익스텐션"/>
+                                        <connections>
+                                            <segue destination="A3P-zR-ymz" kind="show" id="mSM-Ct-G7s"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YIk-k0-UEf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="자세코치" image="lasso.and.sparkles" catalog="system" id="CZ7-Zx-28O"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oIL-oh-99A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2521" y="279"/>
+        </scene>
+        <!--LegPressView-->
+        <scene sceneID="Ylu-2v-Fbp">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hzz-qs-eSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="LegPressView" id="x5G-h2-jZw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0yv-DM-4fU"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="-1749" y="396"/>
+        </scene>
+        <!--LegExtensionView-->
+        <scene sceneID="moP-rp-V65">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zT-5Q-apy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="LegExtensionView" id="A3P-zR-ymz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="90e-XH-waR"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="-1782" y="458"/>
+        </scene>
+        <!--ChestPressView-->
+        <scene sceneID="h2s-2R-Rfg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="coh-uP-kF2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="ChestPressView" id="IsS-7K-afX" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LxX-w5-RVJ"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="-1791" y="101"/>
+        </scene>
+        <!--LatPullDownView-->
+        <scene sceneID="XZr-Fz-q54">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FID-5n-dzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="LatPullDownView" id="eYV-7J-ZaQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ypo-24-qwI"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="-1732" y="174"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Pose" width="206" height="202"/>
+        <image name="lasso.and.sparkles" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
