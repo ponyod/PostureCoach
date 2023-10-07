@@ -25,7 +25,7 @@ class OverlayLabel: UILabel, AnimatedTransitioning {
     
     private func setupLayer() {
         layer.cornerRadius = 8
-        layer.masksToBounds = true
+        layer.masksToBounds = false
     }
 
     open override var intrinsicContentSize: CGSize {

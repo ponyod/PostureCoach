@@ -36,15 +36,15 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a40-os-n2R">
-                                <rect key="frame" x="16" y="197" width="361" height="572"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="16" y="197" width="361" height="520"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="H6b-nE-Xoz" kind="embed" id="t6m-1v-ttw"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8da-3h-3Ac">
-                                <rect key="frame" x="16" y="197" width="361" height="572"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="16" y="197" width="361" height="520"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="W6E-ly-3NQ" kind="embed" id="awR-2d-Ubi"/>
                                 </connections>
@@ -70,7 +70,7 @@
             <objects>
                 <viewController id="H6b-nE-Xoz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="et1-Jg-cgp">
-                        <rect key="frame" x="0.0" y="0.0" width="361" height="572"/>
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="월간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8E-RU-hDd">
@@ -93,7 +93,7 @@
             <objects>
                 <viewController id="W6E-ly-3NQ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbv-zK-hcd">
-                        <rect key="frame" x="0.0" y="0.0" width="361" height="572"/>
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="주간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU1-BM-cxH">

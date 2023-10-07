@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UWc-Aj-K28">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8mj-f6-TqJ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -243,17 +243,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NvL-pP-FVT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-157" y="225"/>
+            <point key="canvasLocation" x="1773" y="-44"/>
         </scene>
         <!--MachineCoachView-->
         <scene sceneID="pGS-jb-DAV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBf-pN-Ikm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="MachineCoachView" id="4gO-Ux-YLf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="45C-l0-fWv"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBf-pN-Ikm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="268"/>
+            <point key="canvasLocation" x="611" y="885"/>
         </scene>
         <!--CommunityView-->
         <scene sceneID="m7c-Sq-WOr">
@@ -263,7 +263,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttR-6k-jXG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="404"/>
+            <point key="canvasLocation" x="596" y="931"/>
         </scene>
         <!--ReportView-->
         <scene sceneID="m2Y-q5-tAb">
@@ -273,30 +273,162 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2n-7G-GLm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-189" y="446"/>
+            <point key="canvasLocation" x="573" y="985"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FRH-JF-0w0">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="8mj-f6-TqJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yh4-CZ-zhA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UWc-Aj-K28" kind="relationship" relationship="rootViewController" id="VvK-Na-9Iv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fea-ex-M83" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-793" y="423"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tgS-Ml-Coc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZP-rz-pJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController id="UWc-Aj-K28" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dcL-ss-RZk"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c0G-pM-Eb0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="JG2-cJ-xBk" kind="relationship" relationship="viewControllers" id="fLK-6W-NVQ"/>
-                        <segue destination="4gO-Ux-YLf" kind="relationship" relationship="viewControllers" id="ivh-xL-ere"/>
-                        <segue destination="ZVf-kq-BY4" kind="relationship" relationship="viewControllers" id="nGE-fF-lsZ"/>
-                        <segue destination="kcg-HF-M5X" kind="relationship" relationship="viewControllers" id="Dk0-TM-7it"/>
+                        <segue destination="nkt-Ru-DF5" kind="relationship" relationship="viewControllers" id="LWg-4o-IbK"/>
+                        <segue destination="4gO-Ux-YLf" kind="relationship" relationship="viewControllers" id="nPS-a8-MCv"/>
+                        <segue destination="ZVf-kq-BY4" kind="relationship" relationship="viewControllers" id="X0w-E7-kzl"/>
+                        <segue destination="kcg-HF-M5X" kind="relationship" relationship="viewControllers" id="Uie-U3-tVy"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZP-rz-pJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="325"/>
+            <point key="canvasLocation" x="7" y="423"/>
+        </scene>
+        <!--자세코치-->
+        <scene sceneID="qRh-RF-qzr">
+            <objects>
+                <viewController id="nkt-Ru-DF5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LXG-Oy-VF6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자세잡아줘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f00-jb-R35">
+                                <rect key="frame" x="16" y="103" width="361" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pose" translatesAutoresizingMaskIntoConstraints="NO" id="Nbr-hq-kWk">
+                                <rect key="frame" x="92" y="160" width="209" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="miw-oj-6VY">
+                                <rect key="frame" x="16" y="456" width="361" height="248"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1o8-0I-7Mn">
+                                        <rect key="frame" x="16" y="66" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="랫풀다운"/>
+                                        <connections>
+                                            <segue destination="eiX-Zl-Y1I" kind="show" id="VY5-4F-3VJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t45-I7-mMY">
+                                        <rect key="frame" x="16" y="132" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="레그프레스"/>
+                                        <connections>
+                                            <segue destination="uLU-no-swD" kind="show" id="GfT-HA-2Mm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-qE-DxB">
+                                        <rect key="frame" x="16" y="198" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="레그익스텐션"/>
+                                        <connections>
+                                            <segue destination="EzH-aO-dzU" kind="show" id="I9J-Md-eiP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEW-6m-fbb">
+                                        <rect key="frame" x="16" y="0.0" width="329" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="체스트프레스"/>
+                                        <connections>
+                                            <segue destination="4Vx-Ad-Uwg" kind="show" id="iE7-au-aNp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tUb-4b-pc9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="자세코치" image="lasso.and.sparkles" catalog="system" id="iZt-48-3f4"/>
+                    <navigationItem key="navigationItem" id="E3J-lI-sB3"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zav-qe-4AB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="423"/>
+        </scene>
+        <!--LegPressView-->
+        <scene sceneID="I9O-hQ-xZr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LegPressView" id="uLU-no-swD" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HXu-9e-3Ne"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gG-NQ-cwt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1540" y="539"/>
+        </scene>
+        <!--LegExtensionView-->
+        <scene sceneID="CfJ-FZ-vvP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LegExtensionView" id="EzH-aO-dzU" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zhO-g2-wWf"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FGo-LN-Rea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1507" y="601"/>
+        </scene>
+        <!--ChestPressView-->
+        <scene sceneID="G62-0a-9Sd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChestPressView" id="4Vx-Ad-Uwg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="KDd-d8-lcF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="miI-2G-AEe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1498" y="244"/>
+        </scene>
+        <!--LatPullDownView-->
+        <scene sceneID="kLJ-w3-ttq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LatPullDownView" id="eiX-Zl-Y1I" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Uh7-KF-AxG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRZ-3m-nfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1556" y="318"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Pose" width="206" height="202"/>
+        <image name="lasso.and.sparkles" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

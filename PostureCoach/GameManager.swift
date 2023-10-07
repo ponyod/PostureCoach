@@ -66,6 +66,7 @@ class GameManager {
     var recordedVideoSource: AVAsset?
     var playerStats = PlayerStats()
     var upperStats = UpperStats()
+    var lowerStats = LowerStats()
     var lastThrowMetrics = ThrowMetrics()
     var pointToMeterMultiplier = Double.nan
     var previewImage = UIImage()

@@ -7,6 +7,7 @@ View that displays a speed gauge.
 
 import UIKit
 
+// 차트 애니메이팅 -> Summary View에서 사용할 수 있도록 확인
 class DashboardView: UIView, AnimatedTransitioning {
     
     var speed = 0.0 {
@@ -16,6 +17,7 @@ class DashboardView: UIView, AnimatedTransitioning {
     }
     private var maxSpeed = 30.0
     private var halfWidth: CGFloat = 0
+    
     private var startAngle = CGFloat.pi * 5 / 6
     private var maxAngle = CGFloat.pi * 4 / 3
     private var pathLayer = CAShapeLayer()
@@ -39,7 +41,8 @@ class DashboardView: UIView, AnimatedTransitioning {
         progressAnimation.isRemovedOnCompletion = false
         speedLayer.add(progressAnimation, forKey: "animateSpeedChart")
     }
-
+    
+    // 스피드 결과 출력 함수
     private func initialSetup() {
         isOpaque = false
         backgroundColor = .clear
@@ -55,10 +58,11 @@ class DashboardView: UIView, AnimatedTransitioning {
         layer.addSublayer(pathLayer)
     }
 
+    // 각도 값을 차트 애니메이션에 전달
     private func updatePathLayer() {
-        let endAngle = startAngle + maxAngle * CGFloat(speed / maxSpeed)
+        let endAngle = updatePosition(angle: ankleAngle2)
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: halfWidth, y: halfWidth), radius: bounds.width / 2,
-                                      startAngle: startAngle, endAngle: endAngle, clockwise: true)
+                                      startAngle: startAngle, endAngle: CGFloat(endAngle), clockwise: true)
         speedLayer.path = circlePath.cgPath
         speedLayer.fillColor = UIColor.clear.cgColor
         speedLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.9882352941, blue: 0, alpha: 0.7539934132).cgColor

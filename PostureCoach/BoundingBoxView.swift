@@ -7,6 +7,7 @@ View that displays a bounding box and optional Bézier path.
 
 import UIKit
 
+//박스 감지(추후 걷어내야 함, 카운터 함수와 물려있음.)
 class BoundingBoxView: UIView, AnimatedTransitioning {
     
     var borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) {

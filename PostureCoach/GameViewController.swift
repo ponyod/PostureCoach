@@ -66,6 +66,15 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         }
     }
     
+    var  lowerStats: LowerStats {
+            get {
+                return gameManager.lowerStats
+            }
+            set {
+                gameManager.lowerStats = newValue
+            }
+        }
+    
     var upperStats: UpperStats {
             get {
                 return gameManager.upperStats

@@ -18,6 +18,7 @@
 		0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */; };
 		0FEB8F7A2ACD024F0098F7AC /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */; };
 		0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */; };
+		0FEB8F802ACE8E410098F7AC /* LatPullDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */; };
 		16526EB42ACC06A5008F6A49 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAC2ACC06A5008F6A49 /* Common.swift */; };
 		16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAD2ACC06A5008F6A49 /* GameViewController.swift */; };
 		16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */; };
@@ -61,6 +62,7 @@
 		0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportView.storyboard; sourceTree = "<group>"; };
 		0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommunityView.storyboard; sourceTree = "<group>"; };
 		0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatPullDownViewController.swift; sourceTree = "<group>"; };
 		16526EAC2ACC06A5008F6A49 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		16526EAD2ACC06A5008F6A49 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
@@ -152,19 +154,28 @@
 				16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */,
 				16526EAF2ACC06A5008F6A49 /* SourcePickerViewController.swift */,
 				16526EB32ACC06A5008F6A49 /* SummaryViewController.swift */,
+				16526EC02ACC071D008F6A49 /* AnimatedTransitioning.swift */,
+				16526EBF2ACC071D008F6A49 /* BoundingBoxView.swift */,
+				16526EC12ACC071D008F6A49 /* DashboardView.swift */,
+				16526EBD2ACC071D008F6A49 /* JointSegmentView.swift */,
+				16526EBC2ACC071D008F6A49 /* OverlayLabel.swift */,
+				16526EBE2ACC071D008F6A49 /* ProgressView.swift */,
+				16526EC32ACC071D008F6A49 /* TrajectoryView.swift */,
+				16526EC22ACC071D008F6A49 /* VideoOutputViews.swift */,
 				16AE78FE2AC29F7500A16443 /* ExerciseClassifier */,
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
 				0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */,
+				0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */,
+				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
+				0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */,
+				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
+				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
 				0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
-				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
-				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
-				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
-				0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */,
 				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
 				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
 				16526ECF2ACC073A008F6A49 /* SetupViewController.xib */,
@@ -174,14 +185,6 @@
 				165CE2792AC165C4002F8385 /* Info.plist */,
 				165CE2712AC165C3002F8385 /* PostureCoach.xcdatamodeld */,
 				0FE635962AC51FCB00DA6266 /* Model.swift */,
-				16526EC02ACC071D008F6A49 /* AnimatedTransitioning.swift */,
-				16526EBF2ACC071D008F6A49 /* BoundingBoxView.swift */,
-				16526EC12ACC071D008F6A49 /* DashboardView.swift */,
-				16526EBD2ACC071D008F6A49 /* JointSegmentView.swift */,
-				16526EBC2ACC071D008F6A49 /* OverlayLabel.swift */,
-				16526EBE2ACC071D008F6A49 /* ProgressView.swift */,
-				16526EC32ACC071D008F6A49 /* TrajectoryView.swift */,
-				16526EC22ACC071D008F6A49 /* VideoOutputViews.swift */,
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
 			);
 			path = PostureCoach;
@@ -293,6 +296,7 @@
 				165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */,
 				16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */,
 				16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */,
+				0FEB8F802ACE8E410098F7AC /* LatPullDownViewController.swift in Sources */,
 				16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */,
 				16526EB72ACC06A5008F6A49 /* SourcePickerViewController.swift in Sources */,
 				165CE2732AC165C3002F8385 /* PostureCoach.xcdatamodeld in Sources */,

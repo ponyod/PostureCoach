@@ -118,6 +118,76 @@ struct PlayerStats {
     }
 }
 
+struct LowerStats {
+    var totalScore = 0
+    var throwCount = 0
+    var topSpeed = 0.0
+    var avgSpeed = 0.0
+    var releaseAngle = 0.0
+    var avgReleaseAngle = 0.0
+    var poseObservations = [VNHumanBodyPoseObservation]()
+    var throwPaths = [CGPath]()
+    
+    mutating func reset() {
+        topSpeed = 0
+        avgSpeed = 0
+        totalScore = 0
+        throwCount = 0
+        releaseAngle = 0
+        poseObservations = []
+    }
+
+    mutating func resetObservations() {
+        poseObservations = []
+    }
+
+    mutating func adjustMetrics(score: Scoring, speed: Double, releaseAngle: Double, throwType: ThrowType) {
+        throwCount += 1
+//        totalScore += score.rawValue
+//        avgSpeed = (avgSpeed * Double(throwCount - 1) + speed) / Double(throwCount)
+        avgReleaseAngle = (avgReleaseAngle * Double(throwCount - 1) + releaseAngle) / Double(throwCount)
+//        if speed > topSpeed {
+//            topSpeed = speed
+//        }
+    }
+
+    mutating func storePath(_ path: CGPath) {
+        throwPaths.append(path)
+    }
+
+    mutating func storeObservation(_ observation: VNHumanBodyPoseObservation) {
+        if poseObservations.count >= GameConstants.maxPoseObservations {
+            poseObservations.removeFirst()
+        }
+        poseObservations.append(observation)
+    }
+
+    mutating func getReleaseAngle() -> Double {
+        if !poseObservations.isEmpty {
+            let observationCount = poseObservations.count
+            let postReleaseObservationCount = GameConstants.trajectoryLength + GameConstants.maxTrajectoryInFlightPoseObservations
+            let keyFrameForReleaseAngle = observationCount > postReleaseObservationCount ? observationCount - postReleaseObservationCount : 0
+            let observation = poseObservations[keyFrameForReleaseAngle]
+            let (rightHip, _, rightAnkle) = legJoints(for: observation)
+//            let (rightElbow, rightWrist) = armJoints(for: observation)
+//            let (leftElbow, leftWrist) = armJointsLeft(for: observation)
+            // Release angle is computed by measuring the angle forearm (elbow to wrist) makes with the horizontal
+            releaseAngle = rightHip.angleFromHorizontal(to: rightAnkle)
+        }
+        return releaseAngle
+    }
+
+    mutating func getLastThrowType() -> ThrowType {
+        guard let actionClassifier = try? PostureActionClassifier(configuration: MLModelConfiguration()),
+              let poseMultiArray = prepareInputWithObservations(poseObservations),
+              let predictions = try? actionClassifier.prediction(poses: poseMultiArray),
+              let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
+            return .legpress
+        }
+        return throwType
+    }
+}
+
 struct UpperStats {
     var totalScore = 0
     var throwCount = 0
@@ -200,9 +270,15 @@ struct GameConstants {
 }
 
 let jointsOfInterest: [VNHumanBodyPoseObservation.JointName] = [
+    .rightWrist,
+    .rightElbow,
+    .rightShoulder,
     .rightHip,
     .rightKnee,
     .rightAnkle,
+    .leftWrist,
+    .leftElbow,
+    .leftShoulder,
     .leftHip,
     .leftKnee,
     .leftAnkle,
