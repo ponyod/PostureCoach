@@ -48,6 +48,11 @@
 		165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165CE2742AC165C4002F8385 /* Assets.xcassets */; };
 		165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */; };
 		165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165CE2812AC1DC81002F8385 /* SignupViewController.swift */; };
+		169F7B1F2AD1309E004204E9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1A2AD1309E004204E9 /* WebViewController.swift */; };
+		169F7B202AD1309E004204E9 /* MachineMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */; };
+		169F7B212AD1309E004204E9 /* MachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1C2AD1309E004204E9 /* MachineViewController.swift */; };
+		169F7B232AD1309E004204E9 /* CellWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */; };
+		169F7B252AD13448004204E9 /* MachineClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */; };
 		16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +99,11 @@
 		165CE2772AC165C4002F8385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		165CE2792AC165C4002F8385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		165CE2812AC1DC81002F8385 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		169F7B1A2AD1309E004204E9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineMainViewController.swift; sourceTree = "<group>"; };
+		169F7B1C2AD1309E004204E9 /* MachineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineViewController.swift; sourceTree = "<group>"; };
+		169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWebViewController.swift; sourceTree = "<group>"; };
+		169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MachineClassifier.mlmodel; sourceTree = "<group>"; };
 		16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +183,10 @@
 				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
 				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
+				169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */,
+				169F7B1C2AD1309E004204E9 /* MachineViewController.swift */,
+				169F7B1A2AD1309E004204E9 /* WebViewController.swift */,
+				169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */,
 				0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
@@ -186,6 +200,7 @@
 				165CE2712AC165C3002F8385 /* PostureCoach.xcdatamodeld */,
 				0FE635962AC51FCB00DA6266 /* Model.swift */,
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
+				169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -288,11 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				16526EB42ACC06A5008F6A49 /* Common.swift in Sources */,
+				169F7B1F2AD1309E004204E9 /* WebViewController.swift in Sources */,
 				16526EC52ACC071D008F6A49 /* JointSegmentView.swift in Sources */,
 				0FE635972AC51FCB00DA6266 /* Model.swift in Sources */,
+				169F7B212AD1309E004204E9 /* MachineViewController.swift in Sources */,
 				0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */,
+				169F7B232AD1309E004204E9 /* CellWebViewController.swift in Sources */,
+				169F7B252AD13448004204E9 /* MachineClassifier.mlmodel in Sources */,
 				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
 				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
+				169F7B202AD1309E004204E9 /* MachineMainViewController.swift in Sources */,
 				165CE26D2AC165C3002F8385 /* ViewController.swift in Sources */,
 				16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */,
 				16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */,
@@ -459,7 +479,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CHWBKK9R3S;
+				DEVELOPMENT_TEAM = 6M8262GB64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -488,7 +508,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CHWBKK9R3S;
+				DEVELOPMENT_TEAM = 6M8262GB64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
