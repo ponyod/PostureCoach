@@ -62,12 +62,12 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWebViewSegue" {
             if let webViewController = segue.destination as? WebViewController {
-                webViewController.urlString = "https://www.youtube.com/results?search_query=\(machineLabel.text!)+자세"
+                webViewController.urlString = "https://www.youtube.com/results?search_query=\(machineLabel.text!)+사용법"
             }
         } else if segue.identifier == "showWebViewSegueTable" {
             if let cellWebViewController = segue.destination as? CellWebViewController {
                 let labelText = sender as? String
-                cellWebViewController.UrlString = "https://www.youtube.com/results?search_query=\(labelText ?? "테스트")+자세"
+                cellWebViewController.UrlString = "https://www.youtube.com/results?search_query=\(labelText ?? "테스트")+사용법"
                 print("\(labelText ?? "테스트")입니다")
             }
         }
@@ -138,7 +138,7 @@ extension MachineViewController {
     func detect(image: CIImage) {
         do {
             let modelConfig = MLModelConfiguration()
-            let coreMLModel = try ExerciseClassifier(configuration: modelConfig)
+            let coreMLModel = try MachineClassifier(configuration: modelConfig)
             let visionModel = try VNCoreMLModel(for: coreMLModel.model)
             
             let request = VNCoreMLRequest(model: visionModel) { request, error in
@@ -195,7 +195,13 @@ class LabelMapper {
         "latpulldown": "랫풀다운",
         "treadmill": "트레드밀",
         "legextension": "레그익스텐션",
-        "legpress": "레그프레스"
+        "legpress": "레그프레스",
+        "dumbbell": "덤벨",
+        "powerrack": "파워랙",
+        "rowing": "로잉머신",
+        "chestpress": "체스트프레스",
+        "foamroller": "폼롤러",
+        "yogaring": "요가링"
     ]
     
     // 원본 라벨을 변환된 라벨으로 매핑하는 함수

@@ -66,14 +66,7 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
             nextViewController.userImage = selectedImage
             navigationController?.pushViewController(nextViewController, animated: true)
         }
-        //        } else if picker.sourceType == .photoLibrary {
-        //            if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-        //                // 선택한 이미지를 미리 보여주는 화면으로 전달하고 해당 화면으로 이동
-        //                let previewViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
-        //                previewViewController.selectedImage = selectedImage
-        //                navigationController?.pushViewController(previewViewController, animated: true)
-        //            }
-        //        }
+
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -81,29 +74,5 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
-    // 다음 view controller로 이동하는 메서드
-    //    func moveToNextViewController() {
-    //        if let selectedImage = self.selectedImage {
-    //            // 사진을 선택한 경우, 다음 view controller로 이동
-    //            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-    //            nextViewController.userImage = selectedImage
-    //            navigationController?.pushViewController(nextViewController, animated: true)
-    //            //            performSegue(withIdentifier: "showMachineSegue", sender: selectedImage)
-    //        } else {
-    //            // 취소한 경우, 다음 view controller로 이동하지 않음
-    //            // 이 부분에서 다음 view controller로 이동하지 않는 처리를 수행하거나 다른 동작을 수행할 수 있습니다.
-    //        }
-    //    }
-    
-    // 세그웨이를 통해 데이터 전달
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "showMachineSegue" {
-    //            if let nextViewController = segue.destination as? ViewController {
-    //                if let selectedImage = sender as? UIImage {
-    //                    nextViewController.userImage = selectedImage
-    //                }
-    //            }
-    //        }
-    //    }
+
 }

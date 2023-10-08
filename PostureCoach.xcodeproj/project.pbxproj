@@ -52,7 +52,7 @@
 		169F7B202AD1309E004204E9 /* MachineMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */; };
 		169F7B212AD1309E004204E9 /* MachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1C2AD1309E004204E9 /* MachineViewController.swift */; };
 		169F7B232AD1309E004204E9 /* CellWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */; };
-		169F7B252AD13448004204E9 /* MachineClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */; };
+		169F7B332AD2E496004204E9 /* MachineClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */; };
 		16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +103,7 @@
 		169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineMainViewController.swift; sourceTree = "<group>"; };
 		169F7B1C2AD1309E004204E9 /* MachineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineViewController.swift; sourceTree = "<group>"; };
 		169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWebViewController.swift; sourceTree = "<group>"; };
-		169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MachineClassifier.mlmodel; sourceTree = "<group>"; };
+		169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MachineClassifier.mlmodel; sourceTree = "<group>"; };
 		16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,10 +183,7 @@
 				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
 				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
-				169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */,
-				169F7B1C2AD1309E004204E9 /* MachineViewController.swift */,
-				169F7B1A2AD1309E004204E9 /* WebViewController.swift */,
-				169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */,
+				169F7B342AD2E49E004204E9 /* MachineCoachView */,
 				0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
@@ -200,9 +197,20 @@
 				165CE2712AC165C3002F8385 /* PostureCoach.xcdatamodeld */,
 				0FE635962AC51FCB00DA6266 /* Model.swift */,
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
-				169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */,
+				169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */,
 			);
 			path = PostureCoach;
+			sourceTree = "<group>";
+		};
+		169F7B342AD2E49E004204E9 /* MachineCoachView */ = {
+			isa = PBXGroup;
+			children = (
+				169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */,
+				169F7B1C2AD1309E004204E9 /* MachineViewController.swift */,
+				169F7B1A2AD1309E004204E9 /* WebViewController.swift */,
+				169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */,
+			);
+			path = MachineCoachView;
 			sourceTree = "<group>";
 		};
 		16AE78FE2AC29F7500A16443 /* ExerciseClassifier */ = {
@@ -307,9 +315,9 @@
 				16526EC52ACC071D008F6A49 /* JointSegmentView.swift in Sources */,
 				0FE635972AC51FCB00DA6266 /* Model.swift in Sources */,
 				169F7B212AD1309E004204E9 /* MachineViewController.swift in Sources */,
+				169F7B332AD2E496004204E9 /* MachineClassifier.mlmodel in Sources */,
 				0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */,
 				169F7B232AD1309E004204E9 /* CellWebViewController.swift in Sources */,
-				169F7B252AD13448004204E9 /* MachineClassifier.mlmodel in Sources */,
 				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
 				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
 				169F7B202AD1309E004204E9 /* MachineMainViewController.swift in Sources */,
