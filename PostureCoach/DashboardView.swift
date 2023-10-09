@@ -60,7 +60,7 @@ class DashboardView: UIView, AnimatedTransitioning {
 
     // 각도 값을 차트 애니메이션에 전달
     private func updatePathLayer() {
-        let endAngle = updatePosition(angle: ankleAngle2)
+        let endAngle = updateArmPosition(angle: elbowAngle2)
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: halfWidth, y: halfWidth), radius: bounds.width / 2,
                                       startAngle: startAngle, endAngle: CGFloat(endAngle), clockwise: true)
         speedLayer.path = circlePath.cgPath

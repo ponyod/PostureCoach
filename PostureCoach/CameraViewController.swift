@@ -23,7 +23,7 @@ class CameraViewController: UIViewController {
     private var cameraFeedView: CameraFeedView!
     private var cameraFeedSession: AVCaptureSession?
 
-    // Video file playback management
+    // Video file playback management(비디오 파일 재생 관리)
     private var videoRenderView: VideoRenderView!
     private var playerItemOutput: AVPlayerItemVideoOutput?
     private var displayLink: CADisplayLink?
@@ -98,8 +98,10 @@ class CameraViewController: UIViewController {
         switch view.window?.windowScene?.interfaceOrientation {
         case .landscapeRight:
             videoOrientation = .landscapeRight
+        case .unknown:
+            videoOrientation = .landscapeRight
         default:
-            videoOrientation = .portrait
+            videoOrientation = .landscapeRight
         }
         
         // Create and setup video feed view
@@ -136,7 +138,7 @@ class CameraViewController: UIViewController {
     // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
     //
     func viewPointForVisionPoint(_ visionPoint: CGPoint) -> CGPoint {
-        let flippedPoint = visionPoint.applying(CGAffineTransform.verticalFlip)
+        let flippedPoint = visionPoint.applying(CGAffineTransform.horizontalFlip)
         let viewPoint: CGPoint
         if cameraFeedSession != nil {
             viewPoint = cameraFeedView.viewPointConverted(fromNormalizedContentsPoint: flippedPoint)

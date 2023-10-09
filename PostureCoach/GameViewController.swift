@@ -144,21 +144,26 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedLabel.text = "\(lastThrowMetrics.releaseSpeed)"
         throwTypeLabel.text = lastThrowMetrics.throwType.rawValue.capitalized
         
-        // Update release angle label and get the count
-        let count = updatePosition(angle: ankleAngle2)
-        print(count)
-        releaseAngleLabel.text = "\(count) 회"
-//        releaseAngleLabel.text = "\(lastThrowMetrics.releaseAngle)°"
+        var legCount = updateLegPosition(angle: kneeAngle2)
+        var armCount = updateArmPosition(angle: elbowAngle2)
+            
+            // Update release angle label and get the count based on throw type
+        switch lastThrowMetrics.throwType {
+        case .legpress, .legextension:
+            legCount = updateLegPosition(angle: kneeAngle2)
+            releaseAngleLabel.text = "\(legCount) 회"
+        case .chestpress, .latpulldown:
+            armCount = updateArmPosition(angle: elbowAngle2)
+            releaseAngleLabel.text = "\(armCount) 회"
+        }
+            
+        print("운동횟수: \(legCount)")
+        print("운동횟수: \(armCount)")
+        
         scoreLabel.attributedText = getScoreLabelAttributedStringForScore(gameManager.playerStats.totalScore)
         // Update throw type counters
         throwTypeImage.image = UIImage(named: lastThrowMetrics.throwType.rawValue)
         switch lastThrowMetrics.throwType {
-//        case .chestpress:
-//            overhandThrowView.incrementThrowCount()
-//        case .latpulldown:
-//            underhandThrowView.incrementThrowCount()
-//        case .legpress:
-//            underlegThrowView.incrementThrowCount()
 
         default:
             break
@@ -285,29 +290,62 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         self.gameManager.stateMachine.enter(GameManager.ThrowCompletedState.self)
     }
     
+    // 스코어 계산
     func computeScore(_ finalBagLocation: CGPoint) -> Scoring {
-        let heightBuffer: CGFloat = 100
-//        let boardRegion = gameManager.boardRegion
-        // In some cases trajectory observation may not end exactly on the board and end a few pixels above the board.
-        // This can happen especially when the bag bounces on the board. Filtering conditions can be adjusted to get those observations as well.
-        // Defining extended regions for board and the hole with a heightBuffer to cover these cases.
-//        let extendedBoardRegion = CGRect(x: boardRegion.origin.x, y: boardRegion.origin.y - heightBuffer,
-//                                        width: boardRegion.width, height: boardRegion.height + heightBuffer)
-        let holeRegion = gameManager.holeRegion
-        let extendedHoleRegion = CGRect(x: holeRegion.origin.x, y: holeRegion.origin.y - heightBuffer,
-                                        width: holeRegion.width, height: holeRegion.height + heightBuffer)
-//        if !extendedBoardRegion.contains(finalBagLocation) {
-//            // Bag missed the board
-//            return Scoring.zero
-//        } else if extendedHoleRegion.contains(finalBagLocation) {
-        if extendedHoleRegion.contains(finalBagLocation) {
-            // Bag landed in the hole
-            return lastThrowMetrics.throwType == .legpress ? Scoring.fifteen : Scoring.three
-        } else {
-            // Bag landed on the board
-            return lastThrowMetrics.throwType == .legpress ? Scoring.five : Scoring.one
+        
+        switch lastThrowMetrics.throwType {
+        case .chestpress, .latpulldown:
+            // Handle chestpress scoring logic here
+            return lastThrowMetrics.throwType == .latpulldown ? Scoring.one : Scoring.one
+
+        case .legpress, .legextension:
+            // Handle legextension scoring logic here
+            return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
         }
     }
+    
+    
+//        let heightBuffer: CGFloat = 100
+////        let boardRegion = gameManager.boardRegion
+//        // In some cases trajectory observation may not end exactly on the board and end a few pixels above the board.
+//        // This can happen especially when the bag bounces on the board. Filtering conditions can be adjusted to get those observations as well.
+//        // Defining extended regions for board and the hole with a heightBuffer to cover these cases.
+////        let extendedBoardRegion = CGRect(x: boardRegion.origin.x, y: boardRegion.origin.y - heightBuffer,
+////                                        width: boardRegion.width, height: boardRegion.height + heightBuffer)
+//        let holeRegion = gameManager.holeRegion
+//        let extendedHoleRegion = CGRect(x: holeRegion.origin.x, y: holeRegion.origin.y - heightBuffer,
+//                                        width: holeRegion.width, height: holeRegion.height + heightBuffer)
+////        if !extendedBoardRegion.contains(finalBagLocation) {
+////            // Bag missed the board
+////            return Scoring.zero
+////        } else if extendedHoleRegion.contains(finalBagLocation) {
+////        if extendedHoleRegion.contains(finalBagLocation) {
+////            // Bag landed in the hole
+////            return lastThrowMetrics.throwType == .legpress ? Scoring.fifteen : Scoring.three
+////        } else {
+////            // Bag landed on the board
+////            return lastThrowMetrics.throwType == .legpress ? Scoring.five : Scoring.one
+////        }
+//
+//        if extendedHoleRegion.contains(finalBagLocation) {
+//                switch lastThrowMetrics.throwType {
+//                case .chestpress, .latpulldown:
+//                    // Handle chestpress scoring logic here
+//                    return lastThrowMetrics.throwType == .latpulldown ? Scoring.one : Scoring.one
+//
+//                case .legpress, .legextension:
+//                    // Handle legextension scoring logic here
+//                    return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
+//                }
+//            }
+////        else {
+////                // Handle the case where the bag is on the board (default scoring logic)
+////                return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
+////            }
+//
+//            // Default case (if none of the conditions match)
+//            return Scoring.zero
+//    }
 }
 
 extension GameViewController: GameStateChangeObserver {

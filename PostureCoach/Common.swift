@@ -13,9 +13,9 @@ enum ThrowType: String, CaseIterable {
 //    case underleg = "Underleg"
 //    case underhand = "Underhand"
 //    case none = "None"
-//    case chestpress = "ChestPress"
-//    case latpulldown = "LatPullDown"
-//    case legextension = "LegExtension"
+    case chestpress = "ChestPress"
+    case latpulldown = "LatPullDown"
+    case legextension = "LegExtension"
     case legpress = "Leg Press"
 }
 
@@ -31,10 +31,16 @@ struct ThrowMetrics {
     var releaseSpeed = 0.0
     var releaseAngle = 0.0
     var throwType = ThrowType.legpress
+    var upperType = ThrowType.latpulldown
+    var lowerExercisesType = ThrowType.legextension
     var finalBagLocation: CGPoint = .zero
 
     mutating func updateThrowType(_ type: ThrowType) {
         throwType = type
+    }
+    
+    mutating func updateExercisesType(_ type: ThrowType) {
+        upperType = type
     }
 
     mutating func updateFinalBagLocation(_ location: CGPoint) {
@@ -98,7 +104,7 @@ struct PlayerStats {
             let postReleaseObservationCount = GameConstants.trajectoryLength + GameConstants.maxTrajectoryInFlightPoseObservations
             let keyFrameForReleaseAngle = observationCount > postReleaseObservationCount ? observationCount - postReleaseObservationCount : 0
             let observation = poseObservations[keyFrameForReleaseAngle]
-            let (rightHip, _, rightAnkle) = legJoints(for: observation)
+            let (rightHip, _, rightAnkle) = legPressJoints(for: observation)
 //            let (rightElbow, rightWrist) = armJoints(for: observation)
 //            let (leftElbow, leftWrist) = armJointsLeft(for: observation)
             // Release angle is computed by measuring the angle forearm (elbow to wrist) makes with the horizontal
@@ -168,9 +174,7 @@ struct LowerStats {
             let postReleaseObservationCount = GameConstants.trajectoryLength + GameConstants.maxTrajectoryInFlightPoseObservations
             let keyFrameForReleaseAngle = observationCount > postReleaseObservationCount ? observationCount - postReleaseObservationCount : 0
             let observation = poseObservations[keyFrameForReleaseAngle]
-            let (rightHip, _, rightAnkle) = legJoints(for: observation)
-//            let (rightElbow, rightWrist) = armJoints(for: observation)
-//            let (leftElbow, leftWrist) = armJointsLeft(for: observation)
+            let (rightHip, _, rightAnkle) = legPressJoints(for: observation)
             // Release angle is computed by measuring the angle forearm (elbow to wrist) makes with the horizontal
             releaseAngle = rightHip.angleFromHorizontal(to: rightAnkle)
         }
@@ -238,11 +242,10 @@ struct UpperStats {
             let postReleaseObservationCount = GameConstants.trajectoryLength + GameConstants.maxTrajectoryInFlightPoseObservations
             let keyFrameForReleaseAngle = observationCount > postReleaseObservationCount ? observationCount - postReleaseObservationCount : 0
             let observation = poseObservations[keyFrameForReleaseAngle]
-            let (rightHip, _, rightAnkle) = legJoints(for: observation)
-//            let (rightElbow, rightWrist) = armJoints(for: observation)
-//            let (leftElbow, leftWrist) = armJointsLeft(for: observation)
+//            let (rightHip, _, rightAnkle) = legJoints(for: observation)
+            let (rightShoulder, _, rightWrist) = latPullDownJoints(for: observation)
             // Release angle is computed by measuring the angle forearm (elbow to wrist) makes with the horizontal
-            releaseAngle = rightHip.angleFromHorizontal(to: rightAnkle)
+            releaseAngle = rightShoulder.angleFromHorizontal(to: rightWrist)
         }
         return releaseAngle
     }
@@ -252,7 +255,7 @@ struct UpperStats {
               let poseMultiArray = prepareInputWithObservations(poseObservations),
               let predictions = try? actionClassifier.prediction(poses: poseMultiArray),
               let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
-            return .legpress
+            return .latpulldown
         }
         return throwType
     }
@@ -290,13 +293,49 @@ enum LegPressState {
     case returningToStart
 }
 
+enum LatPullDownState {
+    case initial
+    case movingTowardsShoulder
+    case returningToStart
+}
+
 // Initialize the LegPressCounter
 var legPressCounter = LegPressCounter()
+var latPullDownCounter = LatPullDownCounter()
 
-let ankleAngle1 = 10.0 // Assuming the ankle is closer to the hip
-let ankleAngle2 = 40.0 // Assuming the ankle is away from the hip
+let kneeAngle1 = 10.0 // Assuming the ankle is closer to the hip
+let kneeAngle2 = 40.0 // Assuming the ankle is away from the hip
 
-func legJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint, CGPoint) {
+let elbowAngle1 = 10.0 // Assuming the ankle is closer to the Shoulder
+let elbowAngle2 = 40.0 // Assuming the ankle is away from the Shoulder
+
+func latPullDownJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint, CGPoint) {
+    var rightShoulder = CGPoint(x: 0, y: 0)
+    var rightElbow = CGPoint(x: 0, y: 0)
+    var rightWrist = CGPoint(x: 0, y: 0)
+
+    guard let identifiedPoints = try? observation.recognizedPoints(.all) else {
+        return (rightShoulder, rightElbow, rightWrist)
+    }
+    for (key, point) in identifiedPoints where point.confidence > 0.1 {
+        switch key {
+        case .rightShoulder:
+            rightShoulder = point.location
+        case .rightElbow:
+            rightElbow = point.location
+        case .rightWrist:
+            rightWrist = point.location
+        default:
+            break
+        }
+    }
+    updateArmPosition(angle: elbowAngle1) // This will not increase the count
+    updateArmPosition(angle: elbowAngle2)// This will increase the count by 1
+    
+    return (rightShoulder, rightElbow, rightWrist)
+}
+
+func legPressJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint, CGPoint) {
     var rightHip = CGPoint(x: 0, y: 0)
     var rightKnee = CGPoint(x: 0, y: 0)
     var rightAnkle = CGPoint(x: 0, y: 0)
@@ -316,8 +355,8 @@ func legJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint
             break
         }
     }
-    updatePosition(angle: ankleAngle1) // This will not increase the count
-    updatePosition(angle: ankleAngle2)// This will increase the count by 1
+    updateLegPosition(angle: kneeAngle1) // This will not increase the count
+    updateLegPosition(angle: kneeAngle2)// This will increase the count by 1
     
     return (rightHip, rightKnee, rightAnkle)
 }
@@ -362,8 +401,48 @@ struct LegPressCounter {
     }
 }
 
+struct LatPullDownCounter {
+    
+    private var state: LatPullDownState = .initial
+    private var count: Int = 0
+
+    // Call this function whenever the position of the ankle joint is updated
+    mutating func updateAnglePosition(isCloserToShoulder: Bool) {
+        switch state {
+        case .initial:
+            // Check if the ankle is moving towards the hip
+            if isCloserToShoulder {
+                state = .movingTowardsShoulder
+            }
+        case .movingTowardsShoulder:
+            // Check if the ankle is returning to the start position
+            if !isCloserToShoulder {
+                state = .returningToStart
+            }
+        case .returningToStart:
+            // Check if the ankle has reached the start position
+            if isCloserToShoulder {
+                // Increment the count and reset the state
+                count += 1
+                state = .movingTowardsShoulder
+            }
+        }
+    }
+    
+    // Call this function to get the current count
+    func getCount() -> Int {
+        return count
+    }
+
+    // Call this function to reset the count
+    mutating func resetCount() {
+        count = 0
+        state = .initial
+    }
+}
+
 // Update the ankle position and check for counting
-func updatePosition(angle: Double) -> Int {
+func updateLegPosition(angle: Double) -> Int {
     // Set a threshold angle that determines when the ankle is closer to the hip
     let thresholdAngle: Double = 30.0 // Adjust this value as needed
     
@@ -379,6 +458,26 @@ func updatePosition(angle: Double) -> Int {
     // Print or use the count as needed
     return count
 }
+
+// 카운터 업데이트를 위한 팔꿈치 위치 확인
+
+func updateArmPosition(angle: Double) -> Int {
+    // Set a threshold angle that determines when the ankle is closer to the hip
+    let thresholdAngle: Double = 30.0 // Adjust this value as needed
+    
+    // Check if the ankle angle is within the threshold
+    let isCloserToShoulder = angle < thresholdAngle
+    
+    // Update the LatPullDownCounter
+    latPullDownCounter.updateAnglePosition(isCloserToShoulder: isCloserToShoulder)
+    
+    // Get the current count
+    let count = latPullDownCounter.getCount()
+    
+    // Print or use the count as needed
+    return count
+}
+
 
 //func armJointsRight(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint) {
 //    var rightElbow = CGPoint(x: 0, y: 0)
@@ -523,6 +622,7 @@ extension CGPoint {
 
 extension CGAffineTransform {
     static var verticalFlip = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+    static var horizontalFlip = CGAffineTransform(scaleX: -1, y: 1).translatedBy(x: -1, y: 0)
 }
 
 extension UIBezierPath {
