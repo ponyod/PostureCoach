@@ -64,15 +64,17 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let webViewController = segue.destination as? WebViewController {
                 webViewController.urlString = "https://www.youtube.com/results?search_query=\(machineLabel.text!)+사용법"
             }
-        } else if segue.identifier == "showWebViewSegueTable" {
-            if let cellWebViewController = segue.destination as? CellWebViewController {
-                let labelText = sender as? String
-                cellWebViewController.UrlString = "https://www.youtube.com/results?search_query=\(labelText ?? "테스트")+사용법"
-                print("\(labelText ?? "테스트")입니다")
-            }
-        }
+        } 
+//        else if segue.identifier == "showWebViewSegueTable" {
+//            if let cellWebViewController = segue.destination as? CellWebViewController {
+//                let labelText = sender as? String
+//                cellWebViewController.UrlString = "https://www.youtube.com/results?search_query=\(labelText ?? "테스트")+사용법"
+//                print("\(labelText ?? "테스트")입니다")
+//            }
+//        }
     }
     
+
     // machineTableView cell 정의
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -87,6 +89,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         // 테이블뷰의 첫 번째 행부터 모든 행에 출력
         cell.cellLabel.text = labelMapper.mapLabel(classification![indexPath.row + 1].identifier)
         cell.cellButton.addTarget(self, action: #selector(openWebView(_:)), for: .touchUpInside)
+        cell.cellButton.tag = indexPath.row
         
         //        if let tableLabel = cell.viewWithTag(2) as? UILabel, indexPath.row < 3 {
         //            tableLabel.text = labelMapper.mapLabel(classification![indexPath.row + 1].identifier)
@@ -109,6 +112,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    
     // machineTableView cell 개수 설정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // classification 배열의 개수와 3 중 작은 값을 반환
@@ -120,10 +124,24 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         // 버튼을 클릭했을 때 실행할 동작
         // sender의 tag에 저장된 indexPath.row 값을 가져옵니다.
         //        let rowIndex = sender.tag
-        if let cell = sender.superview?.superview as? CustomTableViewCell,
-           let labelText = cell.cellLabel.text {
-            performSegue(withIdentifier: "showWebViewSegueTable", sender: labelText)
-        }
+        
+        let workoutname = classification![sender.tag + 1].identifier
+        print(classification!)
+        print(workoutname)
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CellWebViewController") as? CellWebViewController else { fatalError()}
+        vc.UrlString = "https://www.youtube.com/results?search_query=\(workoutname)+사용법"
+        print(vc.UrlString!)
+                
+        present(vc, animated: true)
+//        if let cellWebViewController = segue.destination as? CellWebViewController {
+//            let labelText = sender as? String
+//            cellWebViewController.UrlString = "https://www.youtube.com/results?search_query=\(labelText ?? "테스트")+사용법"
+//            print("\(labelText ?? "테스트")입니다")
+//        }
+//        if let cell = sender.superview?.superview as? CustomTableViewCell,
+//           let labelText = cell.cellLabel.text {
+//            performSegue(withIdentifier: "showWebViewSegueTable", sender: labelText)
+//        }
         //        if let classification = self.classification, sender.tag < 3 {
         //            selectedLabel = labelMapper.mapLabel(classification[sender.tag + 1].identifier)
         //            // selectedLabel을 사용하여 원하는 동작을 수행하십시오.
