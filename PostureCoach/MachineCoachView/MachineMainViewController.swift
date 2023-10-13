@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Alamofire
 
-class MachineMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MachineMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, XMLParserDelegate {
+    @IBOutlet weak var contentsLabel: UILabel!
+    
     var selectedImage: UIImage?
     let imagePicker = UIImagePickerController()
     
@@ -15,7 +18,7 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         
         self.imagePicker.delegate = self
-        // Do any additional setup after loading the view.
+        search()
     }
     
     // 카메라 촬영 버튼 정의
@@ -66,7 +69,7 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
             nextViewController.userImage = selectedImage
             navigationController?.pushViewController(nextViewController, animated: true)
         }
-
+        
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -74,5 +77,38 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    func search() {
+        let rawEncoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.EUC_KR.rawValue))
+        let encoding = String.Encoding(rawValue: rawEncoding)
+        
+        let strURL = "https://suggestqueries.google.com/complete/search?hl=ko&ds=yt&q=운동시작&client=firefox"
+        let alamo = AF.request(strURL)
+        alamo.response(){ response in
+//            print(response)
+            guard let data = response.data else { return }
+            guard let str = String(data: data, encoding: encoding) else { return }
+            
+//            print(str)
+            let str1 = str.split(separator: "[")
+            let str2 = str1[1].split(separator: "]")
+//            print(str2[0])
+            let str3 = str2[0].split(separator: ",")
+            
+            var labelText = ""
+            for i in 0..<5 {
+                labelText += "#\(str3[i])"
+                if i < 4 {
+                    labelText += " "
+                }
+            }
+            print(labelText)
+            self.contentsLabel.text = labelText
+//            for keyword in str3 {
+//                print(keyword)
+//                self.suggestions.append(String(keyword))
+//            }
+        }
+//        contentsLabel.text = self.suggestions[1]
+    }
 }

@@ -9,6 +9,7 @@ import CoreML
 import Vision
 
 class CustomTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellButton: UIButton!
 }
@@ -23,9 +24,12 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
     var classification: [VNClassificationObservation]?
     let labelMapper = LabelMapper()
     var selectedLabel: String?
+    let machines = ["chestpress", "dumbbell", "foamroller", "kettlebell", "latpulldown", "legextension", "legpress", "powerrack", "rowing", "treadmill", "yogaring"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = true // 탭바 히든 처리
         
         if let userImage = userImage {
             userImageView.image = userImage
@@ -44,13 +48,25 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.machineTableView.delegate = self
         self.machineTableView.dataSource = self
         
-        print(classification)
+        setMachineImage()
+        
+        // print(classification)
+        
+    }
+    
+    func setMachineImage() {
+        let imageName = "\(classification?.first?.identifier ?? "yogaring").png"
+//        print(imageName)
+        machineImageView.image = UIImage(named: imageName)
     }
     
     // 이미지 원형으로 설정
     func makeCircularImageView(_ imageView: UIImageView) {
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
+        
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     // 운동보기 버튼 클릭 시 segue 설정
@@ -79,6 +95,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = machineTableView.dequeueReusableCell(withIdentifier: "machinecell", for: indexPath) as! CustomTableViewCell
+        let imageName = "\(classification![indexPath.row + 1].identifier).png"
         //        guard let cell = machineTableView.dequeueReusableCell(withIdentifier: "machinecell") else {
         //            return UITableViewCell()
         //        }
@@ -87,6 +104,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         //        let sortedClassification = classification
         
         // 테이블뷰의 첫 번째 행부터 모든 행에 출력
+        cell.cellImage.image = UIImage(named: imageName)
         cell.cellLabel.text = labelMapper.mapLabel(classification![indexPath.row + 1].identifier)
         cell.cellButton.addTarget(self, action: #selector(openWebView(_:)), for: .touchUpInside)
         cell.cellButton.tag = indexPath.row
@@ -125,7 +143,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         // sender의 tag에 저장된 indexPath.row 값을 가져옵니다.
         //        let rowIndex = sender.tag
         
-        let workoutname = classification![sender.tag + 1].identifier
+        let workoutname = labelMapper.mapLabel(classification![sender.tag + 1].identifier)
         print(classification!)
         print(workoutname)
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CellWebViewController") as? CellWebViewController else { fatalError()}
