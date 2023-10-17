@@ -18,6 +18,7 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     var rankingMine: String = ""
     var rankingToday: [RankingToday] = []
+    var rankingPhysical: [RankingPhysical] = []
     var rankingBirth: [RankingBirth] = []
     
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         
         fetchRankingMine()
         fetchRankingToday()
+        fetchRankingPhysical()
         fetchRankingBirth()
     }
     
@@ -69,6 +71,22 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    func fetchRankingPhysical() {
+        let url = "https://pcoachapi.azurewebsites.net/api/ranking/physical"
+        
+        AF.request(url).responseDecodable(of: [RankingPhysical].self) { response in
+            switch response.result {
+            case .success(let value):
+                self.rankingPhysical = value
+                print(self.rankingPhysical)
+                self.rankingTableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+    }
+    
     func fetchRankingBirth() {
         let url = "https://pcoachapi.azurewebsites.net/api/ranking/birth"
         
@@ -93,7 +111,7 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         case 0:
             return 3
         case 1:
-            return 1
+            return rankingPhysical.count
         case 2:
             return rankingBirth.count
         default:
@@ -105,7 +123,11 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = rankingTableView.dequeueReusableCell(withIdentifier: "rankingcell", for: indexPath)
         
         if let imageView = cell.viewWithTag(1) as? UIImageView {
-            if indexPath.section == 2 && indexPath.row < rankingBirth.count {
+            if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
+                let rowData = rankingPhysical[indexPath.row]
+                let imageName = rowData.machineName
+                imageView.image = UIImage(named: imageName)
+            } else if indexPath.section == 2 && indexPath.row < rankingBirth.count {
                 let rowData = rankingBirth[indexPath.row]
                 let imageName = rowData.machineName
                 imageView.image = UIImage(named: imageName)
@@ -116,6 +138,9 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.section == 0 && indexPath.row < rankingToday.count {
                 let rowData = rankingToday[indexPath.row]
                 label.text = rowData.userName
+            } else if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
+                let rowData = rankingPhysical[indexPath.row]
+                label.text = labelMapper.mapLabel(rowData.machineName)
             } else if indexPath.section == 2 && indexPath.row < rankingBirth.count {
                 let rowData = rankingBirth[indexPath.row]
                 label.text = labelMapper.mapLabel(rowData.machineName)
@@ -127,6 +152,9 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         if let label = cell.viewWithTag(3) as? UILabel {
             if indexPath.section == 0 && indexPath.row < rankingToday.count {
                 let rowData = rankingToday[indexPath.row]
+                label.text = "\(rowData.exerciseCount)회"
+            } else if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
+                let rowData = rankingPhysical[indexPath.row]
                 label.text = "\(rowData.exerciseCount)회"
             } else if indexPath.section == 2 && indexPath.row < rankingBirth.count {
                 let rowData = rankingBirth[indexPath.row]
@@ -167,9 +195,19 @@ struct RankingToday: Decodable {
     }
 }
 
+struct RankingPhysical: Decodable {
+    let machineName: String
+    let exerciseCount: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case machineName = "machine_name"
+        case exerciseCount = "exercise_count"
+    }
+}
+
 struct RankingBirth: Decodable {
     let machineName: String
-    let exerciseCount: Int
+    let exerciseCount: Double
     
     enum CodingKeys: String, CodingKey {
         case machineName = "machine_name"
