@@ -20,6 +20,8 @@ class ReportViewController: UIViewController, UICalendarViewDelegate, UICalendar
             return view
         }()
     
+    var swiftUiView = UIHostingController(rootView: WeeklyReportView())
+    
     var selectedDate: DateComponents? = nil
     
     override func viewDidLoad() {
@@ -76,6 +78,7 @@ class ReportViewController: UIViewController, UICalendarViewDelegate, UICalendar
             swiftuiView.heightAnchor.constraint(equalToConstant: 360)
             ])
         vc.didMove(toParent: self)
+        
     }
     
     // UICalendarView
@@ -101,15 +104,10 @@ class ReportViewController: UIViewController, UICalendarViewDelegate, UICalendar
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            weeklyView.alpha = 1
-            monthlyView.alpha = 0
-
             applyWeeklyConstraints()
         } else {
-            weeklyView.alpha = 0
-            monthlyView.alpha = 1
-            
             applyMonthlyConstraints()
+            swiftUiView.removeFromParent()
         }
     }
 
