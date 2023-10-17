@@ -16,6 +16,9 @@ class SourcePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameManager.stateMachine.enter(GameManager.InactiveState.self)
+        self.navigationController?.navigationBar.isHidden = true;
+        self.tabBarController?.tabBar.isHidden = true;
+       
     }
     
     @IBAction func handleUploadVideoButton(_ sender: Any) {

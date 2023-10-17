@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F585E222AD68360007D0B47 /* PostureCoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */; };
+		0F585E242AD68612007D0B47 /* PostureCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F585E232AD68612007D0B47 /* PostureCoachView.storyboard */; };
+		0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */; };
+		0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */; };
+		0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */; };
+		0FD57EF92AD6363800BFB722 /* RankViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
 		0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */; };
 		0FEB8F682ACCF6AC0098F7AC /* LatPullDownView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */; };
 		0FEB8F6F2ACCF7DA0098F7AC /* ChestPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */; };
-		0FEB8F742ACCFFB80098F7AC /* PostureCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */; };
 		0FEB8F762ACD013E0098F7AC /* MachineCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */; };
 		0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */; };
-		0FEB8F7A2ACD024F0098F7AC /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */; };
 		0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */; };
 		0FEB8F802ACE8E410098F7AC /* LatPullDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */; };
 		0FF1BE3A2AD3896300CC404D /* LowerSourcePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */; };
@@ -58,15 +62,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureCoachViewController.swift; sourceTree = "<group>"; };
+		0F585E232AD68612007D0B47 /* PostureCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostureCoachView.storyboard; sourceTree = "<group>"; };
+		0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseSummaryViewController.storyboard; sourceTree = "<group>"; };
+		0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryViewController.swift; sourceTree = "<group>"; };
+		0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportView.swift; sourceTree = "<group>"; };
+		0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RankViewController.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
 		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
 		0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LatPullDownView.storyboard; sourceTree = "<group>"; };
 		0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChestPressView.storyboard; sourceTree = "<group>"; };
-		0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostureCoachView.storyboard; sourceTree = "<group>"; };
 		0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MachineCoachView.storyboard; sourceTree = "<group>"; };
 		0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportView.storyboard; sourceTree = "<group>"; };
-		0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommunityView.storyboard; sourceTree = "<group>"; };
 		0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatPullDownViewController.swift; sourceTree = "<group>"; };
 		0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerSourcePickerViewController.swift; sourceTree = "<group>"; };
@@ -121,20 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FEB8F702ACCF9650098F7AC /* MachineCoach */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MachineCoach;
-			sourceTree = "<group>";
-		};
-		0FEB8F722ACCF9DA0098F7AC /* PostureCoach */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PostureCoach;
-			sourceTree = "<group>";
-		};
 		165CE25C2AC165C3002F8385 = {
 			isa = PBXGroup;
 			children = (
@@ -154,8 +148,6 @@
 		165CE2672AC165C3002F8385 /* PostureCoach */ = {
 			isa = PBXGroup;
 			children = (
-				0FEB8F722ACCF9DA0098F7AC /* PostureCoach */,
-				0FEB8F702ACCF9650098F7AC /* MachineCoach */,
 				165CE2682AC165C3002F8385 /* AppDelegate.swift */,
 				165CE26A2AC165C3002F8385 /* SceneDelegate.swift */,
 				16526EB22ACC06A5008F6A49 /* CameraViewController.swift */,
@@ -178,20 +170,23 @@
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				165CE26E2AC165C3002F8385 /* Main.storyboard */,
-				0FEB8F732ACCFFB80098F7AC /* PostureCoachView.storyboard */,
-				0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */,
+				0F585E232AD68612007D0B47 /* PostureCoachView.storyboard */,
 				0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */,
 				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
-				0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */,
 				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
 				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
+				0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
+				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
+				0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */,
+				0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */,
+				0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */,
+				0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */,
+				0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */,
 				169F7B1B2AD1309E004204E9 /* MachineMainViewController.swift */,
 				169F7B1C2AD1309E004204E9 /* MachineViewController.swift */,
 				169F7B1A2AD1309E004204E9 /* WebViewController.swift */,
 				169F7B1E2AD1309E004204E9 /* CellWebViewController.swift */,
-				0FEB8F792ACD024F0098F7AC /* CommunityView.storyboard */,
-				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
 				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
 				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
@@ -204,6 +199,7 @@
 				0FE635962AC51FCB00DA6266 /* Model.swift */,
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
 				169F7B242AD13448004204E9 /* MachineClassifier.mlmodel */,
+				0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -281,9 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FEB8F682ACCF6AC0098F7AC /* LatPullDownView.storyboard in Resources */,
-				0FEB8F742ACCFFB80098F7AC /* PostureCoachView.storyboard in Resources */,
+				0FD57EF92AD6363800BFB722 /* RankViewController.storyboard in Resources */,
 				0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */,
 				16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */,
+				0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */,
 				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
 				0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
@@ -292,8 +289,8 @@
 				0FEB8F762ACD013E0098F7AC /* MachineCoachView.storyboard in Resources */,
 				16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */,
 				0FEB8F6F2ACCF7DA0098F7AC /* ChestPressView.storyboard in Resources */,
+				0F585E242AD68612007D0B47 /* PostureCoachView.storyboard in Resources */,
 				165CE2702AC165C3002F8385 /* Main.storyboard in Resources */,
-				0FEB8F7A2ACD024F0098F7AC /* CommunityView.storyboard in Resources */,
 				16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,13 +318,16 @@
 				16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */,
 				0FEB8F802ACE8E410098F7AC /* LatPullDownViewController.swift in Sources */,
 				16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */,
+				0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */,
 				16526EB72ACC06A5008F6A49 /* SourcePickerViewController.swift in Sources */,
 				165CE2732AC165C3002F8385 /* PostureCoach.xcdatamodeld in Sources */,
 				16526EC92ACC071D008F6A49 /* DashboardView.swift in Sources */,
 				16526ED52ACC0776008F6A49 /* PostureActionClassifier.mlmodel in Sources */,
+				0F585E222AD68360007D0B47 /* PostureCoachViewController.swift in Sources */,
 				165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */,
 				165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */,
 				16526EBA2ACC06A5008F6A49 /* CameraViewController.swift in Sources */,
+				0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */,
 				0FF1BE3A2AD3896300CC404D /* LowerSourcePickerViewController.swift in Sources */,
 				165CE26B2AC165C3002F8385 /* SceneDelegate.swift in Sources */,
 				16526EB92ACC06A5008F6A49 /* GameManager.swift in Sources */,

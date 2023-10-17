@@ -14,6 +14,8 @@ protocol CameraViewControllerOutputDelegate: class {
 
 class CameraViewController: UIViewController {
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     weak var outputDelegate: CameraViewControllerOutputDelegate?
     private let videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput", qos: .userInitiated,
                                                      attributes: [], autoreleaseFrequency: .workItem)
@@ -34,6 +36,7 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startObservingStateChanges()
+        self.navigationController?.navigationBar.isHidden = true;
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,13 +98,21 @@ class CameraViewController: UIViewController {
         
         // Get the interface orientaion from window scene to set proper video orientation on capture connection.
         let videoOrientation: AVCaptureVideoOrientation
-        switch view.window?.windowScene?.interfaceOrientation {
-        case .landscapeRight:
-            videoOrientation = .landscapeRight
-        case .unknown:
-            videoOrientation = .landscapeRight
-        default:
-            videoOrientation = .landscapeRight
+        if let interfaceOrientation = view.window?.windowScene?.interfaceOrientation {
+            switch interfaceOrientation {
+            case .landscapeRight:
+                videoOrientation = .landscapeRight
+            case .landscapeLeft:
+                videoOrientation = .landscapeLeft
+            case .portrait:
+                videoOrientation = .portrait
+            case .portraitUpsideDown:
+                videoOrientation = .portraitUpsideDown
+            default:
+                videoOrientation = .landscapeRight
+            }
+        } else {
+            videoOrientation = .portrait
         }
         
         // Create and setup video feed view

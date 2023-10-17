@@ -28,6 +28,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     @IBOutlet weak var underhandThrowView: ProgressView!
     @IBOutlet weak var overhandThrowView: ProgressView!
     @IBOutlet weak var underlegThrowView: ProgressView!
+    @IBOutlet var stopButton: UIButton!
     private let gameManager = GameManager.shared
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     private var playerDetected = false
@@ -90,6 +91,8 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         showSummaryGesture = UITapGestureRecognizer(target: self, action: #selector(handleShowSummaryGesture(_:)))
         showSummaryGesture.numberOfTapsRequired = 2
         view.addGestureRecognizer(showSummaryGesture)
+        view.bringSubviewToFront(stopButton)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,10 +105,20 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         detectTrajectoryRequest = nil
     }
 
+//    @IBAction func stopButtonAct(_ sender: Any) {
+//
+//        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
+//        self.dismiss(animated: false, completion: {
+//            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
+//            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
+//    }
+    
     func getScoreLabelAttributedStringForScore(_ score: Int) -> NSAttributedString {
         let totalScore = NSMutableAttributedString(string: "Total Score ", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)])
         totalScore.append(NSAttributedString(string: "\(score)", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]))
-        totalScore.append(NSAttributedString(string: "/40", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)]))
+        totalScore.append(NSAttributedString(string: "/10", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)]))
         return totalScore
     }
 
@@ -117,7 +130,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         view.addSubview(playerBoundingBox)
         view.addSubview(jointSegmentView)
 //        view.addSubview(trajectoryView)
-        gameStatusLabel.text = "Waiting for player"
+        gameStatusLabel.text = "자세를 잡아주세요"
         // Set throw type counters
 //        underhandThrowView.throwType = .underhand
 //        overhandThrowView.throwType = .overhand
@@ -134,7 +147,22 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedStackView.isHidden = true
         metricsStackView.isHidden = true
     }
-
+    func tossCount() -> Int {
+        var legCount = updateLegPosition(angle: kneeAngle2)
+        var armCount = updateArmPosition(angle: elbowAngle2)
+            
+            // Update release angle label and get the count based on throw type
+        switch lastThrowMetrics.throwType {
+            case .legpress, .legextension:
+                legCount = updateLegPosition(angle: kneeAngle2)
+                releaseAngleLabel.text = "\(legCount) 회"
+            case .chestpress, .latpulldown:
+                armCount = updateArmPosition(angle: elbowAngle2)
+                releaseAngleLabel.text = "\(armCount) 회"
+            }
+        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
+        return legCount
+    }
     func updateKPILabels() {
         // Show KPI labels
         dashboardView.isHidden = false
@@ -144,33 +172,45 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedLabel.text = "\(lastThrowMetrics.releaseSpeed)"
         throwTypeLabel.text = lastThrowMetrics.throwType.rawValue.capitalized
         
+//        var legCount = updateLegPosition(angle: kneeAngle2)
+//        var armCount = updateArmPosition(angle: elbowAngle2)
+//
+//            // Update release angle label and get the count based on throw type
+//        switch lastThrowMetrics.throwType {
+//            case .legpress, .legextension:
+//                legCount = updateLegPosition(angle: kneeAngle2)
+//                releaseAngleLabel.text = "\(legCount) 회"
+//            case .chestpress, .latpulldown:
+//                armCount = updateArmPosition(angle: elbowAngle2)
+//                releaseAngleLabel.text = "\(armCount) 회"
+//            }
+//
         var legCount = updateLegPosition(angle: kneeAngle2)
         var armCount = updateArmPosition(angle: elbowAngle2)
             
             // Update release angle label and get the count based on throw type
         switch lastThrowMetrics.throwType {
-        case .legpress, .legextension:
-            legCount = updateLegPosition(angle: kneeAngle2)
-            releaseAngleLabel.text = "\(legCount) 회"
-        case .chestpress, .latpulldown:
-            armCount = updateArmPosition(angle: elbowAngle2)
-            releaseAngleLabel.text = "\(armCount) 회"
-        }
-            
+            case .legpress, .legextension:
+                legCount = updateLegPosition(angle: kneeAngle2)
+                releaseAngleLabel.text = "\(legCount) 회"
+            case .chestpress, .latpulldown:
+                armCount = updateArmPosition(angle: elbowAngle2)
+                releaseAngleLabel.text = "\(armCount) 회"
+            }
+        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
         print("운동횟수: \(legCount)")
-        print("운동횟수: \(armCount)")
         
         scoreLabel.attributedText = getScoreLabelAttributedStringForScore(gameManager.playerStats.totalScore)
         // Update throw type counters
         throwTypeImage.image = UIImage(named: lastThrowMetrics.throwType.rawValue)
         switch lastThrowMetrics.throwType {
-
-        default:
-            break
+            default:
+                break
         }
         // Update score labels
         let beanBagView = beanBags[playerStats.throwCount - 1]
         beanBagView.image = UIImage(named: "Score\(lastThrowMetrics.score.rawValue)")
+        
     }
 
     func updateBoundingBox(_ boundingBox: BoundingBoxView, withRect rect: CGRect?) {
@@ -355,7 +395,7 @@ extension GameViewController: GameStateChangeObserver {
             playerDetected = true
             playerStats.reset()
             playerBoundingBox.perform(transition: .fadeOut, duration: 1.0)
-            gameStatusLabel.text = "Go"
+            gameStatusLabel.text = "시작"
             gameStatusLabel.perform(transitions: [.popUp, .popOut], durations: [0.25, 0.12], delayBetween: 1) {
                 self.gameManager.stateMachine.enter(GameManager.TrackThrowsState.self)
             }
