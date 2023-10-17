@@ -61,6 +61,8 @@ struct WeeklyReportView: View {
             
             }
         }
+    
+    
 }
 
 struct WeeklyReportView_Previews: PreviewProvider {

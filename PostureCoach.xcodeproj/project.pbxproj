@@ -16,7 +16,7 @@
 		0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */; };
 		0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */; };
 		0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */; };
-		0FD57EF92AD6363800BFB722 /* RankViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */; };
+		0FD22B1C2ADE5F960033C9AF /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
@@ -74,7 +74,7 @@
 		0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseSummaryViewController.storyboard; sourceTree = "<group>"; };
 		0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryViewController.swift; sourceTree = "<group>"; };
 		0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportView.swift; sourceTree = "<group>"; };
-		0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RankViewController.storyboard; sourceTree = "<group>"; };
+		0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CommunityView.storyboard; path = ../../../Downloads/CommunityView.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
 		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
@@ -182,9 +182,9 @@
 				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
 				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
 				0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */,
-				0FD57EF82AD6363800BFB722 /* RankViewController.storyboard */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
 				169F7B342AD2E49E004204E9 /* MachineCoachView */,
+				0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */,
 				160637552AD9173400213C8C /* CommunityViewController.swift */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */,
@@ -294,12 +294,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FEB8F682ACCF6AC0098F7AC /* LatPullDownView.storyboard in Resources */,
-				0FD57EF92AD6363800BFB722 /* RankViewController.storyboard in Resources */,
 				0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */,
 				16526ED32ACC073A008F6A49 /* SetupViewController.xib in Resources */,
 				0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */,
 				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
 				0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */,
+				0FD22B1C2ADE5F960033C9AF /* CommunityView.storyboard in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
 				0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */,
