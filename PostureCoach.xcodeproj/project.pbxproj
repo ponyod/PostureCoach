@@ -16,7 +16,6 @@
 		0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */; };
 		0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */; };
 		0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */; };
-		0FD22B1C2ADE5F960033C9AF /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
@@ -30,6 +29,7 @@
 		0FF1BE3A2AD3896300CC404D /* LowerSourcePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */; };
 		160637542AD8F0DF00213C8C /* ContentsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160637532AD8F0DF00213C8C /* ContentsWebViewController.swift */; };
 		160637562AD9173400213C8C /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160637552AD9173400213C8C /* CommunityViewController.swift */; };
+		163E40ED2ADE6A6F00A86EC4 /* CommunityView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 163E40EC2ADE6A6F00A86EC4 /* CommunityView.storyboard */; };
 		16526EB42ACC06A5008F6A49 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAC2ACC06A5008F6A49 /* Common.swift */; };
 		16526EB52ACC06A5008F6A49 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAD2ACC06A5008F6A49 /* GameViewController.swift */; };
 		16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */; };
@@ -74,7 +74,6 @@
 		0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseSummaryViewController.storyboard; sourceTree = "<group>"; };
 		0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryViewController.swift; sourceTree = "<group>"; };
 		0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportView.swift; sourceTree = "<group>"; };
-		0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CommunityView.storyboard; path = ../../../Downloads/CommunityView.storyboard; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
 		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerSourcePickerViewController.swift; sourceTree = "<group>"; };
 		160637532AD8F0DF00213C8C /* ContentsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsWebViewController.swift; sourceTree = "<group>"; };
 		160637552AD9173400213C8C /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		163E40EC2ADE6A6F00A86EC4 /* CommunityView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommunityView.storyboard; sourceTree = "<group>"; };
 		16526EAC2ACC06A5008F6A49 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		16526EAD2ACC06A5008F6A49 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		16526EAE2ACC06A5008F6A49 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
@@ -138,9 +138,6 @@
 		0FD22B1D2ADE68B30033C9AF /* PostureCoachView */ = {
 			isa = PBXGroup;
 			children = (
-				0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */,
-				0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */,
-				0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */,
 				16526ECE2ACC073A008F6A49 /* CameraViewController.xib */,
 				16526ECD2ACC073A008F6A49 /* GameViewController.xib */,
 				16526ECF2ACC073A008F6A49 /* SetupViewController.xib */,
@@ -149,6 +146,9 @@
 				0FEB8F6E2ACCF7DA0098F7AC /* ChestPressView.storyboard */,
 				0FEB8F672ACCF6AC0098F7AC /* LatPullDownView.storyboard */,
 				0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */,
+				0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */,
+				0FEB8F7F2ACE8E410098F7AC /* LatPullDownViewController.swift */,
+				0FF1BE392AD3896300CC404D /* LowerSourcePickerViewController.swift */,
 				16526EB22ACC06A5008F6A49 /* CameraViewController.swift */,
 				16526EB12ACC06A5008F6A49 /* GameManager.swift */,
 				16526EAD2ACC06A5008F6A49 /* GameViewController.swift */,
@@ -192,14 +192,14 @@
 				165CE2682AC165C3002F8385 /* AppDelegate.swift */,
 				165CE26A2AC165C3002F8385 /* SceneDelegate.swift */,
 				16AE78FE2AC29F7500A16443 /* ExerciseClassifier */,
+				165CE26E2AC165C3002F8385 /* Main.storyboard */,
 				165CE26C2AC165C3002F8385 /* ViewController.swift */,
 				165CE2812AC1DC81002F8385 /* SignupViewController.swift */,
 				169F7B372AD4EC90004204E9 /* SignupPhysicalViewController.swift */,
-				165CE26E2AC165C3002F8385 /* Main.storyboard */,
 				0FD22B1D2ADE68B30033C9AF /* PostureCoachView */,
 				0FEB8F752ACD013E0098F7AC /* MachineCoachView.storyboard */,
 				169F7B342AD2E49E004204E9 /* MachineCoachView */,
-				0FD22B1B2ADE5F960033C9AF /* CommunityView.storyboard */,
+				163E40EC2ADE6A6F00A86EC4 /* CommunityView.storyboard */,
 				160637552AD9173400213C8C /* CommunityViewController.swift */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
 				0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */,
@@ -307,7 +307,6 @@
 				0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */,
 				16526ED22ACC073A008F6A49 /* CameraViewController.xib in Resources */,
 				0FEB8F782ACD017A0098F7AC /* ReportView.storyboard in Resources */,
-				0FD22B1C2ADE5F960033C9AF /* CommunityView.storyboard in Resources */,
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
 				0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */,
@@ -317,6 +316,7 @@
 				0F585E242AD68612007D0B47 /* PostureCoachView.storyboard in Resources */,
 				165CE2702AC165C3002F8385 /* Main.storyboard in Resources */,
 				16526ED02ACC073A008F6A49 /* SummaryViewController.xib in Resources */,
+				163E40ED2ADE6A6F00A86EC4 /* CommunityView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
