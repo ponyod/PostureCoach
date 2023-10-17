@@ -14,6 +14,8 @@ protocol CameraViewControllerOutputDelegate: class {
 
 class CameraViewController: UIViewController {
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     weak var outputDelegate: CameraViewControllerOutputDelegate?
     private let videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput", qos: .userInitiated,
                                                      attributes: [], autoreleaseFrequency: .workItem)
@@ -23,7 +25,7 @@ class CameraViewController: UIViewController {
     private var cameraFeedView: CameraFeedView!
     private var cameraFeedSession: AVCaptureSession?
 
-    // Video file playback management
+    // Video file playback management(비디오 파일 재생 관리)
     private var videoRenderView: VideoRenderView!
     private var playerItemOutput: AVPlayerItemVideoOutput?
     private var displayLink: CADisplayLink?
@@ -34,6 +36,7 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startObservingStateChanges()
+        self.navigationController?.navigationBar.isHidden = true;
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,10 +98,20 @@ class CameraViewController: UIViewController {
         
         // Get the interface orientaion from window scene to set proper video orientation on capture connection.
         let videoOrientation: AVCaptureVideoOrientation
-        switch view.window?.windowScene?.interfaceOrientation {
-        case .landscapeRight:
-            videoOrientation = .landscapeRight
-        default:
+        if let interfaceOrientation = view.window?.windowScene?.interfaceOrientation {
+            switch interfaceOrientation {
+            case .landscapeRight:
+                videoOrientation = .landscapeRight
+            case .landscapeLeft:
+                videoOrientation = .landscapeLeft
+            case .portrait:
+                videoOrientation = .portrait
+            case .portraitUpsideDown:
+                videoOrientation = .portraitUpsideDown
+            default:
+                videoOrientation = .landscapeRight
+            }
+        } else {
             videoOrientation = .portrait
         }
         
@@ -136,7 +149,7 @@ class CameraViewController: UIViewController {
     // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
     //
     func viewPointForVisionPoint(_ visionPoint: CGPoint) -> CGPoint {
-        let flippedPoint = visionPoint.applying(CGAffineTransform.verticalFlip)
+        let flippedPoint = visionPoint.applying(CGAffineTransform.horizontalFlip)
         let viewPoint: CGPoint
         if cameraFeedSession != nil {
             viewPoint = cameraFeedView.viewPointConverted(fromNormalizedContentsPoint: flippedPoint)

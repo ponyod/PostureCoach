@@ -35,7 +35,7 @@ class SummaryViewController: UIViewController {
         speedValue.attributedText = speedValueText
         angleValue.text = "\(round(stats.avgReleaseAngle * 100) / 100)°"
         let score = NSMutableAttributedString(string: "\(stats.totalScore)", attributes: [.foregroundColor: UIColor.white])
-        score.append(NSAttributedString(string: "/40", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.65)]))
+        score.append(NSAttributedString(string: "/10", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.65)]))
         scoreValue.attributedText = score
     }
 

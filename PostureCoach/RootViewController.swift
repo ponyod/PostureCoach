@@ -12,7 +12,10 @@ import UIKit
 class RootViewController: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     
+    var countToReceive: Int?
+    var countToPass: Int?
     private var cameraViewController: CameraViewController!
     private var overlayParentView: UIView!
     private var overlayViewController: UIViewController!
@@ -40,11 +43,15 @@ class RootViewController: UIViewController {
         startObservingStateChanges()
         // Make sure close button stays in front of other views.
         view.bringSubviewToFront(closeButton)
+        view.bringSubviewToFront(stopButton)
+//        self.tabBarController?.tabBar.isHidden = true;
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         gameManager.stateMachine.enter(GameManager.SetupCameraState.self)
+        self.tabBarController?.tabBar.isHidden = false;
     }
     
     private func presentOverlayViewController(_ newOverlayViewController: UIViewController?, completion: (() -> Void)?) {
@@ -75,11 +82,25 @@ class RootViewController: UIViewController {
         
         overlayViewController = newOverlayViewController
     }
+    
+    @IBAction func closeButtonAct(_ sender: Any) {
+        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
+
+
+        self.dismiss(animated: false, completion: {
+
+            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
+            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
+
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+    }
 }
 
 // MARK: - Handle states that require view controller transitions
 
 // This is where the overlay controllers management happens.
+
 extension RootViewController: GameStateChangeObserver {
     func gameManagerDidEnter(state: GameManager.State, from previousState: GameManager.State?) {
         // Create an overlay view controller based on the game state

@@ -9,16 +9,13 @@ This view controller allows to choose the video source used by the app.
 import UIKit
 import AVFoundation
 
-class SourcePickerViewController: UIViewController {
+class LowerSourcePickerViewController: UIViewController {
 
     private let gameManager = GameManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         gameManager.stateMachine.enter(GameManager.InactiveState.self)
-        self.navigationController?.navigationBar.isHidden = true;
-        self.tabBarController?.tabBar.isHidden = true;
-       
     }
     
     @IBAction func handleUploadVideoButton(_ sender: Any) {
@@ -33,7 +30,7 @@ class SourcePickerViewController: UIViewController {
     }
 }
 
-extension SourcePickerViewController: UIDocumentPickerDelegate {
+extension LowerSourcePickerViewController: UIDocumentPickerDelegate {
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         gameManager.recordedVideoSource = nil
     }

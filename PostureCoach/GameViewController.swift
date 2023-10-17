@@ -28,6 +28,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     @IBOutlet weak var underhandThrowView: ProgressView!
     @IBOutlet weak var overhandThrowView: ProgressView!
     @IBOutlet weak var underlegThrowView: ProgressView!
+    @IBOutlet var stopButton: UIButton!
     private let gameManager = GameManager.shared
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     private var playerDetected = false
@@ -90,6 +91,8 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         showSummaryGesture = UITapGestureRecognizer(target: self, action: #selector(handleShowSummaryGesture(_:)))
         showSummaryGesture.numberOfTapsRequired = 2
         view.addGestureRecognizer(showSummaryGesture)
+        view.bringSubviewToFront(stopButton)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,10 +105,20 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         detectTrajectoryRequest = nil
     }
 
+//    @IBAction func stopButtonAct(_ sender: Any) {
+//
+//        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
+//        self.dismiss(animated: false, completion: {
+//            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
+//            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
+//    }
+    
     func getScoreLabelAttributedStringForScore(_ score: Int) -> NSAttributedString {
         let totalScore = NSMutableAttributedString(string: "Total Score ", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)])
         totalScore.append(NSAttributedString(string: "\(score)", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]))
-        totalScore.append(NSAttributedString(string: "/40", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)]))
+        totalScore.append(NSAttributedString(string: "/10", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)]))
         return totalScore
     }
 
@@ -117,7 +130,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         view.addSubview(playerBoundingBox)
         view.addSubview(jointSegmentView)
 //        view.addSubview(trajectoryView)
-        gameStatusLabel.text = "Waiting for player"
+        gameStatusLabel.text = "자세를 잡아주세요"
         // Set throw type counters
 //        underhandThrowView.throwType = .underhand
 //        overhandThrowView.throwType = .overhand
@@ -134,7 +147,22 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedStackView.isHidden = true
         metricsStackView.isHidden = true
     }
-
+    func tossCount() -> Int {
+        var legCount = updateLegPosition(angle: kneeAngle2)
+        var armCount = updateArmPosition(angle: elbowAngle2)
+            
+            // Update release angle label and get the count based on throw type
+        switch lastThrowMetrics.throwType {
+            case .legpress, .legextension:
+                legCount = updateLegPosition(angle: kneeAngle2)
+                releaseAngleLabel.text = "\(legCount) 회"
+            case .chestpress, .latpulldown:
+                armCount = updateArmPosition(angle: elbowAngle2)
+                releaseAngleLabel.text = "\(armCount) 회"
+            }
+        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
+        return legCount
+    }
     func updateKPILabels() {
         // Show KPI labels
         dashboardView.isHidden = false
@@ -144,28 +172,45 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedLabel.text = "\(lastThrowMetrics.releaseSpeed)"
         throwTypeLabel.text = lastThrowMetrics.throwType.rawValue.capitalized
         
-        // Update release angle label and get the count
-        let count = updatePosition(angle: ankleAngle2)
-        print(count)
-        releaseAngleLabel.text = "\(count) 회"
-//        releaseAngleLabel.text = "\(lastThrowMetrics.releaseAngle)°"
+//        var legCount = updateLegPosition(angle: kneeAngle2)
+//        var armCount = updateArmPosition(angle: elbowAngle2)
+//
+//            // Update release angle label and get the count based on throw type
+//        switch lastThrowMetrics.throwType {
+//            case .legpress, .legextension:
+//                legCount = updateLegPosition(angle: kneeAngle2)
+//                releaseAngleLabel.text = "\(legCount) 회"
+//            case .chestpress, .latpulldown:
+//                armCount = updateArmPosition(angle: elbowAngle2)
+//                releaseAngleLabel.text = "\(armCount) 회"
+//            }
+//
+        var legCount = updateLegPosition(angle: kneeAngle2)
+        var armCount = updateArmPosition(angle: elbowAngle2)
+            
+            // Update release angle label and get the count based on throw type
+        switch lastThrowMetrics.throwType {
+            case .legpress, .legextension:
+                legCount = updateLegPosition(angle: kneeAngle2)
+                releaseAngleLabel.text = "\(legCount) 회"
+            case .chestpress, .latpulldown:
+                armCount = updateArmPosition(angle: elbowAngle2)
+                releaseAngleLabel.text = "\(armCount) 회"
+            }
+        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
+        print("운동횟수: \(legCount)")
+        
         scoreLabel.attributedText = getScoreLabelAttributedStringForScore(gameManager.playerStats.totalScore)
         // Update throw type counters
         throwTypeImage.image = UIImage(named: lastThrowMetrics.throwType.rawValue)
         switch lastThrowMetrics.throwType {
-//        case .chestpress:
-//            overhandThrowView.incrementThrowCount()
-//        case .latpulldown:
-//            underhandThrowView.incrementThrowCount()
-//        case .legpress:
-//            underlegThrowView.incrementThrowCount()
-
-        default:
-            break
+            default:
+                break
         }
         // Update score labels
         let beanBagView = beanBags[playerStats.throwCount - 1]
         beanBagView.image = UIImage(named: "Score\(lastThrowMetrics.score.rawValue)")
+        
     }
 
     func updateBoundingBox(_ boundingBox: BoundingBoxView, withRect rect: CGRect?) {
@@ -285,29 +330,62 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         self.gameManager.stateMachine.enter(GameManager.ThrowCompletedState.self)
     }
     
+    // 스코어 계산
     func computeScore(_ finalBagLocation: CGPoint) -> Scoring {
-        let heightBuffer: CGFloat = 100
-//        let boardRegion = gameManager.boardRegion
-        // In some cases trajectory observation may not end exactly on the board and end a few pixels above the board.
-        // This can happen especially when the bag bounces on the board. Filtering conditions can be adjusted to get those observations as well.
-        // Defining extended regions for board and the hole with a heightBuffer to cover these cases.
-//        let extendedBoardRegion = CGRect(x: boardRegion.origin.x, y: boardRegion.origin.y - heightBuffer,
-//                                        width: boardRegion.width, height: boardRegion.height + heightBuffer)
-        let holeRegion = gameManager.holeRegion
-        let extendedHoleRegion = CGRect(x: holeRegion.origin.x, y: holeRegion.origin.y - heightBuffer,
-                                        width: holeRegion.width, height: holeRegion.height + heightBuffer)
-//        if !extendedBoardRegion.contains(finalBagLocation) {
-//            // Bag missed the board
-//            return Scoring.zero
-//        } else if extendedHoleRegion.contains(finalBagLocation) {
-        if extendedHoleRegion.contains(finalBagLocation) {
-            // Bag landed in the hole
-            return lastThrowMetrics.throwType == .legpress ? Scoring.fifteen : Scoring.three
-        } else {
-            // Bag landed on the board
-            return lastThrowMetrics.throwType == .legpress ? Scoring.five : Scoring.one
+        
+        switch lastThrowMetrics.throwType {
+        case .chestpress, .latpulldown:
+            // Handle chestpress scoring logic here
+            return lastThrowMetrics.throwType == .latpulldown ? Scoring.one : Scoring.one
+
+        case .legpress, .legextension:
+            // Handle legextension scoring logic here
+            return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
         }
     }
+    
+    
+//        let heightBuffer: CGFloat = 100
+////        let boardRegion = gameManager.boardRegion
+//        // In some cases trajectory observation may not end exactly on the board and end a few pixels above the board.
+//        // This can happen especially when the bag bounces on the board. Filtering conditions can be adjusted to get those observations as well.
+//        // Defining extended regions for board and the hole with a heightBuffer to cover these cases.
+////        let extendedBoardRegion = CGRect(x: boardRegion.origin.x, y: boardRegion.origin.y - heightBuffer,
+////                                        width: boardRegion.width, height: boardRegion.height + heightBuffer)
+//        let holeRegion = gameManager.holeRegion
+//        let extendedHoleRegion = CGRect(x: holeRegion.origin.x, y: holeRegion.origin.y - heightBuffer,
+//                                        width: holeRegion.width, height: holeRegion.height + heightBuffer)
+////        if !extendedBoardRegion.contains(finalBagLocation) {
+////            // Bag missed the board
+////            return Scoring.zero
+////        } else if extendedHoleRegion.contains(finalBagLocation) {
+////        if extendedHoleRegion.contains(finalBagLocation) {
+////            // Bag landed in the hole
+////            return lastThrowMetrics.throwType == .legpress ? Scoring.fifteen : Scoring.three
+////        } else {
+////            // Bag landed on the board
+////            return lastThrowMetrics.throwType == .legpress ? Scoring.five : Scoring.one
+////        }
+//
+//        if extendedHoleRegion.contains(finalBagLocation) {
+//                switch lastThrowMetrics.throwType {
+//                case .chestpress, .latpulldown:
+//                    // Handle chestpress scoring logic here
+//                    return lastThrowMetrics.throwType == .latpulldown ? Scoring.one : Scoring.one
+//
+//                case .legpress, .legextension:
+//                    // Handle legextension scoring logic here
+//                    return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
+//                }
+//            }
+////        else {
+////                // Handle the case where the bag is on the board (default scoring logic)
+////                return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
+////            }
+//
+//            // Default case (if none of the conditions match)
+//            return Scoring.zero
+//    }
 }
 
 extension GameViewController: GameStateChangeObserver {
@@ -317,7 +395,7 @@ extension GameViewController: GameStateChangeObserver {
             playerDetected = true
             playerStats.reset()
             playerBoundingBox.perform(transition: .fadeOut, duration: 1.0)
-            gameStatusLabel.text = "Go"
+            gameStatusLabel.text = "시작"
             gameStatusLabel.perform(transitions: [.popUp, .popOut], durations: [0.25, 0.12], delayBetween: 1) {
                 self.gameManager.stateMachine.enter(GameManager.TrackThrowsState.self)
             }
