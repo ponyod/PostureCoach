@@ -7,108 +7,130 @@
 
 import UIKit
 import SwiftUI
+import Alamofire
 
-class ReportViewController: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
-
-    @IBOutlet weak var weeklyView: UIView!
-    @IBOutlet weak var monthlyView: UIView!
+class ReportViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    lazy var dateView: UICalendarView = {
-            var view = UICalendarView()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.wantsDateDecorations = true
-            return view
-        }()
+    var workoutReports: [WorkoutReport] = []
+    let machines = ["chestpress", "latpulldown", "legextension", "legpress"]
     
-    var swiftUiView = UIHostingController(rootView: WeeklyReportView())
+    @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var logTableView: UITableView!
     
-    var selectedDate: DateComponents? = nil
+    var monthlyView: UIView!
+    var weeklyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        applyWeeklyConstraints()
-        
-        setCalendar()
-        reloadDateView(date: Date())
+        monthlyView = MonthlyViewController().view
+        weeklyView = WeeklyViewController().view
+        viewContainer.addSubview(monthlyView)
+        viewContainer.addSubview(weeklyView)
+        loadWeeklyData()
+        setupTable()
     }
     
-    fileprivate func setCalendar() {
-        dateView.delegate = self
-
-        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
-        dateView.selectionBehavior = dateSelection
-    }
-    
-    func reloadDateView(date: Date?) {
-        if date == nil { return }
-        let calendar = Calendar.current
-        dateView.reloadDecorations(forDateComponents: [calendar.dateComponents([.day, .month, .year], from: date!)], animated: true)
-    }
-    
-    fileprivate func applyMonthlyConstraints() {
-        view.addSubview(dateView)
-        
-        let dateViewConstraints = [
-            dateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            dateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            dateView.widthAnchor.constraint(equalToConstant: 361),
-            dateView.heightAnchor.constraint(equalToConstant: 360),
-//            dateView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            dateView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//            dateView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(dateViewConstraints)
-        self.view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    }
-    
-    fileprivate func applyWeeklyConstraints() {
-        let vc = UIHostingController(rootView: WeeklyReportView())
-        let swiftuiView = vc.view!
-            swiftuiView.translatesAutoresizingMaskIntoConstraints = false
-
-        addChild(vc)
-        view.addSubview(swiftuiView)
-
-        NSLayoutConstraint.activate([
-            swiftuiView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            swiftuiView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            swiftuiView.widthAnchor.constraint(equalToConstant: 361),
-            swiftuiView.heightAnchor.constraint(equalToConstant: 360)
-            ])
-        vc.didMove(toParent: self)
-        
-    }
-    
-    // UICalendarView
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        if let selectedDate = selectedDate,
-            selectedDate == dateComponents {
-            return .customView {
-                let label = UILabel()
-                label.text = "🐶"
-                label.textAlignment = .center
-                return label
-            }
-        }
-        return nil
-    }
-    
-    // 달력에서 날짜 선택했을 경우
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        selection.setSelected(dateComponents, animated: true)
-        selectedDate = dateComponents
-        reloadDateView(date: Calendar.current.date(from: dateComponents!))
+    func setupTable() {
+        logTableView.dataSource = self
+        logTableView.delegate = self
+        logTableView.register(UITableViewCell.self, forCellReuseIdentifier: "logcell")
     }
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            applyWeeklyConstraints()
+            viewContainer.bringSubviewToFront(weeklyView)
+            
         } else {
-            applyMonthlyConstraints()
-            swiftUiView.removeFromParent()
+            viewContainer.bringSubviewToFront(monthlyView)
         }
     }
+    
+    func loadWeeklyData() {
+        let url = "https://pcoachapi.azurewebsites.net/api/report/weekly"
+//        let alamo = AF.request(url, method: .get)
+//            alamo.responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    if let data = response.data,
+//                       let result = String(data: data, encoding: .utf8) {
+//                           print("JSON Data: \(result)")
+//                       }
+//
+//                        let result = String(data: data) {
+//                        print("JSON Data: \(result)")
+//                    }
+//                case .failure(let error):
+//                    print("Network request failed with error: \(error)")
+//                    // 사용자에게 오류 메시지를 표시하거나 적절한 조치를 취합니다.
+//                }
+//            }
+        
+//        let alamo = AF.request(url, method: .get)
+//        alamo.responseDecodable(of: [WorkoutReport].self) { response in
+//            if let error = response.error {
+//                    print("Network request failed with error: \(error)")
+//                    // 사용자에게 오류 메시지를 표시하거나 적절한 조치를 취합니다.
+//                } else {
+//                    guard let result = response.value else {
+//                        print("Response data is nil")
+//                        // 사용자에게 오류 메시지를 표시하거나 적절한 조치를 취합니다.
+//                        return
+//                    }
+//                    self.workoutReports = result // 배열에 데이터 저장
+//                    print(self.workoutReports)
+//                }
+//        }
+        
+        AF.request(url).responseDecodable(of: [WorkoutReport].self) { response in
+            switch response.result {
+            case .success(let report):
+                self.workoutReports = report
+                self.logTableView.reloadData()
+                print(self.workoutReports)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+        // workoutReports 배열에서 중복되지 않는 machineName들을 가져오기
+//        let uniqueMachineNames = Array(Set(workoutReports.map { $0.machineName }))
+        
+        // 중복되지 않는 machineName의 수를 반환 (중복된 운동 종류는 1로 간주)
+//        return uniqueMachineNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "logcell", for: indexPath)
+        let report = workoutReports[indexPath.row]  // indexPath에 해당하는 데이터 가져오기
+        
+        if let label = cell.viewWithTag(1) as? UILabel {
+            label.text = "\(machines.count)"
+        }
+        if let label = cell.viewWithTag(2) as? UILabel {
+            label.text = "회"
+        }
+        if let label = cell.viewWithTag(3) as? UILabel {
+            label.text = "회"
+        }
+        
+        return cell
+    }
 
+}
+
+struct WorkoutReport: Decodable {
+    let userId: String
+    let machineName: String
+    let exerciseCount: Int
+    let exerciseDate: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case machineName = "machine_name"
+        case exerciseCount = "exercise_count"
+        case exerciseDate = "exercise_date"
+    }
 }
