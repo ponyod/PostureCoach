@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="landscape" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -18,6 +18,7 @@
                 <outlet property="scoreLabel" destination="SxD-3J-hkk" id="g6s-au-Hxg"/>
                 <outlet property="speedLabel" destination="ZkD-cU-RR3" id="z74-Xx-sBK"/>
                 <outlet property="speedStackView" destination="C9r-Fe-uZ5" id="iQK-cd-r2W"/>
+                <outlet property="stopButton" destination="59b-Sl-pBA" id="Zko-Ds-t5G"/>
                 <outlet property="throwTypeImage" destination="X0K-gv-yFG" id="qb1-g4-R7U"/>
                 <outlet property="throwTypeLabel" destination="jEI-2d-UcK" id="Aqc-ad-itF"/>
                 <outlet property="underhandThrowView" destination="Yvc-57-ek8" id="Wab-cH-B9f"/>
@@ -34,29 +35,15 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9r-Fe-uZ5" userLabel="Speed Stack View">
-                    <rect key="frame" x="305.5" y="343" width="56.5" height="24"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkD-cU-RR3">
-                            <rect key="frame" x="0.0" y="0.0" width="13.5" height="24"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MPH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rQ-IL-NbG">
-                            <rect key="frame" x="17.5" y="3.5" width="39" height="20.5"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="bottom" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9r-Fe-uZ5" userLabel="Speed Stack View">
+                    <rect key="frame" x="50" y="235" width="14" height="24"/>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-oS-pxq" userLabel="Throws Stack View">
-                    <rect key="frame" x="8" y="311" width="263" height="32"/>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-oS-pxq" userLabel="Throws Stack View">
+                    <rect key="frame" x="56" y="615" width="263" height="32"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Uq4-YJ-W1O">
                             <rect key="frame" x="0.0" y="0.5" width="32" height="31"/>
@@ -124,30 +111,30 @@
                         </imageView>
                     </subviews>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0K-gv-yFG">
-                    <rect key="frame" x="309.5" y="284" width="48" height="48"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0K-gv-yFG">
+                    <rect key="frame" x="163" y="309" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="0b5-Fv-Sks"/>
                         <constraint firstAttribute="width" constant="48" id="yqX-ET-qni"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDP-VC-7oq" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="404" y="331" width="247" height="36"/>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDP-VC-7oq" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="-263" y="623" width="247" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v28-8y-fga" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="404" y="295" width="247" height="36"/>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-8y-fga" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="-263" y="587" width="247" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-57-ek8" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="404" y="263" width="247" height="32"/>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-57-ek8" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="-263" y="555" width="247" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="GQ7-aE-Okr"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxD-3J-hkk" customClass="OverlayLabel" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="181.5" y="-8" width="304" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxD-3J-hkk" customClass="OverlayLabel" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="35" y="0.0" width="304" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="304" id="1xe-1o-Gjf"/>
@@ -164,16 +151,16 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDY-4R-nNf" customClass="DashboardView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="282.5" y="257" width="102" height="102"/>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDY-4R-nNf" customClass="DashboardView" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="136" y="282" width="102" height="102"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="102" id="Fg4-en-iGY"/>
                         <constraint firstAttribute="height" constant="102" id="r1G-Z3-fZ6"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-Kn-rJV" userLabel="Throw Metrics Stack View">
-                    <rect key="frame" x="169" y="271" width="102" height="26.5"/>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-Kn-rJV" userLabel="Throw Metrics Stack View">
+                    <rect key="frame" x="109" y="401" width="102" height="26.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEI-2d-UcK">
                             <rect key="frame" x="0.0" y="0.0" width="54.5" height="26.5"/>
@@ -202,8 +189,8 @@
                         </label>
                     </subviews>
                 </stackView>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="xSn-62-KuW" customClass="OverlayLabel" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="83.5" y="127.5" width="500" height="120"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="xSn-62-KuW" customClass="OverlayLabel" customModule="PostureCoach" customModuleProvider="target">
+                    <rect key="frame" x="124" y="273" width="127" height="120"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="500" id="CL4-a9-9Ab"/>
@@ -218,6 +205,31 @@
                             </attributes>
                         </fragment>
                     </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59b-Sl-pBA">
+                    <rect key="frame" x="159" y="543" width="57" height="57"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="stop.circle.fill" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="52"/>
+                    </state>
+                    <connections>
+                        <action selector="stopButtonAct:" destination="-1" eventType="touchUpInside" id="OA5-9U-atI"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MPH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rQ-IL-NbG">
+                    <rect key="frame" x="252" y="509" width="39.5" height="20.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkD-cU-RR3">
+                    <rect key="frame" x="230" y="507" width="14" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -251,10 +263,11 @@
                 <constraint firstItem="X0K-gv-yFG" firstAttribute="centerY" secondItem="fDY-4R-nNf" secondAttribute="centerY" id="vun-yc-FgB"/>
                 <constraint firstItem="SxD-3J-hkk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-8" id="ybb-RX-q8Q"/>
             </constraints>
-            <point key="canvasLocation" x="138.61607142857142" y="111.59420289855073"/>
+            <point key="canvasLocation" x="241" y="108"/>
         </view>
     </objects>
     <resources>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <image name="stop.circle.fill" catalog="system" width="128" height="123"/>
     </resources>
 </document>

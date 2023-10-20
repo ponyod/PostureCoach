@@ -98,22 +98,28 @@ class CameraViewController: UIViewController {
         
         // Get the interface orientaion from window scene to set proper video orientation on capture connection.
         let videoOrientation: AVCaptureVideoOrientation
-        if let interfaceOrientation = view.window?.windowScene?.interfaceOrientation {
-            switch interfaceOrientation {
-            case .landscapeRight:
-                videoOrientation = .landscapeRight
-            case .landscapeLeft:
-                videoOrientation = .landscapeLeft
-            case .portrait:
-                videoOrientation = .portrait
-            case .portraitUpsideDown:
-                videoOrientation = .portraitUpsideDown
-            default:
-                videoOrientation = .landscapeRight
-            }
-        } else {
-            videoOrientation = .portrait
-        }
+        switch view.window?.windowScene?.interfaceOrientation {
+                case .landscapeRight:
+                    videoOrientation = .portrait
+                default:
+                    videoOrientation = .portrait
+                }
+//        if let interfaceOrientation = view.window?.windowScene?.interfaceOrientation {
+//            switch interfaceOrientation {
+//            case .landscapeRight:
+//                videoOrientation = .landscapeRight
+//            case .landscapeLeft:
+//                videoOrientation = .landscapeLeft
+//            case .portrait:
+//                videoOrientation = .portrait
+//            case .portraitUpsideDown:
+//                videoOrientation = .portraitUpsideDown
+//            default:
+//                videoOrientation = .landscapeRight
+//            }
+//        } else {
+//            videoOrientation = .portrait
+//        }
         
         // Create and setup video feed view
         cameraFeedView = CameraFeedView(frame: view.bounds, session: session, videoOrientation: videoOrientation)
