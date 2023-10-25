@@ -2,7 +2,7 @@
 //  MonthlyViewController.swift
 //  PostureCoach
 //
-//  Created by Youn on 2023/10/17.
+//  Created by Youn on 2023/10/21.
 //
 
 import UIKit
@@ -10,12 +10,15 @@ import Alamofire
 
 class MonthlyViewController: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
 
+    @IBOutlet weak var calendarView: UIView!
     lazy var dateView: UICalendarView = {
             var view = UICalendarView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.wantsDateDecorations = true
             return view
         }()
+    
+    @IBOutlet var dateLabel: UILabel!
     
     var selectedDate: DateComponents? = nil
     var workoutReports: [WorkoutReport] = []
@@ -26,6 +29,18 @@ class MonthlyViewController: UIViewController, UICalendarViewDelegate, UICalenda
         setCalendar()
         reloadDateView(date: Date())
         // Do any additional setup after loading the view.
+        let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 M월 d일"
+
+            // 현재 날짜 가져오기
+            let today = Date()
+
+            // 1주일 (30일) 후의 날짜 계산
+            if let oneMonthAgo = Calendar.current.date(byAdding: .day, value: -30, to: today) {
+                let todayString = dateFormatter.string(from: today)
+                let oneMonthAgoString = dateFormatter.string(from: oneMonthAgo)
+                dateLabel.text = "\(oneMonthAgoString) ~ \(todayString)"
+            }
     }
 
     fileprivate func setCalendar() {
@@ -46,8 +61,8 @@ class MonthlyViewController: UIViewController, UICalendarViewDelegate, UICalenda
         
         let dateViewConstraints = [
             dateView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            dateView.widthAnchor.constraint(equalToConstant: 345),
+            dateView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            dateView.widthAnchor.constraint(equalToConstant: 351),
             dateView.heightAnchor.constraint(equalToConstant: 390)
 //            dateView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
 //            dateView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),

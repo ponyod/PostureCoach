@@ -164,7 +164,7 @@ class CameraViewController: UIViewController {
         }
         return viewPoint
     }
-
+// 카메라 뷰
     func setupVideoOutputView(_ videoOutputView: UIView) {
         videoOutputView.translatesAutoresizingMaskIntoConstraints = false
         videoOutputView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
