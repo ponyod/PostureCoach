@@ -7,10 +7,9 @@
 
 import UIKit
 import CryptoKit
-import Alamofire
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
-    
+    @IBOutlet weak var btnNext: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
@@ -25,64 +24,58 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameTextField.delegate = self
         idTextField.delegate = self
+        nameTextField.delegate = self
         pwTextField.delegate = self
         pwConfirmTextField.delegate = self
         
         // 처음에는 모든 라벨을 숨김 상태로 설정
-        nameCheckLabel.isHidden = true
         idCheckLabel.isHidden = true
+        nameCheckLabel.isHidden = true
         pwCheckLabel.isHidden = true
         pwConfirmCheckLabel.isHidden = true
         
+        idTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        pwTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        pwConfirmTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
-    }
-
-    // 회원가입 로직 구현 *백엔드 작업 후 수정필요
-    @IBAction func btnSignUp(_ sender: UIButton) {
-        guard let name = nameTextField.text,
-              let userId = idTextField.text,
-              let password = pwTextField.text,
-              let userpwConfirm = pwConfirmTextField.text else { return }
-
-        // 하나 이상의 입력이 유효성 검사를 통과하지 못한 경우 Alert 출력
-        if !validateName() || !validateID() || !validatePassword() || !validatePasswordConfirmation() {
-            showAlert(message: "입력 정보를 다시 확인하세요.")
-            return
-        }
+        btnNext.isEnabled = false
         
-        let cryptoUserpw = cryptoPassword(password) // 패스워드 암호화
-        let newUser = User(userId: userId, password: cryptoUserpw, nickname: name) // Updated variable names
-        
-        // 사용자 추가 함수 호출
-        addUser(newUser: newUser) { success in
-            if success {
-                print("User added successfully")
-            } else {
-                print("Failed to add user")
-            }
-        }
-        print(userId, name, cryptoUserpw, userpwConfirm) // 테스트 출력
     }
     
-    // 사용자 추가
-    func addUser(newUser: User, completion: @escaping (Bool) -> Void) {
-        let url = "http://localhost:3000/api/users"
-        let params:Parameters = [
-            "User_id": newUser.userId,
-            "password": newUser.password,
-            "nickname": newUser.nickname
-        ]
-        
-        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).response { response in
-            guard let result = response.value else {
-                print("nil")
-                return
-            }
-            print(response)
+    @objc func textFieldDidChange() {
+        if validateID(), validateName(), validatePassword(), validatePasswordConfirmation() {
+            btnNext.isEnabled = true
+        } else {
+            btnNext.isEnabled = false
         }
     }
+    
+    // 회원가입 로직 구현 *백엔드 작업 후 수정필요
+    @IBAction func btnNext(_ sender: UIButton) {
+        guard let userId = idTextField.text,
+              let userName = nameTextField.text,
+              let userPw = pwTextField.text,
+              let userPwConfirm = pwConfirmTextField.text else { return }
+        
+        if validateID(), validateName(), validatePassword(), validatePasswordConfirmation() {
+            
+            let cryptoUserPw = cryptoPassword(userPw) // 패스워드 암호화
+
+            if let signupPhysicalVC = self.storyboard?.instantiateViewController(withIdentifier: "SignupPhysicalViewController") as? SignupPhysicalViewController {
+                signupPhysicalVC.userId = userId
+                signupPhysicalVC.userPw = cryptoUserPw
+                signupPhysicalVC.userName = userName
+                print("넘겼다")
+                navigationController?.pushViewController(signupPhysicalVC, animated: true)
+            } else { fatalError() }
+        } else {
+            showAlert(message: "입력 정보를 다시 확인하세요.")
+        }
+        
+        print(userId, userName, userPw, userPwConfirm) // 테스트 출력
+    }        
     
     // 비밀번호를 SHA256 해시암호화 (CryptoKit)
     func cryptoPassword(_ password: String) -> String {
@@ -96,10 +89,10 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     // UITextFieldDelegate을 사용하여 텍스트 필드의 입력을 모니터링
     func textFieldDidChangeSelection(_ textField: UITextField) {
         switch textField {
-        case nameTextField:
-            validateName()
         case idTextField:
             validateID()
+        case nameTextField:
+            validateName()
         case pwTextField:
             validatePassword()
         case pwConfirmTextField:
@@ -115,28 +108,28 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             nameCheckLabel.isHidden = true
             return true
         } else {
-            nameCheckLabel.isHidden = false
-            nameCheckLabel.text = "이름을 입력하세요."
+//            nameCheckLabel.isHidden = false
+//            nameCheckLabel.text = "이름을 입력하세요."
             return false
         }
     }
     
     // 아이디 유효성 검사
     func validateID() -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         if let userid = idTextField.text, !userid.isEmpty {
-            let idRegex = "^[a-zA-Z0-9]{6,16}$" // 6자 이상 16자 이하의 영문 또는 숫자 조합
-            let idTest = NSPredicate(format: "SELF MATCHES %@", idRegex)
-            if idTest.evaluate(with: userid) {
+            if emailTest.evaluate(with: userid) {
                 idCheckLabel.isHidden = true
                 return true
             } else {
                 idCheckLabel.isHidden = false
-                idCheckLabel.text = "6자 이상 16자 이하의 영문 또는 숫자 입력"
+                idCheckLabel.text = "유효한 이메일을 입력하세요."
                 return false
             }
         } else {
-            idCheckLabel.isHidden = false
-            idCheckLabel.text = "아이디를 입력하세요."
+//            idCheckLabel.isHidden = false
+//            idCheckLabel.text = "아이디를 입력하세요."
             return false
         }
     }
@@ -156,8 +149,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 return false
             }
         } else {
-            pwCheckLabel.isHidden = false
-            pwCheckLabel.text = "비밀번호를 입력하세요."
+//            pwCheckLabel.isHidden = false
+//            pwCheckLabel.text = "비밀번호를 입력하세요."
             return false
         }
     }
@@ -174,8 +167,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 return false
             }
         } else {
-            pwConfirmCheckLabel.isHidden = false
-            pwConfirmCheckLabel.text = "비밀번호를 다시 입력하세요."
+//            pwConfirmCheckLabel.isHidden = false
+//            pwConfirmCheckLabel.text = "비밀번호를 다시 입력하세요."
             return false
         }
     }

@@ -9,10 +9,16 @@ import Foundation
 
 struct User {
     let userId: String
-    let password: String
-    let nickname: String
+    let userPw: String
+    let userName: String
+    let height: Int
+    let weight: Int
+    let gender: String
+    let birth: String
     
     enum CodingKeys:String, CodingKey {
-        case userId = "User_id"
+        case userId = "user_id"
+        case userPw = "user_pw"
+        case userName = "user_name"
     }
 }

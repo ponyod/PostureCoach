@@ -6,8 +6,23 @@
 //
 
 import UIKit
+import Alamofire
 
 class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    @IBOutlet weak var btnSignUp: UIButton!
+    
+    @IBOutlet weak var heightTextField: UITextField!
+    @IBOutlet weak var weightTextField: UITextField!
+    
+    @IBOutlet weak var heightCheckLabel: UILabel!
+    @IBOutlet weak var weightCheckLabel: UILabel!
+    @IBOutlet weak var genderCheckLabel: UILabel!
+    @IBOutlet weak var birthCheckLabel: UILabel!
+    
+    var userName: String?
+    var userId: String?
+    var userPw: String?
+    
     let gender = ["남성", "여성"]
     
     @IBOutlet weak var showGenderPicker: UITextField!
@@ -18,14 +33,128 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        heightTextField.delegate = self
+        weightTextField.delegate = self
+        
+        heightCheckLabel.isHidden = true
+        weightCheckLabel.isHidden = true
+        genderCheckLabel.isHidden = true
+        birthCheckLabel.isHidden = true
+        
+        btnSignUp.isEnabled = false
+//        print(userId!, userName!, userPw!)
+        
         createDatePicker()
         createPickerView()
-//        dismissPickerView()
+        
+        heightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+        weightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+//        showGenderPicker.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+//        showBirthPicker.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+        //        dismissPickerView()
+    }
+    
+    @IBAction func btnSignUp(_ sender: UIButton) {
+        guard let userId = userId,
+              let userPw = userPw,
+              let userName = userName,
+              let heightString = heightTextField.text,
+              let height = Int(heightString),
+              let weightString = weightTextField.text,
+              let weight = Int(weightString),
+              let gender = showGenderPicker.text,
+              let birth = showBirthPicker.text else { return }
+                
+        let newUser = User(userId: userId, userPw: userPw, userName: userName, height: height, weight: weight, gender: gender, birth: birth)
+        
+        if heightCheckLabel.isHidden == false || weightCheckLabel.isHidden == false {
+            SignupViewController().showAlert(message: "입력 정보를 다시 확인하세요.")
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        addUser(newUser: newUser) { success in
+            if success {
+                print("User added successfully")
+            } else {
+                print("Failed to add user")
+            }
+        }
+    }
+    
+    func addUser(newUser: User, completion: @escaping (Bool) -> Void) {
+        let url = "https://pcoachapi.azurewebsites.net/api/users"
+        let params:Parameters = [
+            "user_id": newUser.userId,
+            "user_pw": newUser.userPw,
+            "user_name": newUser.userName,
+            "height": newUser.height,
+            "weight": newUser.weight,
+            "gender": newUser.gender,
+            "birth": newUser.birth
+        ]
+        
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).response { response in
+            guard let result = response.value else {
+                print("nil")
+                return
+            }
+            print(response)
+        }
+    }
+    
+    @objc func updateButtonStatus() {
+        guard let isHeightValid = heightTextField.text?.isEmpty,
+        let isWeightValid = weightTextField.text?.isEmpty,
+        let isGenderValid = showGenderPicker.text?.isEmpty,
+        let isBirthValid = showBirthPicker.text?.isEmpty else { return }
+
+        if !isHeightValid && !isWeightValid && !isGenderValid && !isBirthValid {
+            btnSignUp.isEnabled = true
+        } else {
+            btnSignUp.isEnabled = false
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
+        let replacementStringCharacterSet = CharacterSet(charactersIn: string)
+        
+//        if textField == showGenderPicker && !string.isEmpty {
+//            genderCheckLabel.isHidden = true
+//        }
+        
+        if textField == heightTextField || textField == weightTextField {
+            if !allowedCharacterSet.isSuperset(of: replacementStringCharacterSet) && !string.isEmpty {
+                if textField == heightTextField {
+                    heightCheckLabel.text = "숫자만 입력하세요."
+                    heightCheckLabel.isHidden = false
+                } else if textField == weightTextField {
+                    weightCheckLabel.text = "숫자만 입력하세요."
+                    weightCheckLabel.isHidden = false
+                }
+                return false
+            } else {
+                if textField == heightTextField {
+                    heightCheckLabel.isHidden = true
+                } else if textField == weightTextField {
+                    weightCheckLabel.isHidden = true
+                }
+                return true
+            }
+        }
+        
+//        if textField == showGenderPicker && !string.isEmpty {
+//            genderCheckLabel.isHidden = true
+//        }
+        return true
     }
     
     func createPickerView() {
         genderPicker.delegate = self
+        genderPicker.dataSource = self
         showGenderPicker.inputView = genderPicker
+        dismissPickerView()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -42,20 +171,22 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         showGenderPicker.text = gender[row]
+        updateButtonStatus()
+//        genderCheckLabel.isHidden = true
     }
     
-//    func dismissPickerView() {
-//        let toolBar = UIToolbar()
-//        toolBar.sizeToFit()
-//        let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.action))
-//        toolBar.setItems([button], animated: true)
-//        toolBar.isUserInteractionEnabled = true
-//        showGenderPicker.inputAccessoryView = toolBar
-//        showBirthPicker.inputAccessoryView = toolBar
-//    }
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(doneButton(sender: )))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        showGenderPicker.inputAccessoryView = toolBar
+        showBirthPicker.inputAccessoryView = toolBar
+    }
     
-    @objc func action() {
-        showGenderPicker.resignFirstResponder() // 피커 뷰를 닫습니다.
+    @objc func doneButton(sender: Any) {
+        self.view.endEditing(true)
     }
     
     func createDatePicker() {
@@ -72,12 +203,15 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
         
         // date picker의 값이 변경될 때 텍스트 필드에 반영
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        dismissPickerView()
     }
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         showBirthPicker.text = dateFormatter.string(from: sender.date)
+        updateButtonStatus()
     }
     
     // 화면 클릭하면 키패드 내리기

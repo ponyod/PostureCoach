@@ -19,14 +19,15 @@ class SignInViewController: UIViewController {
     
     // 사용자가 입력한 아이디(userid)와 비밀번호(userpw)를 가져온다
     @IBAction func btnSignIn(_ sender: UIButton) {
-        guard let userid = idField.text, let userpw = pwField.text else { return }
+        guard let userId = idField.text, let pwString = pwField.text else { return }
+        let userPw = SignupViewController().cryptoPassword(pwString)
         
-        loginRequest(userid: userid, userpw: userpw) { success, message in
+        loginRequest(userid: userId, userpw: userPw) { success, message in
             if success {
                 let dataSave = UserDefaults.standard
-                dataSave.setValue(userid, forKey: "loggedInUserId")
-                dataSave.setValue(userid, forKey: "id")
-                dataSave.setValue(userpw, forKey: "pw")
+                dataSave.setValue(userId, forKey: "loggedInUserId")
+                dataSave.setValue(userId, forKey: "id")
+//                dataSave.setValue(userpw, forKey: "pw")
                 
                 if let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") {
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
