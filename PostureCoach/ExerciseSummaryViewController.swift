@@ -36,7 +36,6 @@ class ExerciseSummaryViewController: UIViewController {
             let converted = convertMachineName(machine: workoutType),
             let userId = UserDefaults.standard.string(forKey: "loggedInUserId"),
             let exerciseCount = count {
-//             let userId = userid.setValue(userid, forKey: "loggedInUserId")
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = dateFormatter.string(from: exerciseDate)
@@ -61,7 +60,7 @@ class ExerciseSummaryViewController: UIViewController {
         ]
             print("\(machines[workoutType!]) 출력")
             return machines[machine]
-        }
+    }
     
     // 기록 추가
     func addLog(newRecord: WorkoutReport, completion: @escaping (Bool) -> Void) {

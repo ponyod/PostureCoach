@@ -39,7 +39,7 @@ struct WorkoutReport: Decodable {
 
 struct ExerciseLog: Decodable {
     let userId: String
-    let machineName: Int
+    let machineName: String
     let exerciseCount: Int
     let exerciseDate: String
     
