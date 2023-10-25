@@ -12,7 +12,7 @@ import UIKit
 class RootViewController: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
+//    @IBOutlet weak var stopButton: UIButton!
     
     var countToReceive: Int?
     var countToPass: Int?
@@ -43,8 +43,8 @@ class RootViewController: UIViewController {
         startObservingStateChanges()
         // Make sure close button stays in front of other views.
         view.bringSubviewToFront(closeButton)
-        view.bringSubviewToFront(stopButton)
-//        self.tabBarController?.tabBar.isHidden = true;
+//        view.bringSubviewToFront(stopButton)
+        self.tabBarController?.tabBar.isHidden = true;
         
     }
     
@@ -83,18 +83,18 @@ class RootViewController: UIViewController {
         overlayViewController = newOverlayViewController
     }
     
-    @IBAction func closeButtonAct(_ sender: Any) {
-        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
-
-
-        self.dismiss(animated: false, completion: {
-
-            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
-            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
-
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
-    }
+//    @IBAction func closeButtonAct(_ sender: Any) {
+//        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
+//
+//
+//        self.dismiss(animated: false, completion: {
+//
+//            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
+//            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
+//
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
+//    }
 }
 
 // MARK: - Handle states that require view controller transitions

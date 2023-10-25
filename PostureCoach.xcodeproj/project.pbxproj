@@ -16,6 +16,8 @@
 		0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */; };
 		0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */; };
 		0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */; };
+		0FD22B212ADE6F850033C9AF /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */; };
+		0FD22B252ADE6FB40033C9AF /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
@@ -74,6 +76,8 @@
 		0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseSummaryViewController.storyboard; sourceTree = "<group>"; };
 		0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryViewController.swift; sourceTree = "<group>"; };
 		0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportView.swift; sourceTree = "<group>"; };
+		0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
+		0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
 		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
@@ -210,9 +214,9 @@
 				163E40EC2ADE6A6F00A86EC4 /* CommunityView.storyboard */,
 				160637552AD9173400213C8C /* CommunityViewController.swift */,
 				0FEB8F772ACD017A0098F7AC /* ReportView.storyboard */,
+				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
 				0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */,
 				0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */,
-				0FEB8F7B2ACD08960098F7AC /* ReportViewController.swift */,
 				165CE2742AC165C4002F8385 /* Assets.xcassets */,
 				165CE2762AC165C4002F8385 /* LaunchScreen.storyboard */,
 				165CE2792AC165C4002F8385 /* Info.plist */,
@@ -221,6 +225,8 @@
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
 				169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */,
 				0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */,
+				0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */,
+				0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				160637562AD9173400213C8C /* CommunityViewController.swift in Sources */,
 				169F7B382AD4EC90004204E9 /* SignupPhysicalViewController.swift in Sources */,
 				165CE26D2AC165C3002F8385 /* SignInViewController.swift in Sources */,
+				0FD22B252ADE6FB40033C9AF /* WeeklyViewController.swift in Sources */,
 				16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */,
 				16526EB62ACC06A5008F6A49 /* SetupViewController.swift in Sources */,
 				0FEB8F802ACE8E410098F7AC /* LatPullDownViewController.swift in Sources */,
@@ -362,6 +369,7 @@
 				165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */,
 				165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */,
 				16526EBA2ACC06A5008F6A49 /* CameraViewController.swift in Sources */,
+				0FD22B212ADE6F850033C9AF /* MonthlyViewController.swift in Sources */,
 				0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */,
 				0FF1BE3A2AD3896300CC404D /* LowerSourcePickerViewController.swift in Sources */,
 				165CE26B2AC165C3002F8385 /* SceneDelegate.swift in Sources */,
@@ -519,7 +527,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M8262GB64;
+				DEVELOPMENT_TEAM = CHWBKK9R3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용해줘";
@@ -551,7 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6M8262GB64;
+				DEVELOPMENT_TEAM = CHWBKK9R3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용해줘";

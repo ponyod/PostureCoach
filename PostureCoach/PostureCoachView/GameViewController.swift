@@ -15,6 +15,7 @@ import AVFoundation
 import Vision
 
 class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+    
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet var beanBags: [UIImageView]!
     @IBOutlet weak var gameStatusLabel: OverlayLabel!
@@ -28,7 +29,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     @IBOutlet weak var underhandThrowView: ProgressView!
     @IBOutlet weak var overhandThrowView: ProgressView!
     @IBOutlet weak var underlegThrowView: ProgressView!
-    @IBOutlet var stopButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     private let gameManager = GameManager.shared
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     private var playerDetected = false
@@ -47,7 +48,12 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     private let bodyPoseRecognizedPointMinConfidence: VNConfidence = 0.1
     private lazy var detectTrajectoryRequest: VNDetectTrajectoriesRequest! =
                         VNDetectTrajectoriesRequest(frameAnalysisSpacing: .zero, trajectoryLength: GameConstants.trajectoryLength)
-
+    
+    var summaryView: ExerciseSummaryViewController?
+    
+    var legCount: Int = 0
+    var workoutType : String? = ""
+    
     //Variables - KPIs
     var lastThrowMetrics: ThrowMetrics {
         get {
@@ -88,11 +94,11 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
     override func viewDidLoad() {
         super.viewDidLoad()
         setUIElements()
-        showSummaryGesture = UITapGestureRecognizer(target: self, action: #selector(handleShowSummaryGesture(_:)))
-        showSummaryGesture.numberOfTapsRequired = 2
-        view.addGestureRecognizer(showSummaryGesture)
+//        showSummaryGesture = UITapGestureRecognizer(target: self, action: #selector(handleShowSummaryGesture(_:)))
+//        showSummaryGesture.numberOfTapsRequired = 2
+//        view.addGestureRecognizer(showSummaryGesture)
         view.bringSubviewToFront(stopButton)
-        
+        self.tabBarController?.tabBar.isHidden = true;
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,16 +110,6 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         super.viewDidDisappear(animated)
         detectTrajectoryRequest = nil
     }
-
-//    @IBAction func stopButtonAct(_ sender: Any) {
-//
-//        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
-//        self.dismiss(animated: false, completion: {
-//            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
-//            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        })
-//    }
     
     func getScoreLabelAttributedStringForScore(_ score: Int) -> NSAttributedString {
         let totalScore = NSMutableAttributedString(string: "Total Score ", attributes: [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.65)])
@@ -147,23 +143,8 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedStackView.isHidden = true
         metricsStackView.isHidden = true
     }
-    func tossCount() -> Int {
-        var legCount = updateLegPosition(angle: kneeAngle2)
-        var armCount = updateArmPosition(angle: elbowAngle2)
-            
-            // Update release angle label and get the count based on throw type
-        switch lastThrowMetrics.throwType {
-            case .legpress, .legextension:
-                legCount = updateLegPosition(angle: kneeAngle2)
-                releaseAngleLabel.text = "\(legCount) 회"
-            case .chestpress, .latpulldown:
-                armCount = updateArmPosition(angle: elbowAngle2)
-                releaseAngleLabel.text = "\(armCount) 회"
-            }
-        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
-        return legCount
-    }
-    func updateKPILabels() {
+
+    func updateKPILabels() -> Int {
         // Show KPI labels
         dashboardView.isHidden = false
         speedStackView.isHidden = false
@@ -172,19 +153,6 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         speedLabel.text = "\(lastThrowMetrics.releaseSpeed)"
         throwTypeLabel.text = lastThrowMetrics.throwType.rawValue.capitalized
         
-//        var legCount = updateLegPosition(angle: kneeAngle2)
-//        var armCount = updateArmPosition(angle: elbowAngle2)
-//
-//            // Update release angle label and get the count based on throw type
-//        switch lastThrowMetrics.throwType {
-//            case .legpress, .legextension:
-//                legCount = updateLegPosition(angle: kneeAngle2)
-//                releaseAngleLabel.text = "\(legCount) 회"
-//            case .chestpress, .latpulldown:
-//                armCount = updateArmPosition(angle: elbowAngle2)
-//                releaseAngleLabel.text = "\(armCount) 회"
-//            }
-//
         var legCount = updateLegPosition(angle: kneeAngle2)
         var armCount = updateArmPosition(angle: elbowAngle2)
             
@@ -192,13 +160,12 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         switch lastThrowMetrics.throwType {
             case .legpress, .legextension:
                 legCount = updateLegPosition(angle: kneeAngle2)
-                releaseAngleLabel.text = "\(legCount) 회"
+                releaseAngleLabel.text = "\(legCount+1) 회"
             case .chestpress, .latpulldown:
                 armCount = updateArmPosition(angle: elbowAngle2)
-                releaseAngleLabel.text = "\(armCount) 회"
+                releaseAngleLabel.text = "\(armCount+1) 회"
             }
-        NotificationCenter.default.post(name: Notification.Name("TossCountNotification"), object: legCount)
-        print("운동횟수: \(legCount)")
+        print("운동횟수: \(legCount+1)")
         
         scoreLabel.attributedText = getScoreLabelAttributedStringForScore(gameManager.playerStats.totalScore)
         // Update throw type counters
@@ -211,6 +178,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         let beanBagView = beanBags[playerStats.throwCount - 1]
         beanBagView.image = UIImage(named: "Score\(lastThrowMetrics.score.rawValue)")
         
+        return legCount+1
     }
 
     func updateBoundingBox(_ boundingBox: BoundingBoxView, withRect rect: CGRect?) {
@@ -344,48 +312,19 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
         }
     }
     
+    // 버튼
+    @IBAction func stopButtonAct(_ sender: Any) {
+        // 현재 뷰를 dismiss 처리 작업번호 TSK-67 자세코치 화면 구현 트러블 슈팅 확인
+        
+        self.dismiss(animated: false, completion: {
+            let resultBoard = UIStoryboard(name: "ExerciseSummaryViewController", bundle: nil)
+            guard let vc = resultBoard.instantiateViewController(withIdentifier: "ExerciseSummaryViewController") as? ExerciseSummaryViewController else {return}
+            vc.workoutType = self.throwTypeLabel.text
+            vc.count = self.updateKPILabels()
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+    }
     
-//        let heightBuffer: CGFloat = 100
-////        let boardRegion = gameManager.boardRegion
-//        // In some cases trajectory observation may not end exactly on the board and end a few pixels above the board.
-//        // This can happen especially when the bag bounces on the board. Filtering conditions can be adjusted to get those observations as well.
-//        // Defining extended regions for board and the hole with a heightBuffer to cover these cases.
-////        let extendedBoardRegion = CGRect(x: boardRegion.origin.x, y: boardRegion.origin.y - heightBuffer,
-////                                        width: boardRegion.width, height: boardRegion.height + heightBuffer)
-//        let holeRegion = gameManager.holeRegion
-//        let extendedHoleRegion = CGRect(x: holeRegion.origin.x, y: holeRegion.origin.y - heightBuffer,
-//                                        width: holeRegion.width, height: holeRegion.height + heightBuffer)
-////        if !extendedBoardRegion.contains(finalBagLocation) {
-////            // Bag missed the board
-////            return Scoring.zero
-////        } else if extendedHoleRegion.contains(finalBagLocation) {
-////        if extendedHoleRegion.contains(finalBagLocation) {
-////            // Bag landed in the hole
-////            return lastThrowMetrics.throwType == .legpress ? Scoring.fifteen : Scoring.three
-////        } else {
-////            // Bag landed on the board
-////            return lastThrowMetrics.throwType == .legpress ? Scoring.five : Scoring.one
-////        }
-//
-//        if extendedHoleRegion.contains(finalBagLocation) {
-//                switch lastThrowMetrics.throwType {
-//                case .chestpress, .latpulldown:
-//                    // Handle chestpress scoring logic here
-//                    return lastThrowMetrics.throwType == .latpulldown ? Scoring.one : Scoring.one
-//
-//                case .legpress, .legextension:
-//                    // Handle legextension scoring logic here
-//                    return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
-//                }
-//            }
-////        else {
-////                // Handle the case where the bag is on the board (default scoring logic)
-////                return lastThrowMetrics.throwType == .legpress ? Scoring.one : Scoring.one
-////            }
-//
-//            // Default case (if none of the conditions match)
-//            return Scoring.zero
-//    }
 }
 
 extension GameViewController: GameStateChangeObserver {
@@ -427,41 +366,55 @@ extension GameViewController: GameStateChangeObserver {
 
 extension GameViewController: CameraViewControllerOutputDelegate {
     func cameraViewController(_ controller: CameraViewController, didReceiveBuffer buffer: CMSampleBuffer, orientation: CGImagePropertyOrientation) {
+        // Vision 요청 핸들러를 설정하고, 현재 게임 상태가 'TrackThrowsState'인지 확인
         let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer, orientation: orientation, options: [:])
         if gameManager.stateMachine.currentState is GameManager.TrackThrowsState {
             DispatchQueue.main.async {
                 // Get the frame of rendered view
+                // 렌더링된 뷰의 프레임을 가져와서 정규화
                 let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
+                // 관절 세그먼트 뷰와 경로 뷰의 프레임을 설정
                 self.jointSegmentView.frame = controller.viewRectForVisionRect(normalizedFrame)
                 self.trajectoryView.frame = controller.viewRectForVisionRect(normalizedFrame)
             }
             // Perform the trajectory request in a separate dispatch queue.
+            // 동작 감지하여 Observations 에 반영, 코드 없애지 말 것
+            // 궤적 탐지 요청을 별도의 디스패치 큐에서 수행
             trajectoryQueue.async {
                 do {
+                    // 궤적 탐지 요청을 실행합니다.
                     try visionHandler.perform([self.detectTrajectoryRequest])
                     if let results = self.detectTrajectoryRequest.results {
                         DispatchQueue.main.async {
+                            // 궤적 관측 결과를 처리
                             self.processTrajectoryObservations(controller, results)
                         }
                     }
                 } catch {
+                    // 오류가 발생하면 오류를 표시
                     AppError.display(error, inViewController: self)
                 }
             }
         }
         // Body pose request is performed on the same camera queue to ensure the highlighted joints are aligned with the player.
         // Run bodypose request for additional GameConstants.maxPostReleasePoseObservations frames after the first trajectory observation is detected.
+        // 플레이어 본문 요청은 관절 세그먼트와 정렬되도록 동일한 카메라 큐에서 수행.
+        // 최초 궤적 관측이 감지된 후 GameConstants.maxTrajectoryInFlightPoseObservations 프레임의 추가 GameConstants.maxPostReleasePoseObservations 프레임에 대해 본문 요청을 실행.
         if !(self.trajectoryView.inFlight && self.trajectoryInFlightPoseObservations >= GameConstants.maxTrajectoryInFlightPoseObservations) {
             do {
+                // 플레이어 요청을 실행합니다.
                 try visionHandler.perform([detectPlayerRequest])
                 if let result = detectPlayerRequest.results?.first {
+                    // 인간 바운딩 상자를 가져오기
                     let box = humanBoundingBox(for: result)
                     let boxView = playerBoundingBox
                     DispatchQueue.main.async {
+                        // 상자의 뷰 프레임을 업데이트
                         let inset: CGFloat = -20.0
                         let viewRect = controller.viewRectForVisionRect(box).insetBy(dx: inset, dy: inset)
                         self.updateBoundingBox(boxView, withRect: viewRect)
                         if !self.playerDetected && !boxView.isHidden {
+                            // 플레이어가 감지되지 않았고 상자 뷰가 숨겨지지 않았다면 게임 상태를 'DetectedPlayerState'로 설정
                             self.gameStatusLabel.alpha = 0
                             self.resetTrajectoryRegions()
                             self.gameManager.stateMachine.enter(GameManager.DetectedPlayerState.self)
@@ -473,6 +426,7 @@ extension GameViewController: CameraViewControllerOutputDelegate {
             }
         } else {
             // Hide player bounding box
+            // 플레이어 바운딩 상자를 숨기기
             DispatchQueue.main.async {
                 if !self.playerBoundingBox.isHidden {
                     self.playerBoundingBox.isHidden = true
@@ -483,11 +437,12 @@ extension GameViewController: CameraViewControllerOutputDelegate {
     }
 }
 
-extension GameViewController {
-    @objc
-    func handleShowSummaryGesture(_ gesture: UITapGestureRecognizer) {
-        if gesture.state == .ended {
-            self.gameManager.stateMachine.enter(GameManager.ShowSummaryState.self)
-        }
-    }
-}
+//extension GameViewController {
+//    @objc
+//    func handleShowSummaryGesture(_ gesture: UITapGestureRecognizer) {
+//        if gesture.state == .ended {
+//            // 사용자가 화면을 탭했을 때, 게임 매니저의 상태를 'ShowSummaryState'로 변경
+//            self.gameManager.stateMachine.enter(GameManager.ShowSummaryState.self)
+//        }
+//    }
+//}

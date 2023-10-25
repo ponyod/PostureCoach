@@ -64,6 +64,7 @@ class SetupViewController: UIViewController {
 //        view.addSubview(boardBoundingBox)
 //        updateSetupState()
         self.navigationController?.navigationBar.isHidden = true;
+        self.tabBarController?.tabBar.isHidden = true;
     }
 
 //    override func viewDidAppear(_ animated: Bool) {

@@ -32,34 +32,17 @@
                                     <segue destination="WlB-us-cr1" kind="unwind" unwindAction="revertToSourcePicker:" id="leE-JF-I9g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSA-be-zpg">
-                                <rect key="frame" x="168" y="631" width="57" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="2VV-Jq-7lu"/>
-                                    <constraint firstAttribute="width" constant="57" id="vwW-Ka-ltQ"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="stop.circle.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeButtonAct:" destination="8IS-us-D6h" eventType="touchUpInside" id="SVi-Zv-mxu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OaE-Yf-Awa"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WSA-be-zpg" firstAttribute="centerX" secondItem="5ES-ON-icd" secondAttribute="centerX" id="Mzp-18-76n"/>
                             <constraint firstAttribute="trailing" secondItem="VWe-Mz-lTH" secondAttribute="trailing" constant="16" id="TAj-yn-8nh"/>
-                            <constraint firstItem="WSA-be-zpg" firstAttribute="top" secondItem="OaE-Yf-Awa" secondAttribute="top" constant="631" id="kyC-Wa-Ojb"/>
                             <constraint firstItem="VWe-Mz-lTH" firstAttribute="top" secondItem="OaE-Yf-Awa" secondAttribute="top" constant="10" id="oI1-j7-Z50"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2E6-wo-Wt0"/>
                     <connections>
                         <outlet property="closeButton" destination="VWe-Mz-lTH" id="PZf-KL-JVe"/>
-                        <outlet property="stopButton" destination="WSA-be-zpg" id="zI4-u6-O4H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2a-wf-O9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -186,7 +169,6 @@
     </scenes>
     <resources>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <image name="stop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

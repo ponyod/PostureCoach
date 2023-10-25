@@ -32,7 +32,7 @@ struct ThrowMetrics {
     var releaseAngle = 0.0
     var throwType = ThrowType.legpress
     var upperType = ThrowType.latpulldown
-    var lowerExercisesType = ThrowType.legextension
+    var lowerType = ThrowType.legextension
     var finalBagLocation: CGPoint = .zero
 
     mutating func updateThrowType(_ type: ThrowType) {
@@ -365,6 +365,7 @@ struct LegPressCounter {
     
     private var state: LegPressState = .initial
     private var count: Int = 0
+    private var legCount: Int = 0
 
     // Call this function whenever the position of the ankle joint is updated
     mutating func updateAnglePosition(isCloserToHip: Bool) {
