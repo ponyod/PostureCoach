@@ -13,8 +13,20 @@ class PostureCoachViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false;
         // Do any additional setup after loading the view.
+        assignbackground()
     }
-    
+   
+    func assignbackground(){
+        let background = UIImage(named: "SignIn st 2.png")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
 
     /*
     // MARK: - Navigation
