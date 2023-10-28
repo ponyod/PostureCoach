@@ -21,7 +21,5 @@ class WebViewController: UIViewController {
             let request = URLRequest(url: url)
             youtubeWebView.load(request)
         }
-        
-        print(urlString ?? "urlString")
     }
 }

@@ -10,23 +10,22 @@ import Alamofire
 
 class MachineMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, XMLParserDelegate {
 
-    
+    var content: String?
     var selectedImage: UIImage?
     let imagePicker = UIImagePickerController()
+    var tagStringArray: [String] = []
+    var tagButtonArray = [UIButton]()
     
+    
+    @IBOutlet weak var tagListView: UIView!
+    @IBOutlet weak var tagListViewHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.imagePicker.delegate = self
         
-        search()
-        
-        //        print(search().hashText)
-        //        hashtagTextView.text = hashText
-        //        print(hashtagTextView.text)
-        //        hashtagTextView.resolveHashtags()
-        //        print(hashtagTextView.text)
+        fetchContent()
     }
     
     // 카메라 촬영 버튼 정의
@@ -34,19 +33,6 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
         self.imagePicker.delegate = self
         self.imagePicker.sourceType = .camera
         present(self.imagePicker, animated: true, completion: nil)
-        
-        //        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-        //            let imagePicker = UIImagePickerController()
-        //            imagePicker.sourceType = .camera
-        //            imagePicker.delegate = self
-        //            present(imagePicker, animated: true, completion: nil)
-        //        } else {
-        //            // 카메라 사용 불가능한 경우 경고 메시지 표시
-        //            let alertController = UIAlertController(title: "경고", message: "카메라를 사용할 수 없습니다.", preferredStyle: .alert)
-        //            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        //            alertController.addAction(okAction)
-        //            present(alertController, animated: true, completion: nil)
-        //        }
     }
     
     // 앨범에서 선택 버튼 정의
@@ -74,62 +60,135 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
         dismiss(animated: true, completion: nil)
     }
     
+    func fetchContent() {
+        let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId")
+        let labelMapper = MachineViewController().labelMapper
+        let url = "https://pcoachapi.azurewebsites.net/api/contents"
+        let parameters: [String: Any] = ["loggedInUserId": loggedInUserId!]
+        
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: [Content].self) { response in
+            switch response.result {
+            case .success(let value):
+                if let machineName = value.first?.machineName {
+                    self.content = labelMapper.mapLabel(machineName)
+                } else {
+                    self.content = "운동시작"
+                }
+                self.search()
+            case .failure(let error):
+                if let data = response.data, let errorString = String(data:data, encoding: .utf8) {
+                    print("Error: \(errorString)")
+                } else {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
     func search() {
         let rawEncoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.EUC_KR.rawValue))
         let encoding = String.Encoding(rawValue: rawEncoding)
         
-        let strURL = "https://suggestqueries.google.com/complete/search?hl=ko&ds=yt&q=운동시작&client=firefox"
-        let alamo = AF.request(strURL)
-        alamo.response(){ response in
-            //            print(response)
-            guard let data = response.data else { return }
-            guard let str = String(data: data, encoding: encoding) else { return }
-            
-            //            print(str)
-            let str1 = str.split(separator: "[")
-            let str2 = str1[1].split(separator: "]")
-            //            print(str2[0])
-            let str3 = str2[0].split(separator: ",")
-            
-            var hashText = ""
-            for i in 0..<5 {
-                let keyword = str3[i].replacingOccurrences(of: "\"", with: "").trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "") // 따옴표 제거 및 앞뒤 공백 제거
-                //                self.hashtagArr.append("#\(keyword)")
-                hashText += "#\(keyword)"
-                if i < 4 {
-                    hashText += " "
+        if let content = content {
+            let strURL = "https://suggestqueries.google.com/complete/search?hl=ko&ds=yt&q=\(content)&client=firefox"
+            let alamo = AF.request(strURL)
+            alamo.response(){ response in
+                guard let data = response.data else { return }
+                guard let str = String(data: data, encoding: encoding) else { return }
+                
+                let str1 = str.split(separator: "[")
+                let str2 = str1[1].split(separator: "]")
+                let str3 = str2[0].split(separator: ",")
+                
+                for i in 0..<5 {
+                    let keyword = str3[i].replacingOccurrences(of: "\"", with: "").trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "") // 따옴표 제거 및 앞뒤 공백 제거
+                    self.tagStringArray.append("\(keyword)")
                 }
+                //print(self.tagStringArray)
+                self.initTagView()
             }
-            //            let labelText = self.hashtagArr.joined(separator: " ")
-            print(hashText)
-//            self.hashtagTextView.text = hashText
-//            self.hashtagTextView.resolveHashtags()
-            //            self.contentsLabel.text = labelText
-            
-            //            for keyword in str3 {
-            //                print(keyword)
-            //                self.suggestions.append(String(keyword))
-            //            }
-        }
-        //        contentsLabel.text = self.suggestions[1]
+        } else { return }
     }
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        let webViewController = ContentsWebViewController()
-//        navigationController?.pushViewController(webViewController, animated: true)
-//        return false
-//    }
+    private func initTagView() {
+        // let tagStringArray = ["운동","운동 노래","운동전 스트레칭","운동화 추천"]
+        tagButtonArray = tagStringArray.map { createButton(with: $0) }
+        tagButtonArray.forEach {
+            $0.addTarget(self, action: #selector(touchTagButton), for: .touchUpInside)
+        }
+        
+        let frame = CGRect(x: 0, y: 0, width: tagListView.frame.width, height: tagListView.frame.height)
+        let tagView = UIView(frame: frame)
+        attachTagButtons(at: tagView, tagButtonArray)
+        
+        tagListView.addSubview(tagView)
+        tagListViewHeight.constant = tagView.frame.height
+    }
     
-//    func openWebPage(forHashtag hashtag: String) {
-//        if let encodedHashtag = hashtag.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-//            let urlString = "https://www.youtube.com/results?search_query=\(encodedHashtag)"
-//            let url = URL(string: urlString)
-//            if let url = url {
-//                let webViewController = UIStoryboard(name: "MachineCoachView", bundle: nil).instantiateViewController(withIdentifier: "ContentsWebViewController") as! ContentsWebViewController
-//                webViewController.url = url.absoluteString
-//                self.present(webViewController, animated: true, completion: nil)
-//            }
-//        }
-//    }
+    private func createButton(with title: String) -> UIButton {
+        let font = UIFont(name: "AppleGothic", size: 17)!
+        let fontAttributes: [NSAttributedString.Key: Any] = [.font: font]
+        let fontSize = title.size(withAttributes: fontAttributes)
+        
+        let tag = UIButton(type: .custom)
+        tag.setTitle(title, for: .normal)
+        tag.layer.borderWidth = 1
+        tag.layer.cornerRadius = 14
+        tag.backgroundColor = .systemPink
+        tag.frame = CGRect(x: 0, y: 0, width: fontSize.width + 13.0, height: fontSize.height + 13.0)
+        return tag
+    }
+    
+    private func attachTagButtons(at view: UIView, _ tagButtons: [UIButton]) {
+        var lineCount: CGFloat = 1
+        let marginX: CGFloat = 10
+        let marginY: CGFloat = 5
+        
+        var positionX: CGFloat = 0
+        var positionY: CGFloat = 0
+        
+        for (index, tagButton) in tagButtons.enumerated() {
+            tagButton.tag = index
+            tagButton.frame = CGRect(x: positionX, y: positionY, width: tagButton.frame.width, height: tagButton.frame.height)
+            view.addSubview(tagButton)
+            
+            if index < tagButtons.count - 1 {
+                positionX += tagButton.frame.width + marginX
+                
+                if positionX + tagButtons[index + 1].frame.width > view.frame.width {
+                    positionX = 0
+                    positionY += tagButton.frame.height + marginY
+                    lineCount += 1
+                }
+            }
+        }
+        
+        let height = view.subviews.first?.frame.height ?? 0
+        let margins: CGFloat = (lineCount - 1) * marginY
+        view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: (lineCount * height) + margins)
+    }
+    
+    @objc func touchTagButton(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        let isTagSelected = sender.isSelected
+        tagButtonArray.filter { $0 != sender }.forEach {
+            $0.isSelected = false
+        }
+        
+        
+        if let keyword = sender.titleLabel?.text {
+            let urlString = "https://www.youtube.com/results?search_query=\(keyword)"
+            
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContentsWebViewController") as? ContentsWebViewController else { fatalError() }
+            vc.url = urlString
+            present(vc, animated: true)
+        }
+        
+    }
+    
 }
 
+struct Content: Decodable {
+    let machineName: String
+}

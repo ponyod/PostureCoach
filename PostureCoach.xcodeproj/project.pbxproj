@@ -234,10 +234,10 @@
 		169F7B342AD2E49E004204E9 /* MachineCoachView */ = {
 			isa = PBXGroup;
 			children = (
-				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				0F5E38402ADE5ABD00D444B1 /* MachineMainViewController.swift */,
 				0F5E383E2ADE5ABD00D444B1 /* MachineViewController.swift */,
 				0F5E383F2ADE5ABD00D444B1 /* WebViewController.swift */,
+				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				160637532AD8F0DF00213C8C /* ContentsWebViewController.swift */,
 			);
 			path = MachineCoachView;

@@ -15,6 +15,7 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     let labelMapper = LabelMapper()
     let machines = ["chestpress", "latpulldown", "legextension", "legpress"]
+    let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId")
     
     var rankingMine: String = ""
     var rankingToday: [RankingToday] = []
@@ -35,8 +36,9 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     func fetchRankingMine() {
         let url = "https://pcoachapi.azurewebsites.net/api/ranking/my"
+        let parameters: [String: Any] = ["loggedInUserId": loggedInUserId!]
         
-        AF.request(url).responseDecodable(of: [RankingMine].self) { response in
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: [RankingMine].self) { response in
             switch response.result {
             case .success(let value):
                 if let ranking = value.first?.ranking {
@@ -73,8 +75,9 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     func fetchRankingPhysical() {
         let url = "https://pcoachapi.azurewebsites.net/api/ranking/physical"
+        let parameters: [String: Any] = ["loggedInUserId": loggedInUserId!]
         
-        AF.request(url).responseDecodable(of: [RankingPhysical].self) { response in
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: [RankingPhysical].self) { response in
             switch response.result {
             case .success(let value):
                 self.rankingPhysical = value
@@ -89,8 +92,9 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     func fetchRankingBirth() {
         let url = "https://pcoachapi.azurewebsites.net/api/ranking/birth"
+        let parameters: [String: Any] = ["loggedInUserId": loggedInUserId!]
         
-        AF.request(url).responseDecodable(of: [RankingBirth].self) { response in
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: [RankingBirth].self) { response in
             switch response.result {
             case .success(let value):
                 self.rankingBirth = value

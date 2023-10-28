@@ -21,17 +21,5 @@ class CellWebViewController: UIViewController {
             let request = URLRequest(url: url)
             cellYoutubeWebView.load(request)
         }
-        
-        print(UrlString ?? "cellUrlString")
-
     }
-    
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("Provisional navigation failed with error: \(error.localizedDescription)")
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("Navigation failed with error: \(error.localizedDescription)")
-    }
-
 }
