@@ -31,7 +31,7 @@ class WeeklyViewController: UIViewController {
             swiftuiView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             swiftuiView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             swiftuiView.widthAnchor.constraint(equalToConstant: 355),
-            swiftuiView.heightAnchor.constraint(equalToConstant: 553)
+            swiftuiView.heightAnchor.constraint(equalToConstant: 523)
             ])
         vc.didMove(toParent: self)
         
