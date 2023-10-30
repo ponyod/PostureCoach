@@ -86,14 +86,14 @@ class ReportModel: ObservableObject {
     func getReports() {
         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
                 let url = "https://pcoachapi.azurewebsites.net/api/report/weekly?loggedInUserId=\(loggedInUserId)"
-                
+            
                 AF.request(url).responseDecodable(of: [WeeklyReport].self) { response in
                     switch response.result {
                     case .success(let report):
                         self.weeklyReports = report
-                        print(self.weeklyReports)
+//                        print("\(self.weeklyReports) 데이터 출력")
                     case .failure(let error):
-                        print(error)
+                        print("\(error) 주간 합계 처리 불가")
                     }
                 }
             } else {
@@ -116,11 +116,11 @@ class SumModel: ObservableObject {
              AF.request(url).responseDecodable(of: [WeeklySum].self) { response in
                      switch response.result {
                      case .success(let total):
-                         print(total)
+//                         print(total)
                          self.weeklySum = total
-                         print("\(self.weeklySum.count) 주간 합계")
+//                         print("\(self.weeklySum.count) 주간 합계")
                      case .failure(let error):
-                         print("\(error) 처리할 수 없음")
+                         print("\(error) SumModel 처리할 수 없음")
                      }
                  }
              } else {
@@ -143,11 +143,11 @@ class ChestCount: ObservableObject {
              AF.request(url).responseDecodable(of: [ChestSum].self) { response in
                      switch response.result {
                      case .success(let sum):
-                         print(sum)
+//                         print(sum)
                          self.chestCount = sum
-                         print("\(self.chestCount.count) 주간 합계")
+//                         print("\(self.chestCount.count) 주간 합계")
                      case .failure(let error):
-                         print("\(error) 처리할 수 없음")
+                         print("\(error) ChestCount 처리할 수 없음")
                      }
                  }
              } else {
@@ -170,11 +170,11 @@ class LatPullCount: ObservableObject {
              AF.request(url).responseDecodable(of: [LatPullSum].self) { response in
                      switch response.result {
                      case .success(let sum):
-                         print(sum)
+//                         print(sum)
                          self.latpullCount = sum
-                         print("\(self.latpullCount.count) 주간 합계")
+//                         print("\(self.latpullCount.count) 주간 합계")
                      case .failure(let error):
-                         print("\(error) 처리할 수 없음")
+                         print("\(error) LatPullCount 처리할 수 없음")
                      }
                  }
              } else {
@@ -197,10 +197,10 @@ class PressCount: ObservableObject {
              AF.request(url).responseDecodable(of: [PressSum].self) { response in
                      switch response.result {
                      case .success(let sum):
-                         print(sum)
+//                         print(sum)
                          self.pressCount = sum
                      case .failure(let error):
-                         print("\(error) 처리할 수 없음")
+                         print("\(error) PressCount 처리할 수 없음")
                      }
                  }
              } else {
@@ -223,11 +223,11 @@ class ExtensionCount: ObservableObject {
              AF.request(url).responseDecodable(of: [ExtensionSum].self) { response in
                      switch response.result {
                      case .success(let sum):
-                         print(sum)
+//                         print(sum)
                          self.extensionCount = sum
-                         print("\(self.extensionCount.count) 주간 합계")
+//                         print("\(self.extensionCount.count) 주간 합계")
                      case .failure(let error):
-                         print("\(error) 처리할 수 없음")
+                         print("\(error) ExtensionCount 처리할 수 없음")
                      }
                  }
              } else {
@@ -354,16 +354,15 @@ struct WeeklyReportView: View {
             // View가 화면에 나타나면 날짜 범위를 계산하고 표시
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy년 M월 d일"
-            
+
             let today = Date()
-            
+
             if let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -6, to: today) {
                 let todayString = dateFormatter.string(from: today)
                 let oneWeekAgoString = dateFormatter.string(from: oneWeekAgo)
-                
+
                 dateRange = "\(oneWeekAgoString) ~ \(todayString)"
             }
-            
         }
     }
 } // view end

@@ -17,7 +17,7 @@ class PostureCoachViewController: UIViewController {
     }
    
     func assignbackground(){
-        let background = UIImage(named: "SignIn st 2.png")
+        let background = UIImage(named: "bg.png")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill

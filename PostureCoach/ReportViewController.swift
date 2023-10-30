@@ -29,9 +29,12 @@ class ReportViewController: UIViewController {
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             viewContainer.bringSubviewToFront(weeklyView)
-            
+            weeklyView.alpha = 1
+            monthlyView.alpha = 0
         } else {
             viewContainer.bringSubviewToFront(monthlyView)
+            weeklyView.alpha = 0
+            monthlyView.alpha = 1
         }
     }
     
