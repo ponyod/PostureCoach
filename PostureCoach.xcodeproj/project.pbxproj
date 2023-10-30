@@ -535,7 +535,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용해줘";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해줘";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해줘.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 허용해줘";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
