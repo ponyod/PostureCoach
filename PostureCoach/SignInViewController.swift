@@ -11,10 +11,14 @@ import Alamofire
 class SignInViewController: UIViewController {
     @IBOutlet weak var idField: UITextField!
     @IBOutlet weak var pwField: UITextField!
+    @IBOutlet weak var signUpBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        signUpBtn.layer.borderWidth = 2
+        signUpBtn.layer.borderColor = UIColor.black.cgColor
+        signUpBtn.layer.cornerRadius = 20
     }
     
     // 사용자가 입력한 아이디(userid)와 비밀번호(userpw)를 가져온다
@@ -27,7 +31,6 @@ class SignInViewController: UIViewController {
                 let dataSave = UserDefaults.standard
                 dataSave.setValue(userId, forKey: "loggedInUserId")
                 dataSave.setValue(userId, forKey: "id")
-//                dataSave.setValue(userpw, forKey: "pw")
                 
                 if let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") {
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
@@ -35,11 +38,8 @@ class SignInViewController: UIViewController {
                             sceneDelegate.window?.rootViewController = tabBarController
                         }
                     }
-                    print("로그인 성공")
                 }
-            } else {
-                self.showAlert(title: "로그인 실패", message: message)
-            }
+            } else { return }
         }
     }
     
@@ -74,19 +74,6 @@ class SignInViewController: UIViewController {
             }
             
         }
-    }
-    
-    //    // 로그인 검증 테스트 코드 *백엔드 작업 후 수정필요
-    //    func isValidLogin(userid: String, userpw: String) -> Bool {
-    //        return userid == "test" && userpw == "test"
-    //    }
-    
-    // AlertController 정의
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
     
     // 화면 클릭하면 키패드 내리기

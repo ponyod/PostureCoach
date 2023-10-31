@@ -30,6 +30,7 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     
     // 카메라 촬영 버튼 정의
     @IBAction func actCamera(_ sender: UIButton) {
+        print("카메라 버튼")
         self.imagePicker.delegate = self
         self.imagePicker.sourceType = .camera
         present(self.imagePicker, animated: true, completion: nil)
@@ -37,6 +38,7 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     
     // 앨범에서 선택 버튼 정의
     @IBAction func actAlbum(_ sender: UIButton) {
+        print("앨범 버튼")
         self.imagePicker.delegate = self
         self.imagePicker.sourceType = .photoLibrary
         present(self.imagePicker, animated: true, completion: nil)
@@ -44,12 +46,17 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     
     // 이미지 선택이 완료되었을 때 호출되는 메서드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //        if picker.sourceType == .camera {
+
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MachineViewController") as? MachineViewController else { fatalError() }
+            vc.userImage = selectedImage
+            navigationController?.pushViewController(vc, animated: true)
+            
             // 선택한 이미지를 다음 뷰 컨트롤러로 전달하고 다음 화면으로 이동
-            let nextViewController = UIStoryboard(name: "MachineCoachView", bundle: nil).instantiateViewController(withIdentifier: "MachineViewController") as! MachineViewController
-            nextViewController.userImage = selectedImage
-            navigationController?.pushViewController(nextViewController, animated: true)
+            
+//            let nextViewController = UIStoryboard(name: "MachineCoachView", bundle: nil).instantiateViewController(withIdentifier: "MachineViewController") as! MachineViewController
+//            nextViewController.userImage = selectedImage
+//            navigationController?.pushViewController(nextViewController, animated: true)
         }
         
         picker.dismiss(animated: true, completion: nil)
@@ -101,18 +108,16 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
                 let str2 = str1[1].split(separator: "]")
                 let str3 = str2[0].split(separator: ",")
                 
-                for i in 0..<5 {
+                for i in 0..<4 {
                     let keyword = str3[i].replacingOccurrences(of: "\"", with: "").trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "") // 따옴표 제거 및 앞뒤 공백 제거
                     self.tagStringArray.append("\(keyword)")
                 }
-                //print(self.tagStringArray)
                 self.initTagView()
             }
         } else { return }
     }
     
     private func initTagView() {
-        // let tagStringArray = ["운동","운동 노래","운동전 스트레칭","운동화 추천"]
         tagButtonArray = tagStringArray.map { createButton(with: $0) }
         tagButtonArray.forEach {
             $0.addTarget(self, action: #selector(touchTagButton), for: .touchUpInside)
@@ -127,15 +132,18 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     private func createButton(with title: String) -> UIButton {
-        let font = UIFont(name: "AppleGothic", size: 17)!
+        let font = UIFont(name: "Apple SD 산돌고딕 Neo", size: 17)!
         let fontAttributes: [NSAttributedString.Key: Any] = [.font: font]
         let fontSize = title.size(withAttributes: fontAttributes)
         
         let tag = UIButton(type: .custom)
         tag.setTitle(title, for: .normal)
+        tag.titleLabel?.font = font
+        tag.setTitleColor(.black, for: .normal)
+        tag.layer.borderColor = UIColor.black.cgColor
         tag.layer.borderWidth = 1
         tag.layer.cornerRadius = 14
-        tag.backgroundColor = .systemPink
+        tag.backgroundColor = .white
         tag.frame = CGRect(x: 0, y: 0, width: fontSize.width + 13.0, height: fontSize.height + 13.0)
         return tag
     }
@@ -170,23 +178,13 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @objc func touchTagButton(sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        let isTagSelected = sender.isSelected
-        tagButtonArray.filter { $0 != sender }.forEach {
-            $0.isSelected = false
-        }
-        
-        
         if let keyword = sender.titleLabel?.text {
             let urlString = "https://www.youtube.com/results?search_query=\(keyword)"
-            
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContentsWebViewController") as? ContentsWebViewController else { fatalError() }
             vc.url = urlString
             present(vc, animated: true)
         }
-        
     }
-    
 }
 
 struct Content: Decodable {

@@ -73,8 +73,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         } else {
             showAlert(message: "입력 정보를 다시 확인하세요.")
         }
-        
-        print(userId, userName, userPw, userPwConfirm) // 테스트 출력
     }        
     
     // 비밀번호를 SHA256 해시암호화 (CryptoKit)

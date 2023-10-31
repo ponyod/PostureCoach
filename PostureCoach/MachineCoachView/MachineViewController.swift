@@ -29,6 +29,7 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true // 탭바 히든 처리
         
         if let userImage = userImage {
@@ -47,6 +48,8 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.machineTableView.delegate = self
         self.machineTableView.dataSource = self
+        machineTableView.layer.borderWidth = 1
+        machineTableView.layer.borderColor = UIColor.black.cgColor
         
         setMachineImage()
                 
@@ -65,6 +68,13 @@ class MachineViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    @IBAction func btnClose(_ sender: UIButton) {
+        //self.navigationController?.popToRootViewController(animated: true)
+        
+        let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     // 운동보기 버튼 클릭 시 segue 설정

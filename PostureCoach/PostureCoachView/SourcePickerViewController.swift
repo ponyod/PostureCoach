@@ -31,6 +31,7 @@ class SourcePickerViewController: UIViewController {
         // This is for unwinding to this controller in storyboard.
         gameManager.reset()
     }
+    
 }
 
 extension SourcePickerViewController: UIDocumentPickerDelegate {
@@ -45,4 +46,5 @@ extension SourcePickerViewController: UIDocumentPickerDelegate {
         gameManager.recordedVideoSource = AVAsset(url: url)
         performSegue(withIdentifier: "ShowRootControllerSegue", sender: self)
     }
+    
 }

@@ -12,6 +12,7 @@ import Foundation
 class CommunityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var myRankingLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
+    @IBOutlet weak var rankingView: UIView!
     
     let labelMapper = LabelMapper()
     let machines = ["chestpress", "latpulldown", "legextension", "legpress"]
@@ -24,6 +25,13 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rankingTableView.layer.borderWidth = 1
+        rankingTableView.layer.borderColor = UIColor.black.cgColor
+        
+        rankingView.layer.borderWidth = 1
+        rankingView
+            .layer.borderColor = UIColor.black.cgColor
         
         rankingTableView.dataSource = self
         rankingTableView.delegate = self
@@ -42,10 +50,10 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
             switch response.result {
             case .success(let value):
                 if let ranking = value.first?.ranking {
-                    self.rankingMine = "\(ranking)위"
+                    self.rankingMine = "\(ranking)"
                     self.myRankingLabel.text = self.rankingMine
                 } else {
-                    self.rankingMine = "0위"
+                    self.rankingMine = "0"
                     self.myRankingLabel.text = self.rankingMine
                 }
             case .failure(let error):
@@ -126,6 +134,8 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = rankingTableView.dequeueReusableCell(withIdentifier: "rankingcell", for: indexPath)
         
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
         if let imageView = cell.viewWithTag(1) as? UIImageView {
             if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
                 let rowData = rankingPhysical[indexPath.row]
@@ -156,13 +166,13 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
         if let label = cell.viewWithTag(3) as? UILabel {
             if indexPath.section == 0 && indexPath.row < rankingToday.count {
                 let rowData = rankingToday[indexPath.row]
-                label.text = "\(rowData.exerciseCount)회"
+                label.text = "\(rowData.exerciseCount)"
             } else if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
                 let rowData = rankingPhysical[indexPath.row]
-                label.text = "\(rowData.exerciseCount)회"
+                label.text = "\(rowData.exerciseCount)"
             } else if indexPath.section == 2 && indexPath.row < rankingBirth.count {
                 let rowData = rankingBirth[indexPath.row]
-                label.text = "\(rowData.exerciseCount)회"
+                label.text = "\(rowData.exerciseCount)"
             } else {
                 label.text = ""
             }
@@ -174,13 +184,22 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "오늘의 순위"
+            return "전체 순위"
         case 1:
-            return "오늘의 운동 횟수 평균(체형별)"
+            return "나와 비슷한 체형의 사람들 운동횟수"
         case 2:
-            return "오늘의 운동 횟수 평균(연령별)"
+            return "나와 비슷한 연령의 사람들 운동횟수"
         default:
             return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let font = UIFont(name: "Apple SD 산돌고딕 Neo", size: 20)
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = font
+            header.textLabel?.textColor = .black
+            header.textLabel?.frame = CGRect(x: 16, y: 8, width: tableView.bounds.size.width, height: 24)
         }
     }
 }

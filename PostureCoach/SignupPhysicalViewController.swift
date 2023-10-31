@@ -42,16 +42,12 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
         birthCheckLabel.isHidden = true
         
         btnSignUp.isEnabled = false
-//        print(userId!, userName!, userPw!)
         
         createDatePicker()
         createPickerView()
         
         heightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
         weightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
-//        showGenderPicker.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
-//        showBirthPicker.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
-        //        dismissPickerView()
     }
     
     @IBAction func btnSignUp(_ sender: UIButton) {
@@ -120,10 +116,6 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
         let replacementStringCharacterSet = CharacterSet(charactersIn: string)
         
-//        if textField == showGenderPicker && !string.isEmpty {
-//            genderCheckLabel.isHidden = true
-//        }
-        
         if textField == heightTextField || textField == weightTextField {
             if !allowedCharacterSet.isSuperset(of: replacementStringCharacterSet) && !string.isEmpty {
                 if textField == heightTextField {
@@ -143,10 +135,6 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
                 return true
             }
         }
-        
-//        if textField == showGenderPicker && !string.isEmpty {
-//            genderCheckLabel.isHidden = true
-//        }
         return true
     }
     
@@ -172,7 +160,6 @@ class SignupPhysicalViewController: UIViewController, UITextFieldDelegate, UIPic
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         showGenderPicker.text = gender[row]
         updateButtonStatus()
-//        genderCheckLabel.isHidden = true
     }
     
     func dismissPickerView() {
