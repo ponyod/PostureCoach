@@ -16,6 +16,7 @@ class LowerSourcePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameManager.stateMachine.enter(GameManager.InactiveState.self)
+        self.tabBarController?.tabBar.isHidden = true;
     }
     
     @IBAction func handleUploadVideoButton(_ sender: Any) {

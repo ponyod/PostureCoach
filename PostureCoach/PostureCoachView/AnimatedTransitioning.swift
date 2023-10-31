@@ -21,6 +21,7 @@ protocol AnimatedTransitioning {
 }
 
 extension AnimatedTransitioning where Self: UIView {
+    
     func perform(transition: AnimatedTransitionType, duration: TimeInterval) {
         perform(transition: transition, duration: duration, completion: nil)
     }

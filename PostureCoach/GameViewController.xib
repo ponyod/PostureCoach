@@ -119,15 +119,15 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDP-VC-7oq" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="-263" y="623" width="247" height="36"/>
+                    <rect key="frame" x="112" y="623" width="247" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-8y-fga" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="-263" y="587" width="247" height="36"/>
+                    <rect key="frame" x="112" y="587" width="247" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-57-ek8" customClass="ProgressView" customModule="PostureCoach" customModuleProvider="target">
-                    <rect key="frame" x="-263" y="555" width="247" height="32"/>
+                    <rect key="frame" x="112" y="555" width="247" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="GQ7-aE-Okr"/>
@@ -214,6 +214,10 @@
                     <state key="normal" image="stop.circle.fill" catalog="system">
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="52"/>
                     </state>
+                    <buttonConfiguration key="configuration" style="tinted" image="stop.circle.fill" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="52"/>
+                        <color key="baseForegroundColor" red="0.60784313729999995" green="0.31764705879999999" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="stopButtonAct:" destination="-1" eventType="touchUpInside" id="OA5-9U-atI"/>
                     </connections>

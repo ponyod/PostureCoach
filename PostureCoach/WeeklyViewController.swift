@@ -29,9 +29,9 @@ class WeeklyViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             swiftuiView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            swiftuiView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            swiftuiView.widthAnchor.constraint(equalToConstant: 345),
-            swiftuiView.heightAnchor.constraint(equalToConstant: 390)
+            swiftuiView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            swiftuiView.widthAnchor.constraint(equalToConstant: 287),
+            swiftuiView.heightAnchor.constraint(equalToConstant: 510)
             ])
         vc.didMove(toParent: self)
         

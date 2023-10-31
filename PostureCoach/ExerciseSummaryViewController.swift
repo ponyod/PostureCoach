@@ -17,13 +17,15 @@ class ExerciseSummaryViewController: UIViewController {
     let exerciseDate = Date()
     let dateFormatter = DateFormatter()
     
+    @IBOutlet weak var countBox: UIView!
+    @IBOutlet weak var exerciseBox: UIView!
     let machines = ["chestpress", "latpulldown", "legpress", "legextension"]
     
     var newRecord: WorkoutReport?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        boderLine()
         if let workoutType = workoutType {
             self.typeLabel.text = "\(workoutType)"
         }
@@ -36,7 +38,6 @@ class ExerciseSummaryViewController: UIViewController {
             let converted = convertMachineName(machine: workoutType),
             let userId = UserDefaults.standard.string(forKey: "loggedInUserId"),
             let exerciseCount = count {
-//             let userId = userid.setValue(userid, forKey: "loggedInUserId")
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = dateFormatter.string(from: exerciseDate)
@@ -49,8 +50,18 @@ class ExerciseSummaryViewController: UIViewController {
             print("Error: workoutType or count is nil")
             return
         }
+        self.tabBarController?.tabBar.isHidden = true;
+    }
+    
+    func boderLine() {
+        countBox?.layer.borderWidth = 1
+        countBox?.layer.borderColor = UIColor.black.cgColor
+        
+        exerciseBox?.layer.borderWidth = 1
+        exerciseBox?.layer.borderColor = UIColor.black.cgColor
         
     }
+    
     
     func convertMachineName(machine: String) -> Int? {
         let machines: [String: Int] = [
@@ -61,7 +72,7 @@ class ExerciseSummaryViewController: UIViewController {
         ]
             print("\(machines[workoutType!]) 출력")
             return machines[machine]
-        }
+    }
     
     // 기록 추가
     func addLog(newRecord: WorkoutReport, completion: @escaping (Bool) -> Void) {
@@ -101,8 +112,10 @@ class ExerciseSummaryViewController: UIViewController {
         
         // 2. UIAlertAction을 생성 (확인 버튼)
         let confirmAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            self.navigationController?.popToRootViewController(animated: true)
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            self.navigationController?.pushViewController(nextViewController, animated: true)
         }
+        
         alert.addAction(confirmAction)
         present(alert, animated: true)
     }

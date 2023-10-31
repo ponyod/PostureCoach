@@ -37,6 +37,7 @@ class SourcePickerViewController: UIViewController {
 extension SourcePickerViewController: UIDocumentPickerDelegate {
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         gameManager.recordedVideoSource = nil
+        dismiss(animated: true, completion: nil)
     }
     
     func  documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {

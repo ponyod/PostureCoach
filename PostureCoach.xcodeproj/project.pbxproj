@@ -16,8 +16,9 @@
 		0FACFABB2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */; };
 		0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */; };
 		0FC4B72A2AD91AF20036DEB2 /* WeeklyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */; };
-		0FD22B212ADE6F850033C9AF /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */; };
 		0FD22B252ADE6FB40033C9AF /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */; };
+		0FD9DA8D2AECBEF4008D2EE7 /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD9DA8C2AECBEF4008D2EE7 /* MonthlyViewController.swift */; };
+		0FD9DA8F2AEE6726008D2EE7 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD9DA8E2AEE6726008D2EE7 /* AccountSettingViewController.swift */; };
 		0FE635972AC51FCB00DA6266 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE635962AC51FCB00DA6266 /* Model.swift */; };
 		0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE635992AC5346C00DA6266 /* Alamofire */; };
 		0FEB8F642ACCF3090098F7AC /* LegPressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */; };
@@ -64,6 +65,7 @@
 		169F7B332AD2E496004204E9 /* MachineClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */; };
 		169F7B382AD4EC90004204E9 /* SignupPhysicalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F7B372AD4EC90004204E9 /* SignupPhysicalViewController.swift */; };
 		16AE79002AC29F8800A16443 /* ExerciseClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */; };
+		ECE3C15DC12D39C1F1AF0F04 /* Pods_PostureCoach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C81593D12DB4369994FC52 /* Pods_PostureCoach.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,8 +78,9 @@
 		0FACFABA2AD4221B006CBA08 /* ExerciseSummaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseSummaryViewController.storyboard; sourceTree = "<group>"; };
 		0FACFABC2AD52A51006CBA08 /* ExerciseSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryViewController.swift; sourceTree = "<group>"; };
 		0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportView.swift; sourceTree = "<group>"; };
-		0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
 		0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
+		0FD9DA8C2AECBEF4008D2EE7 /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
+		0FD9DA8E2AEE6726008D2EE7 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		0FE635962AC51FCB00DA6266 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0FEB8F632ACCF3090098F7AC /* LegPressView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegPressView.storyboard; sourceTree = "<group>"; };
 		0FEB8F652ACCF6180098F7AC /* LegExtensionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LegExtensionView.storyboard; sourceTree = "<group>"; };
@@ -125,6 +128,9 @@
 		169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MachineClassifier.mlmodel; sourceTree = "<group>"; };
 		169F7B372AD4EC90004204E9 /* SignupPhysicalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPhysicalViewController.swift; sourceTree = "<group>"; };
 		16AE78FF2AC29F8800A16443 /* ExerciseClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseClassifier.mlmodel; sourceTree = "<group>"; };
+		5236D3E3DE95FC6F31B8AC36 /* Pods-PostureCoach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureCoach.release.xcconfig"; path = "Target Support Files/Pods-PostureCoach/Pods-PostureCoach.release.xcconfig"; sourceTree = "<group>"; };
+		65C81593D12DB4369994FC52 /* Pods_PostureCoach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PostureCoach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		818522FDD6E6AEA3E4D02624 /* Pods-PostureCoach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureCoach.debug.xcconfig"; path = "Target Support Files/Pods-PostureCoach/Pods-PostureCoach.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FE6359A2AC5346C00DA6266 /* Alamofire in Frameworks */,
+				ECE3C15DC12D39C1F1AF0F04 /* Pods_PostureCoach.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +184,8 @@
 			children = (
 				165CE2672AC165C3002F8385 /* PostureCoach */,
 				165CE2662AC165C3002F8385 /* Products */,
+				9B3784FFFABE6DC33F10EFFF /* Pods */,
+				82652BBDE59F13001A83A935 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,8 +234,9 @@
 				16526ED42ACC0776008F6A49 /* PostureActionClassifier.mlmodel */,
 				169F7B322AD2E496004204E9 /* MachineClassifier.mlmodel */,
 				0FC4B7292AD91AF20036DEB2 /* WeeklyReportView.swift */,
-				0FD22B1F2ADE6F850033C9AF /* MonthlyViewController.swift */,
 				0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */,
+				0FD9DA8C2AECBEF4008D2EE7 /* MonthlyViewController.swift */,
+				0FD9DA8E2AEE6726008D2EE7 /* AccountSettingViewController.swift */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -234,10 +244,10 @@
 		169F7B342AD2E49E004204E9 /* MachineCoachView */ = {
 			isa = PBXGroup;
 			children = (
+				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				0F5E38402ADE5ABD00D444B1 /* MachineMainViewController.swift */,
 				0F5E383E2ADE5ABD00D444B1 /* MachineViewController.swift */,
 				0F5E383F2ADE5ABD00D444B1 /* WebViewController.swift */,
-				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				160637532AD8F0DF00213C8C /* ContentsWebViewController.swift */,
 			);
 			path = MachineCoachView;
@@ -251,6 +261,23 @@
 			path = ExerciseClassifier;
 			sourceTree = "<group>";
 		};
+		82652BBDE59F13001A83A935 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65C81593D12DB4369994FC52 /* Pods_PostureCoach.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B3784FFFABE6DC33F10EFFF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				818522FDD6E6AEA3E4D02624 /* Pods-PostureCoach.debug.xcconfig */,
+				5236D3E3DE95FC6F31B8AC36 /* Pods-PostureCoach.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,9 +285,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 165CE27C2AC165C4002F8385 /* Build configuration list for PBXNativeTarget "PostureCoach" */;
 			buildPhases = (
+				89629C13B403E21263363DEB /* [CP] Check Pods Manifest.lock */,
 				165CE2612AC165C3002F8385 /* Sources */,
 				165CE2622AC165C3002F8385 /* Frameworks */,
 				165CE2632AC165C3002F8385 /* Resources */,
+				75B3663594CE46979D46B82E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -336,6 +365,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		75B3663594CE46979D46B82E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureCoach/Pods-PostureCoach-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureCoach/Pods-PostureCoach-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureCoach/Pods-PostureCoach-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89629C13B403E21263363DEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PostureCoach-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		165CE2612AC165C3002F8385 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -349,6 +420,8 @@
 				169F7B332AD2E496004204E9 /* MachineClassifier.mlmodel in Sources */,
 				0FEB8F7C2ACD08970098F7AC /* ReportViewController.swift in Sources */,
 				160637542AD8F0DF00213C8C /* ContentsWebViewController.swift in Sources */,
+				0FD9DA8F2AEE6726008D2EE7 /* AccountSettingViewController.swift in Sources */,
+				0FD9DA8D2AECBEF4008D2EE7 /* MonthlyViewController.swift in Sources */,
 				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
 				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
 				160637562AD9173400213C8C /* CommunityViewController.swift in Sources */,
@@ -369,7 +442,6 @@
 				165CE2822AC1DC81002F8385 /* SignupViewController.swift in Sources */,
 				165CE2692AC165C3002F8385 /* AppDelegate.swift in Sources */,
 				16526EBA2ACC06A5008F6A49 /* CameraViewController.swift in Sources */,
-				0FD22B212ADE6F850033C9AF /* MonthlyViewController.swift in Sources */,
 				0FACFABD2AD52A51006CBA08 /* ExerciseSummaryViewController.swift in Sources */,
 				0FF1BE3A2AD3896300CC404D /* LowerSourcePickerViewController.swift in Sources */,
 				165CE26B2AC165C3002F8385 /* SceneDelegate.swift in Sources */,
@@ -522,6 +594,7 @@
 		};
 		165CE27D2AC165C4002F8385 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 818522FDD6E6AEA3E4D02624 /* Pods-PostureCoach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -544,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ponyo.PostureCoach2;
+				PRODUCT_BUNDLE_IDENTIFIER = youne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -554,6 +627,7 @@
 		};
 		165CE27E2AC165C4002F8385 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5236D3E3DE95FC6F31B8AC36 /* Pods-PostureCoach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -576,7 +650,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ponyo.PostureCoach2;
+				PRODUCT_BUNDLE_IDENTIFIER = youne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

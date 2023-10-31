@@ -5,68 +5,371 @@
 //  Created by Youn on 2023/10/13.
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
+import Alamofire
+import Combine
 
-struct ExerciseReport: Identifiable {
-    var type: String
-    var count: Double
-    var id = UUID()
-}
-
-var data: [ExerciseReport] = [
-    .init(type: "월", count: 5),
-    .init(type: "화", count: 4),
-    .init(type: "수", count: 4),
-    .init(type: "목", count: 4),
-    .init(type: "금", count: 4),
-    .init(type: "토", count: 4),
-    .init(type: "일", count: 4),
-]
-
-struct WeeklyReportView: View {
-    var body: some View {
-        VStack{
-            
-        }
-        Chart {
-            BarMark(
-                x: .value("월", data[0].type),
-                y: .value("Total Count", data[0].count)
-            )
-            BarMark(
-                 x: .value("화", data[1].type),
-                 y: .value("Total Count", data[1].count)
-            )
-            BarMark(
-                 x: .value("수", data[2].type),
-                 y: .value("Total Count", data[2].count)
-            )
-            BarMark(
-                 x: .value("목", data[3].type),
-                 y: .value("Total Count", data[3].count)
-            )
-            BarMark(
-                 x: .value("금", data[4].type),
-                 y: .value("Total Count", data[4].count)
-            )
-            BarMark(
-                 x: .value("토", data[5].type),
-                 y: .value("Total Count", data[5].count)
-            )
-            BarMark(
-                 x: .value("일", data[6].type),
-                 y: .value("Total Count", data[6].count)
-            )
-            
-            }
-        }
+struct WeeklyReport: Identifiable, Codable {
+    let userId: String
+    let machineName: String
+    let weekday: String
+    let counts: Int
     
+    var id: String { weekday }
     
-}
-
-struct WeeklyReportView_Previews: PreviewProvider {
-    static var previews: some View {
-        WeeklyReportView()
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case machineName = "machine_name"
+        case weekday = "exercise_date"
+        case counts = "exercise_count"
     }
 }
+
+struct WeeklySum: Codable {
+    let userId: String
+    let count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case count = "exercise_count"
+    }
+}
+
+struct ChestSum: Codable {
+    let userId: String
+    let count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case count = "exercise_count"
+    }
+}
+
+struct LatPullSum: Codable {
+    let userId: String
+    let count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case count = "exercise_count"
+    }
+}
+
+struct PressSum: Codable {
+    let userId: String
+    let count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case count = "exercise_count"
+    }
+}
+
+struct ExtensionSum: Codable {
+    let userId: String
+    let count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case count = "exercise_count"
+    }
+}
+
+class ReportModel: ObservableObject {
+    @Published var weeklyReports: [WeeklyReport] = []
+    
+    init() {
+        getReports()
+    }
+    
+    func getReports() {
+        if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+                let url = "https://pcoachapi.azurewebsites.net/api/report/weekly?loggedInUserId=\(loggedInUserId)"
+            
+                AF.request(url).responseDecodable(of: [WeeklyReport].self) { response in
+                    switch response.result {
+                    case .success(let report):
+                        self.weeklyReports = report
+                        print("\(self.weeklyReports) 데이터 출력")
+                    case .failure(let error):
+                        print("\(error) 주간 합계 처리 불가")
+                    }
+                }
+            } else {
+            // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+            print("User ID not found in UserDefaults")
+        }
+    }
+}
+
+class SumModel: ObservableObject {
+    @Published var weeklySum: [WeeklySum] = []
+    
+    init() {
+        getSum()
+    }
+    
+    func getSum() {
+         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+             let url = "https://pcoachapi.azurewebsites.net/api/report/weekly/totalCounts?loggedInUserId=\(loggedInUserId)"
+             AF.request(url).responseDecodable(of: [WeeklySum].self) { response in
+                     switch response.result {
+                     case .success(let total):
+//                         print(total)
+                         self.weeklySum = total
+//                         print("\(self.weeklySum.count) 주간 합계")
+                     case .failure(let error):
+                         print("\(error) SumModel 처리할 수 없음")
+                     }
+                 }
+             } else {
+             // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+             print("User ID not found in UserDefaults")
+         }
+     }
+}
+
+class ChestCount: ObservableObject {
+    @Published var chestCount: [ChestSum] = []
+    
+    init() {
+        getSum()
+    }
+    
+    func getSum() {
+         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+             let url = "https://pcoachapi.azurewebsites.net/api/report/weekly/chestpress?loggedInUserId=\(loggedInUserId)"
+             AF.request(url).responseDecodable(of: [ChestSum].self) { response in
+                     switch response.result {
+                     case .success(let sum):
+//                         print(sum)
+                         self.chestCount = sum
+//                         print("\(self.chestCount.count) 주간 합계")
+                     case .failure(let error):
+                         print("\(error) ChestCount 처리할 수 없음")
+                     }
+                 }
+             } else {
+             // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+             print("User ID not found in UserDefaults")
+         }
+     }
+}
+
+class LatPullCount: ObservableObject {
+    @Published var latpullCount: [LatPullSum] = []
+    
+    init() {
+        getSum()
+    }
+    
+    func getSum() {
+         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+             let url = "https://pcoachapi.azurewebsites.net/api/report/weekly/latpulldown?loggedInUserId=\(loggedInUserId)"
+             AF.request(url).responseDecodable(of: [LatPullSum].self) { response in
+                     switch response.result {
+                     case .success(let sum):
+//                         print(sum)
+                         self.latpullCount = sum
+//                         print("\(self.latpullCount.count) 주간 합계")
+                     case .failure(let error):
+                         print("\(error) LatPullCount 처리할 수 없음")
+                     }
+                 }
+             } else {
+             // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+             print("User ID not found in UserDefaults")
+         }
+     }
+}
+
+class PressCount: ObservableObject {
+    @Published var pressCount: [PressSum] = []
+    
+    init() {
+        getSum()
+    }
+    
+    func getSum() {
+         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+             let url = "https://pcoachapi.azurewebsites.net/api/report/weekly/legpress?loggedInUserId=\(loggedInUserId)"
+             AF.request(url).responseDecodable(of: [PressSum].self) { response in
+                     switch response.result {
+                     case .success(let sum):
+//                         print(sum)
+                         self.pressCount = sum
+                     case .failure(let error):
+                         print("\(error) PressCount 처리할 수 없음")
+                     }
+                 }
+             } else {
+             // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+             print("User ID not found in UserDefaults")
+         }
+     }
+}
+
+class ExtensionCount: ObservableObject {
+    @Published var extensionCount: [ExtensionSum] = []
+    
+    init() {
+        getSum()
+    }
+    
+    func getSum() {
+         if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+             let url = "https://pcoachapi.azurewebsites.net/api/report/weekly/legextension?loggedInUserId=\(loggedInUserId)"
+             AF.request(url).responseDecodable(of: [ExtensionSum].self) { response in
+                     switch response.result {
+                     case .success(let sum):
+//                         print(sum)
+                         self.extensionCount = sum
+//                         print("\(self.extensionCount.count) 주간 합계")
+                     case .failure(let error):
+                         print("\(error) ExtensionCount 처리할 수 없음")
+                     }
+                 }
+             } else {
+             // UserDefaults에서 사용자 아이디를 찾을 수 없는 경우 예외 처리
+             print("User ID not found in UserDefaults")
+         }
+     }
+}
+
+struct WeeklyReportView: View {
+    @State private var dateRange = "날짜를 계산할 수 없습니다"
+    @StateObject var total = SumModel()
+    @StateObject var report = ReportModel()
+    @StateObject var chestpress = ChestCount()
+    @StateObject var latpulldown = LatPullCount()
+    @StateObject var legpress = PressCount()
+    @StateObject var legextension = ExtensionCount()
+    
+    var body: some View {
+        VStack(alignment: .leading){
+            VStack{
+                HStack{
+                    Spacer()
+//                    weeklySum 배열의 첫 번째 요소의 count를 가져오기
+                    Text("\(total.weeklySum.first?.count ?? 0)")
+                        .foregroundColor(.purple)
+                        .font(.title3)
+                        .bold()
+                    Text("회")
+                        .foregroundColor(.black)
+                        .bold()
+                }
+                HStack{
+                    Spacer()
+                    Text(dateRange)  // 날짜 범위를 표시할 Text 뷰
+                        .foregroundColor(.gray)
+                        .font(.caption)
+                }
+                
+            }
+            .padding(10)
+            .border(.black, width: 1)
+            
+            Chart(report.weeklyReports){ element in
+                BarMark(
+                    x: .value("Date", element.weekday),
+                    y: .value("Count", element.counts)
+                )
+                .foregroundStyle(.purple)
+            }
+            .padding()
+            .border(.black, width: 1)
+            
+            HStack{
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("체스트프레스")
+                            .foregroundColor(.black)
+                            .bold()
+                        Spacer()
+                        HStack {
+                            Text("\(chestpress.chestCount.first?.count ?? 0)")
+                                .foregroundColor(.purple)
+                                .font(.title3)
+                                .bold()
+                            Text("회")
+                                .foregroundColor(.black)
+                                .bold()
+                        }
+                    }
+                    HStack {
+                        Text("랫풀다운")
+                            .foregroundColor(.black)
+                            .bold()
+                        Spacer()
+                        HStack {
+                            Text("\(latpulldown.latpullCount.first?.count ?? 0)")
+                                .foregroundColor(.purple)
+                                .font(.title3)
+                                .bold()
+                            Text("회")
+                                .foregroundColor(.black)
+                                .bold()
+                        }
+                    }
+                    HStack {
+                        Text("레그프레스")
+                            .foregroundColor(.black)
+                            .bold()
+                        Spacer()
+                        HStack {
+                            Text("\(legpress.pressCount.first?.count ?? 0)")
+                                .foregroundColor(.purple)
+                                .font(.title3)
+                                .bold()
+                            Text("회")
+                                .foregroundColor(.black)
+                                .bold()
+                        }
+                        
+                    }
+                    HStack {
+                        Text("레그익스텐션")
+                            .foregroundColor(.black)
+                            .bold()
+                        Spacer()
+                        HStack {
+                            Text("\(legextension.extensionCount.first?.count ?? 0)")
+                                .foregroundColor(.purple)
+                                .font(.title3)
+                                .bold()
+                            Text("회")
+                                .foregroundColor(.black)
+                                .bold()
+                        }
+                    }
+                    
+                    
+                }
+                .border(.black, width: 1)
+            } // 기구별 주간 기록 끝
+            
+        }
+        .onAppear {
+            // View가 화면에 나타나면 날짜 범위를 계산하고 표시
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 M월 d일"
+
+            let today = Date()
+
+            if let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -6, to: today) {
+                let todayString = dateFormatter.string(from: today)
+                let oneWeekAgoString = dateFormatter.string(from: oneWeekAgo)
+
+                dateRange = "\(oneWeekAgoString) ~ \(todayString)"
+            }
+        }
+    }
+} // view end
+
+//struct WeeklyReportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WeeklyReportView()
+//    }
+//}

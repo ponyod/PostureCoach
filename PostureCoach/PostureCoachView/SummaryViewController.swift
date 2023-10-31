@@ -19,6 +19,7 @@ class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateUI()
+        self.tabBarController?.tabBar.isHidden = true;
     }
 
     private func updateUI() {
