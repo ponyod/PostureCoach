@@ -51,7 +51,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
     }
 
     private func updatePathLayer() {
-        let flipVertical = CGAffineTransform.verticalFlip
+        let flipVertical = CGAffineTransform.horizontalFlip
         let scaleToBounds = CGAffineTransform(scaleX: bounds.width, y: bounds.height)
         jointPath.removeAllPoints()
         jointSegmentPath.removeAllPoints()

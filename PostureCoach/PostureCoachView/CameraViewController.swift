@@ -105,22 +105,6 @@ class CameraViewController: UIViewController {
                 default:
                     videoOrientation = .portrait
                 }
-//        if let interfaceOrientation = view.window?.windowScene?.interfaceOrientation {
-//            switch interfaceOrientation {
-//            case .landscapeRight:
-//                videoOrientation = .landscapeRight
-//            case .landscapeLeft:
-//                videoOrientation = .landscapeLeft
-//            case .portrait:
-//                videoOrientation = .portrait
-//            case .portraitUpsideDown:
-//                videoOrientation = .portraitUpsideDown
-//            default:
-//                videoOrientation = .landscapeRight
-//            }
-//        } else {
-//            videoOrientation = .portrait
-//        }
         
         // Create and setup video feed view
         cameraFeedView = CameraFeedView(frame: view.bounds, session: session, videoOrientation: videoOrientation)
@@ -156,7 +140,7 @@ class CameraViewController: UIViewController {
     // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
     //
     func viewPointForVisionPoint(_ visionPoint: CGPoint) -> CGPoint {
-        let flippedPoint = visionPoint.applying(CGAffineTransform.horizontalFlip)
+        let flippedPoint = visionPoint.applying(CGAffineTransform.verticalFlip)
         let viewPoint: CGPoint
         if cameraFeedSession != nil {
             viewPoint = cameraFeedView.viewPointConverted(fromNormalizedContentsPoint: flippedPoint)
