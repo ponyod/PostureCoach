@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F2F63C12AE3E81600AA58B6 /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2F63BF2AE3E81600AA58B6 /* MonthlyViewController.swift */; };
-		0F2F63C22AE3E81600AA58B6 /* MonthlyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F63C02AE3E81600AA58B6 /* MonthlyViewController.xib */; };
 		0F585E222AD68360007D0B47 /* PostureCoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */; };
 		0F585E242AD68612007D0B47 /* PostureCoachView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F585E232AD68612007D0B47 /* PostureCoachView.storyboard */; };
 		0F5E38412ADE5ABD00D444B1 /* CellWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */; };
@@ -71,8 +69,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F2F63BF2AE3E81600AA58B6 /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
-		0F2F63C02AE3E81600AA58B6 /* MonthlyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthlyViewController.xib; sourceTree = "<group>"; };
 		0F585E212AD68360007D0B47 /* PostureCoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureCoachViewController.swift; sourceTree = "<group>"; };
 		0F585E232AD68612007D0B47 /* PostureCoachView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostureCoachView.storyboard; sourceTree = "<group>"; };
 		0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWebViewController.swift; sourceTree = "<group>"; };
@@ -241,8 +237,6 @@
 				0FD22B232ADE6FB40033C9AF /* WeeklyViewController.swift */,
 				0FD9DA8C2AECBEF4008D2EE7 /* MonthlyViewController.swift */,
 				0FD9DA8E2AEE6726008D2EE7 /* AccountSettingViewController.swift */,
-				0F2F63BF2AE3E81600AA58B6 /* MonthlyViewController.swift */,
-				0F2F63C02AE3E81600AA58B6 /* MonthlyViewController.xib */,
 			);
 			path = PostureCoach;
 			sourceTree = "<group>";
@@ -250,10 +244,10 @@
 		169F7B342AD2E49E004204E9 /* MachineCoachView */ = {
 			isa = PBXGroup;
 			children = (
+				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				0F5E38402ADE5ABD00D444B1 /* MachineMainViewController.swift */,
 				0F5E383E2ADE5ABD00D444B1 /* MachineViewController.swift */,
 				0F5E383F2ADE5ABD00D444B1 /* WebViewController.swift */,
-				0F5E383D2ADE5ABD00D444B1 /* CellWebViewController.swift */,
 				160637532AD8F0DF00213C8C /* ContentsWebViewController.swift */,
 			);
 			path = MachineCoachView;
@@ -359,7 +353,6 @@
 				165CE2782AC165C4002F8385 /* LaunchScreen.storyboard in Resources */,
 				165CE2752AC165C4002F8385 /* Assets.xcassets in Resources */,
 				0FEB8F662ACCF6180098F7AC /* LegExtensionView.storyboard in Resources */,
-				0F2F63C22AE3E81600AA58B6 /* MonthlyViewController.xib in Resources */,
 				0FEB8F762ACD013E0098F7AC /* MachineCoachView.storyboard in Resources */,
 				16526ED12ACC073A008F6A49 /* GameViewController.xib in Resources */,
 				0FEB8F6F2ACCF7DA0098F7AC /* ChestPressView.storyboard in Resources */,
@@ -429,7 +422,6 @@
 				160637542AD8F0DF00213C8C /* ContentsWebViewController.swift in Sources */,
 				0FD9DA8F2AEE6726008D2EE7 /* AccountSettingViewController.swift in Sources */,
 				0FD9DA8D2AECBEF4008D2EE7 /* MonthlyViewController.swift in Sources */,
-				0F2F63C12AE3E81600AA58B6 /* MonthlyViewController.swift in Sources */,
 				16526ECA2ACC071D008F6A49 /* VideoOutputViews.swift in Sources */,
 				16526EB82ACC06A5008F6A49 /* RootViewController.swift in Sources */,
 				160637562AD9173400213C8C /* CommunityViewController.swift in Sources */,
@@ -612,7 +604,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PostureCoach/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용해줘";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해줘.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해줘";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 허용해줘";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

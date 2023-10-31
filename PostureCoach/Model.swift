@@ -51,8 +51,6 @@ struct AccountInfo: Decodable {
     var userName: String
     var height: Int
     var weight: Int
-    var gender: String
-    var birth: String
     
     enum CodingKeys:String, CodingKey {
         case userId = "user_id"
@@ -60,8 +58,6 @@ struct AccountInfo: Decodable {
         case userName = "user_name"
         case height = "height"
         case weight = "weight"
-        case gender = "gender"
-        case birth = "birth"
     }
     
 }

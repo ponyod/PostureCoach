@@ -11,7 +11,10 @@ import FSCalendar
 
 
 class MonthlyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    @IBOutlet weak var totalCountView: UIView!
+    
+    @IBOutlet weak var calendarView: FSCalendar!
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -26,9 +29,11 @@ class MonthlyViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         getdateRange()
         monthlyCounts()
         getMonthlyTypeCounts()
+        boderLine()
         
         if let tableView = tableView {
             tableView.dataSource = self
@@ -36,6 +41,15 @@ class MonthlyViewController: UIViewController, UITableViewDataSource, UITableVie
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = UITableView.automaticDimension
         }
+    }
+    
+    func boderLine() {
+        totalCountView?.layer.borderWidth = 1
+        totalCountView?.layer.borderColor = UIColor.black.cgColor
+        
+        tableView?.layer.borderWidth = 1
+        tableView?.layer.borderColor = UIColor.black.cgColor
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

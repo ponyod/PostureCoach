@@ -25,7 +25,9 @@ class ReportViewController: UIViewController {
         weeklyView = WeeklyViewController().view
         viewContainer.addSubview(monthlyView)
         viewContainer.addSubview(weeklyView)
+        self.tabBarController?.tabBar.isHidden = false;
     }
+    
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             viewContainer.bringSubviewToFront(weeklyView)

@@ -17,13 +17,15 @@ class ExerciseSummaryViewController: UIViewController {
     let exerciseDate = Date()
     let dateFormatter = DateFormatter()
     
+    @IBOutlet weak var countBox: UIView!
+    @IBOutlet weak var exerciseBox: UIView!
     let machines = ["chestpress", "latpulldown", "legpress", "legextension"]
     
     var newRecord: WorkoutReport?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        boderLine()
         if let workoutType = workoutType {
             self.typeLabel.text = "\(workoutType)"
         }
@@ -48,8 +50,18 @@ class ExerciseSummaryViewController: UIViewController {
             print("Error: workoutType or count is nil")
             return
         }
+        self.tabBarController?.tabBar.isHidden = true;
+    }
+    
+    func boderLine() {
+        countBox?.layer.borderWidth = 1
+        countBox?.layer.borderColor = UIColor.black.cgColor
+        
+        exerciseBox?.layer.borderWidth = 1
+        exerciseBox?.layer.borderColor = UIColor.black.cgColor
         
     }
+    
     
     func convertMachineName(machine: String) -> Int? {
         let machines: [String: Int] = [
@@ -100,8 +112,10 @@ class ExerciseSummaryViewController: UIViewController {
         
         // 2. UIAlertAction을 생성 (확인 버튼)
         let confirmAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            self.navigationController?.popToRootViewController(animated: true)
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            self.navigationController?.pushViewController(nextViewController, animated: true)
         }
+        
         alert.addAction(confirmAction)
         present(alert, animated: true)
     }

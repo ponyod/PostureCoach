@@ -9,8 +9,7 @@ import UIKit
 import CryptoKit
 import Alamofire
 
-class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+class AccountSettingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var btnConfirm: UIButton!
     
@@ -27,11 +26,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
     
     @IBOutlet weak var heightCheckLabel: UILabel!
     @IBOutlet weak var weightCheckLabel: UILabel!
-    @IBOutlet weak var genderCheckLabel: UILabel!
-    @IBOutlet weak var birthCheckLabel: UILabel!
-    
-    @IBOutlet weak var showGenderPicker: UITextField!
-    @IBOutlet weak var showBirthPicker: UITextField!
     
     var userName: String?
     var userPw: String?
@@ -39,41 +33,73 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
     let gender = ["남성", "여성"]
     let genderPicker = UIPickerView()
     var userId = UserDefaults.standard.string(forKey: "loggedInUserId")
+    @IBOutlet weak var btnClose: UIButton!
     var userInfo : [AccountInfo] = []
     var editUserInfo : [EditInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         loadUserInfo()
-        nameTextField.delegate = self
-        pwTextField.delegate = self
-        pwConfirmTextField.delegate = self
-        heightTextField.delegate = self
-        weightTextField.delegate = self
+        
+        if let nameTextField = nameTextField,
+           let pwTextField = pwTextField,
+           let pwConfirmTextField = pwConfirmTextField,
+           let heightTextField = heightTextField,
+           let weightTextField = weightTextField {
+            nameTextField.delegate = self
+            pwTextField.delegate = self
+            pwConfirmTextField.delegate = self
+            heightTextField.delegate = self
+            weightTextField.delegate = self
+        } else {
+            print("TextField is nil")
+        }
+        
+        
         
         // 처음에는 모든 라벨을 숨김 상태로 설정
-        nameCheckLabel.isHidden = true
-        pwCheckLabel.isHidden = true
-        pwConfirmCheckLabel.isHidden = true
-        heightCheckLabel.isHidden = true
-        weightCheckLabel.isHidden = true
-        genderCheckLabel.isHidden = true
-        birthCheckLabel.isHidden = true
+        if let nameCheckLabel = nameCheckLabel,
+           let pwCheckLabel = pwCheckLabel,
+           let pwConfirmCheckLabel = pwConfirmCheckLabel,
+           let heightCheckLabel = heightCheckLabel,
+           let weightCheckLabel = weightCheckLabel {
+            nameCheckLabel.isHidden = true
+            pwCheckLabel.isHidden = true
+            pwConfirmCheckLabel.isHidden = true
+            heightCheckLabel.isHidden = true
+            weightCheckLabel.isHidden = true
+        } else {
+            print("LabelText is nil")
+        }
         
-        nameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        pwTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        pwConfirmTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        heightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
-        weightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+        if let nameTextField = nameTextField,
+           let pwTextField = pwTextField,
+           let pwConfirmTextField = pwConfirmTextField,
+           let heightTextField = heightTextField,
+           let weightTextField = weightTextField {
+            nameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+            pwTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+            pwConfirmTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+            heightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+            weightTextField.addTarget(self, action: #selector(updateButtonStatus), for: .editingChanged)
+        } else {
+            print("addTargetTextField is nil")
+        }
         
-        createDatePicker()
-        createPickerView()
         
         btnConfirm.isEnabled = false
+        
         self.tabBarController?.tabBar.isHidden = true;
+        self.navigationController?.navigationBar.isHidden = true;
     }
     
+    @IBAction func btnClose(_ sender: UIButton) {
+            //self.navigationController?.popToRootViewController(animated: true)
+            
+            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            navigationController?.pushViewController(nextViewController, animated: true)
+        }
 
     @objc func textFieldDidChange() {
         if validateName(), validatePassword(), validatePasswordConfirmation() {
@@ -97,8 +123,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
                             "\(userInfo.userName)"
                             self.heightTextField.text = "\(userInfo.height)"
                             self.weightTextField.text = "\(userInfo.weight)"
-                            self.showGenderPicker.text = userInfo.gender
-                            self.showBirthPicker.text = userInfo.birth
                             print(userInfo)
                         }
                     case .failure(let error):
@@ -121,8 +145,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
             "user_name": editInfo.userName,
             "height": editInfo.height,
             "weight": editInfo.weight,
-            "gender": editInfo.gender,
-            "birth": editInfo.birth
         ]
         
         AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).response { response in
@@ -184,8 +206,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
                 return false
             }
         } else {
-//            pwCheckLabel.isHidden = false
-//            pwCheckLabel.text = "비밀번호를 입력하세요."
             return false
         }
     }
@@ -202,8 +222,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
                 return false
             }
         } else {
-//            pwConfirmCheckLabel.isHidden = false
-//            pwConfirmCheckLabel.text = "비밀번호를 다시 입력하세요."
             return false
         }
     }
@@ -211,10 +229,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
         let replacementStringCharacterSet = CharacterSet(charactersIn: string)
-        
-//        if textField == showGenderPicker && !string.isEmpty {
-//            genderCheckLabel.isHidden = true
-//        }
         
         if textField == heightTextField || textField == weightTextField {
             if !allowedCharacterSet.isSuperset(of: replacementStringCharacterSet) && !string.isEmpty {
@@ -235,90 +249,24 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
                 return true
             }
         }
-        
-//        if textField == showGenderPicker && !string.isEmpty {
-//            genderCheckLabel.isHidden = true
-//        }
         return true
-    }
-    
-    func createPickerView() {
-        genderPicker.delegate = self
-        genderPicker.dataSource = self
-        showGenderPicker.inputView = genderPicker
-        dismissPickerView()
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return gender.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return gender[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        showGenderPicker.text = gender[row]
-        updateButtonStatus()
-//        genderCheckLabel.isHidden = true
-    }
-    
-    func dismissPickerView() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let button = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(doneButton(sender: )))
-        toolBar.setItems([button], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        showGenderPicker.inputAccessoryView = toolBar
-        showBirthPicker.inputAccessoryView = toolBar
     }
     
     @objc func doneButton(sender: Any) {
         self.view.endEditing(true)
     }
     
-    func createDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ko-KR")
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        // showBirthPicker의 inputView로 datePicker 설정
-        showBirthPicker.inputView = datePicker
-        
-        // date picker의 값이 변경될 때 텍스트 필드에 반영
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
-        
-        dismissPickerView()
-    }
-    
-    
     @objc func updateButtonStatus() {
         guard let isHeightValid = heightTextField.text?.isEmpty,
-        let isWeightValid = weightTextField.text?.isEmpty,
-        let isGenderValid = showGenderPicker.text?.isEmpty,
-        let isBirthValid = showBirthPicker.text?.isEmpty else { return }
+        let isWeightValid = weightTextField.text?.isEmpty else { return }
 
-        if !isHeightValid && !isWeightValid && !isGenderValid && !isBirthValid {
+        if !isHeightValid && !isWeightValid {
             btnConfirm.isEnabled = true
         } else {
             btnConfirm.isEnabled = false
         }
     }
     
-    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        showBirthPicker.text = dateFormatter.string(from: sender.date)
-        updateButtonStatus()
-    }
     // AlertController 정의
     func showAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
@@ -339,19 +287,18 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
               let heightString = heightTextField.text,
               let height = Int(heightString),
               let weightString = weightTextField.text,
-              let weight = Int(weightString),
-              let gender = showGenderPicker.text,
-              let birth = showBirthPicker.text
+              let weight = Int(weightString)
         else { return print("실행불가")}
         print(userPw)
         print("버튼 눌림1")
         
-        let editInfo = AccountInfo(userId: userId, userPw: userPw, userName: userName, height: height, weight: weight, gender: gender, birth: birth)
+        let editInfo = AccountInfo(userId: userId, userPw: userPw, userName: userName, height: height, weight: weight)
         print("\(editInfo) 출력")
         
         if heightCheckLabel.isHidden == false || weightCheckLabel.isHidden == false {
             AccountSettingViewController().showAlert(message: "입력 정보를 다시 확인하세요.")
         } else {
+            AccountSettingViewController().showAlert(message: "저장되었습니다.")
             self.navigationController?.popToRootViewController(animated: true)
         }
         
@@ -366,3 +313,23 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate, UIPic
     
 }
 
+@IBDesignable
+class UITextFieldExtension: UITextField, UITextFieldDelegate {
+
+    @IBInspectable var focusBackgroundColor: UIColor?
+
+    private var defaultBackgroundColor: UIColor?
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if focusBackgroundColor == nil {
+            print("오류 - focusBackgroundCOlor 설정")
+            return
+        }
+        defaultBackgroundColor = self.backgroundColor
+        self.backgroundColor = focusBackgroundColor
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.backgroundColor = defaultBackgroundColor
+    }
+}

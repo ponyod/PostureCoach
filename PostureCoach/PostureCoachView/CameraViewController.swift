@@ -37,6 +37,7 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         startObservingStateChanges()
         self.navigationController?.navigationBar.isHidden = true;
+        self.tabBarController?.tabBar.isHidden = true;
     }
     
     override func viewDidDisappear(_ animated: Bool) {
