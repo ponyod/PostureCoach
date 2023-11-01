@@ -279,6 +279,7 @@ struct WeeklyReportView: View {
             }
             .padding()
             .border(.black, width: 1)
+            .cornerRadius(3)
             
             HStack{
                 VStack(alignment: .leading) {
@@ -343,10 +344,10 @@ struct WeeklyReportView: View {
                                 .bold()
                         }
                     }
-                    
-                    
                 }
+                .padding()
                 .border(.black, width: 1)
+
             } // 기구별 주간 기록 끝
             
         }
