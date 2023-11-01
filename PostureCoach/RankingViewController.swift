@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import Foundation
 
-class CommunityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RankingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var myRankingLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
     @IBOutlet weak var rankingView: UIView!

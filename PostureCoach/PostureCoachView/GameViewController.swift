@@ -131,7 +131,7 @@ class GameViewController: UIViewController, AVCaptureVideoDataOutputSampleBuffer
 //        underhandThrowView.throwType = .underhand
 //        overhandThrowView.throwType = .overhand
 //        underlegThrowView.throwType = .underleg
-        scoreLabel.attributedText = getScoreLabelAttributedStringForScore(0)
+//        scoreLabel.attributedText = getScoreLabelAttributedStringForScore(0)
     }
 
     func resetKPILabels() {

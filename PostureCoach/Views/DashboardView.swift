@@ -65,7 +65,7 @@ class DashboardView: UIView, AnimatedTransitioning {
                                       startAngle: startAngle, endAngle: CGFloat(endAngle), clockwise: true)
         speedLayer.path = circlePath.cgPath
         speedLayer.fillColor = UIColor.clear.cgColor
-        speedLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.9882352941, blue: 0, alpha: 0.7539934132).cgColor
+        speedLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.3176470588, blue: 0.8784313725, alpha: 0.75).cgColor
         speedLayer.lineCap = .round
         speedLayer.lineWidth = 22
         speedLayer.strokeEnd = 1.0

@@ -34,8 +34,8 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
     let genderPicker = UIPickerView()
     var userId = UserDefaults.standard.string(forKey: "loggedInUserId")
     @IBOutlet weak var btnClose: UIButton!
-    var userInfo : [AccountInfo] = []
-    var editUserInfo : [EditInfo] = []
+    var userInfo : AccountInfo?
+    var editInfo : EditInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,19 +88,15 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        btnConfirm.isEnabled = false
+        if let btnConfirm = btnConfirm {
+            btnConfirm.isEnabled = false
+        }
+        
         
         self.tabBarController?.tabBar.isHidden = true;
         self.navigationController?.navigationBar.isHidden = true;
     }
     
-    @IBAction func btnClose(_ sender: UIButton) {
-            //self.navigationController?.popToRootViewController(animated: true)
-            
-            let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-            navigationController?.pushViewController(nextViewController, animated: true)
-        }
-
     @objc func textFieldDidChange() {
         if validateName(), validatePassword(), validatePasswordConfirmation() {
             btnConfirm.isEnabled = true
@@ -119,11 +115,12 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
                         if let userInfo = result.first {
                             self.userId = userInfo.userId
                             self.userPw = userInfo.userPw
-                            self.nameTextField.text =
-                            "\(userInfo.userName)"
-                            self.heightTextField.text = "\(userInfo.height)"
-                            self.weightTextField.text = "\(userInfo.weight)"
+                            self.nameTextField.text = userInfo.userName ?? "" // userName이 nil인 경우 빈 문자열 또는 다른 기본값으로 설정
+                            self.heightTextField.text = "\(userInfo.height ?? 0)" // 높이가 nil인 경우 0 또는 다른 기본값으로 설정
+                            self.weightTextField.text = "\(userInfo.weight ?? 0)" // 체중이 nil인 경우 0 또는 다른 기본값으로 설정
                             print(userInfo)
+                        } else {
+                            print("No user info found")
                         }
                     case .failure(let error):
                         print("\(error) 처리할 수 없음")
@@ -136,16 +133,17 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func editUserInfo(editInfo: AccountInfo, completion: @escaping (Bool) -> Void) {
+    func editUserInfo(editInfo: EditInfo, completion: @escaping (Bool) -> Void) {
         let url = "https://pcoachapi.azurewebsites.net/api/editInfo"
         
         let params:Parameters = [
             "user_id": editInfo.userId,
-            "user_pw": editInfo.userPw,
+            "user_pw": editInfo.userPw, 
             "user_name": editInfo.userName,
             "height": editInfo.height,
             "weight": editInfo.weight,
         ]
+        print(params)
         
         AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).response { response in
             guard let result = response.value else {
@@ -279,7 +277,7 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+
     @IBAction func btnConfirm(_ sender: Any) {
         guard let userId = userId,
               let userPw = pwTextField.text,
@@ -292,7 +290,7 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         print(userPw)
         print("버튼 눌림1")
         
-        let editInfo = AccountInfo(userId: userId, userPw: userPw, userName: userName, height: height, weight: weight)
+        editInfo = EditInfo(userId: userId, userPw: userPw, userName: userName, height: height, weight: weight)
         print("\(editInfo) 출력")
         
         if heightCheckLabel.isHidden == false || weightCheckLabel.isHidden == false {
@@ -302,13 +300,20 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
             self.navigationController?.popToRootViewController(animated: true)
         }
         
-        editUserInfo(editInfo: editInfo) { success in
-            if success {
-                print("User Info edited successfully")
-            } else {
-                print("Failed to add user")
+        if let editInfo = editInfo {
+            editUserInfo(editInfo: editInfo) { success in
+                if success {
+                    print("User Info edited successfully")
+                } else {
+                    print("Failed to add user")
+                }
             }
+        } else {
+            // newRecord가 nil인 경우를 처리
+            print("Error: newRecord is nil")
+            return
         }
+        
     }
     
 }

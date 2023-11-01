@@ -42,7 +42,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         jointSegmentLayer.lineCap = .round
         jointSegmentLayer.lineWidth = jointSegmentWidth
         jointSegmentLayer.fillColor = UIColor.clear.cgColor
-        jointSegmentLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.9882352941, blue: 0, alpha: 1).cgColor
+        jointSegmentLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.3176470588, blue: 0.8901960784, alpha: 1).cgColor
         layer.addSublayer(jointSegmentLayer)
         let jointColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         jointLayer.strokeColor = jointColor

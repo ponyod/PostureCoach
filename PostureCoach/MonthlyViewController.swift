@@ -10,7 +10,7 @@ import Alamofire
 import FSCalendar
 
 
-class MonthlyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MonthlyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDelegate, FSCalendarDataSource {
     @IBOutlet weak var totalCountView: UIView!
     
     @IBOutlet weak var calendarView: FSCalendar!
@@ -26,6 +26,7 @@ class MonthlyViewController: UIViewController, UITableViewDataSource, UITableVie
     var total : [MonthlyTotal] = []
     var monthlyType : [MonthlyType] = []
     var totalCount: Int = 0
+    var events : [Date] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,34 @@ class MonthlyViewController: UIViewController, UITableViewDataSource, UITableVie
         monthlyCounts()
         getMonthlyTypeCounts()
         boderLine()
+        setEvents()
         
+        if let calendarView = calendarView {
+            calendarView.appearance.headerTitleColor = UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1)
+            calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
+            calendarView.appearance.eventDefaultColor = UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1)
+            calendarView.delegate = self
+            calendarView.dataSource = self
+            calendarView.appearance.todayColor = UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1)
+            calendarView.calendarWeekdayView.weekdayLabels.forEach { label in
+                label.textColor = UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1) // 또는 원하는 색상
+            }
+        }
         if let tableView = tableView {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = UITableView.automaticDimension
         }
+        
+        let calendar = Calendar.current
+        let dateComponents = DateComponents(year: 2023, month: 10, day: 1)
+        if let initialDate = calendar.date(from: dateComponents) {
+            if let calendarView = calendarView {
+                calendarView.setCurrentPage(initialDate, animated: false)
+            }
+        }
+
     }
     
     func boderLine() {
@@ -50,6 +72,43 @@ class MonthlyViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView?.layer.borderWidth = 1
         tableView?.layer.borderColor = UIColor.black.cgColor
         
+        calendarView?.layer.borderWidth = 1
+        calendarView?.layer.borderColor = UIColor.black.cgColor
+        
+    }
+    
+    func setEvents() {
+        let dfMatter = DateFormatter()
+        dfMatter.locale = Locale(identifier: "ko_KR")
+        dfMatter.dateFormat = "yyyy-MM-dd"
+        
+        if let loggedInUserId = UserDefaults.standard.string(forKey: "loggedInUserId") {
+                let url = "https://pcoachapi.azurewebsites.net/api/report/monthly?loggedInUserId=\(loggedInUserId)"
+                AF.request(url).responseDecodable(of: [MonthlyReport].self) { response in
+                    switch response.result {
+                    case .success(let reports):
+                        // MonthlyReport 배열을 그대로 유지
+                        self.monthlyReports = reports
+                        // 이후에 날짜를 추출할 수 있도록 날짜 배열을 따로 만들 수 있습니다
+                        let dates = reports.compactMap { dfMatter.date(from: $0.date) }
+                        self.events = dates
+                        print(dates)
+                        if let calendarView = self.calendarView {
+                            calendarView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("Error fetching monthly reports: \(error)")
+                    }
+                }
+            }
+
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        if self.events.contains(date) {
+            return 1
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,7 +216,7 @@ struct MonthlyReport: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
-        case count = "exercise_count"
+        case count = "total_exercise_count"
         case date = "exercise_date"
     }
 }
@@ -170,4 +229,28 @@ struct MonthlyType: Decodable {
         case machineName = "machine_name"
         case count = "exercise_count"
     }
+}
+
+
+final class UnderlineSegmentedControl: UISegmentedControl {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.removeBackgroundAndDivider()
+      }
+      override init(items: [Any]?) {
+        super.init(items: items)
+        self.removeBackgroundAndDivider()
+      }
+      required init?(coder: NSCoder) {
+        fatalError()
+      }
+      
+      private func removeBackgroundAndDivider() {
+        let image = UIImage()
+        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
+        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
+        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
+        
+        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+      }
 }

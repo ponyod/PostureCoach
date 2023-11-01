@@ -15,6 +15,7 @@ class ReportViewController: UIViewController {
     let machines = ["chestpress", "latpulldown", "legpress", "legextension"]
     
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var presentView: UIButton!
     
     var monthlyView: UIView!
     var weeklyView: UIView!
@@ -28,6 +29,15 @@ class ReportViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false;
     }
     
+    @IBAction func presentViewAct(_ sender: Any) {
+        guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "AccountSettingView")
+            else {
+                return
+            }
+        
+        self.present(uvc, animated: true)
+        
+    }
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             viewContainer.bringSubviewToFront(weeklyView)

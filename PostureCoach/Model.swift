@@ -30,8 +30,6 @@ struct EditInfo: Decodable {
     let userName: String
     let height: Int
     let weight: Int
-    let gender: String
-    let birth: String
     
     enum CodingKeys:String, CodingKey {
         case userId = "user_id"
@@ -39,8 +37,6 @@ struct EditInfo: Decodable {
         case userName = "user_name"
         case height = "height"
         case weight = "weight"
-        case gender = "gender"
-        case birth = "birth"
     }
     
 }

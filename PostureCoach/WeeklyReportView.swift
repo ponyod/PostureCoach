@@ -91,7 +91,6 @@ class ReportModel: ObservableObject {
                     switch response.result {
                     case .success(let report):
                         self.weeklyReports = report
-                        print("\(self.weeklyReports) 데이터 출력")
                     case .failure(let error):
                         print("\(error) 주간 합계 처리 불가")
                     }
