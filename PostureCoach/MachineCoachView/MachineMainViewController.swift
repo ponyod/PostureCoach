@@ -16,12 +16,17 @@ class MachineMainViewController: UIViewController, UIImagePickerControllerDelega
     var tagStringArray: [String] = []
     var tagButtonArray = [UIButton]()
     
-    
+    @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var tagListView: UIView!
     @IBOutlet weak var tagListViewHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userName = UserDefaults.standard.value(forKey: "name")
+        if let userName = userName {
+            contentsLabel.text = "\(userName)님을 위한 추천"
+        }
         
         self.imagePicker.delegate = self
         

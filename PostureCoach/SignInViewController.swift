@@ -47,7 +47,7 @@ class SignInViewController: UIViewController {
         let url = "https://pcoachapi.azurewebsites.net/api/login"
         let parameters: [String: Any] = [
             "user_id": userid,
-            "user_pw": userpw
+            "user_pw": userpw,
         ]
         
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
@@ -59,17 +59,25 @@ class SignInViewController: UIViewController {
                            let success = json["success"] as? Bool,
                            let message = json["message"] as? String {
                             completion(success, message)
+                            if let userName = json["user_name"] as? String {
+                                UserDefaults.standard.setValue(userName, forKey: "name")
+                            }
+                            print("로그인 리퀘스트 성공")
                         } else {
+                            print("서버 응답 데이터 구문 분석 오류")
                             completion(false, "서버 응답 데이터 구문 분석 오류")
                         }
                     } catch {
+                        print("데이터 파싱 오류")
                         completion(false, "데이터 파싱 오류: \(error.localizedDescription)")
                     }
                 }
                 else {
+                    print("데이터 없음 또는 형식 불일치")
                     completion(false, "데이터 없음 또는 형식 불일치")
                 }
             case .failure(let error):
+                print("요청 실패 또는 네트워크 오류")
                 completion(false, "요청 실패 또는 네트워크 오류: \(error.localizedDescription)")
             }
             
