@@ -137,7 +137,9 @@ class RankingViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         if let imageView = cell.viewWithTag(1) as? UIImageView {
-            if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
+            if indexPath.section == 0 && indexPath.row < rankingToday.count {
+                imageView.image = UIImage(named: "\(indexPath.row + 1)")
+            } else if indexPath.section == 1 && indexPath.row < rankingPhysical.count {
                 let rowData = rankingPhysical[indexPath.row]
                 let imageName = rowData.machineName
                 imageView.image = UIImage(named: imageName)
