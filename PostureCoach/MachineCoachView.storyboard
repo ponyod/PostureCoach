@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5m-gb-5DR">
-                                <rect key="frame" x="20" y="350.33333333333331" width="353" height="150"/>
+                                <rect key="frame" x="20" y="347.66666666666669" width="353" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-Xw-3kL">
                                         <rect key="frame" x="24" y="80" width="305" height="40"/>
@@ -68,28 +68,28 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSw-OS-n08">
-                                <rect key="frame" x="44" y="596.33333333333337" width="305" height="105"/>
+                                <rect key="frame" x="44" y="593.66666666666663" width="305" height="105"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="305" id="1cb-lO-sax"/>
                                     <constraint firstAttribute="height" constant="105" id="xxh-hS-zbk"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요즘 뜨는 콘텐츠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSN-iF-FV4">
+                                <rect key="frame" x="44" y="545.66666666666663" width="132" height="24"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="운동방법이 궁금한 기구를" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iny-OJ-BaY">
-                                <rect key="frame" x="44" y="115" width="305" height="20.666666666666657"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <rect key="frame" x="44" y="149" width="305" height="19.333333333333258"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카메라로 찍거나 앨범에서 사진을 선택하세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyY-rl-1za">
-                                <rect key="frame" x="20" y="139.66666666666666" width="353" height="20.666666666666657"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="포뇨님을 위한 추천" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSN-iF-FV4">
-                                <rect key="frame" x="44" y="548" width="149" height="24"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                <rect key="frame" x="20" y="171" width="353" height="19.333333333333258"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -98,13 +98,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8nm-p8-jEI" firstAttribute="trailing" secondItem="iny-OJ-BaY" secondAttribute="trailing" constant="44" id="1hu-D4-b6R"/>
-                            <constraint firstItem="iny-OJ-BaY" firstAttribute="top" secondItem="8nm-p8-jEI" secondAttribute="top" constant="12" id="82d-un-wij"/>
+                            <constraint firstItem="iny-OJ-BaY" firstAttribute="top" secondItem="8nm-p8-jEI" secondAttribute="top" constant="46" id="82d-un-wij"/>
                             <constraint firstItem="8nm-p8-jEI" firstAttribute="trailing" secondItem="B5m-gb-5DR" secondAttribute="trailing" constant="20" id="DC6-UV-9wR"/>
                             <constraint firstItem="8nm-p8-jEI" firstAttribute="trailing" secondItem="CyY-rl-1za" secondAttribute="trailing" constant="20" id="F6P-bs-d98"/>
-                            <constraint firstItem="CyY-rl-1za" firstAttribute="top" secondItem="iny-OJ-BaY" secondAttribute="bottom" constant="4" id="HGl-OO-83M"/>
+                            <constraint firstItem="CyY-rl-1za" firstAttribute="top" secondItem="iny-OJ-BaY" secondAttribute="bottom" constant="2.6666666666667425" id="HGl-OO-83M"/>
                             <constraint firstItem="jSN-iF-FV4" firstAttribute="top" secondItem="B5m-gb-5DR" secondAttribute="bottom" constant="48" id="PgH-eT-QEg"/>
                             <constraint firstItem="CyY-rl-1za" firstAttribute="leading" secondItem="8nm-p8-jEI" secondAttribute="leading" constant="20" id="UHo-B2-5F7"/>
-                            <constraint firstItem="B5m-gb-5DR" firstAttribute="top" secondItem="CyY-rl-1za" secondAttribute="bottom" constant="190" id="axU-tQ-rRG"/>
+                            <constraint firstItem="B5m-gb-5DR" firstAttribute="top" secondItem="CyY-rl-1za" secondAttribute="bottom" constant="157.33333333333343" id="axU-tQ-rRG"/>
                             <constraint firstItem="iny-OJ-BaY" firstAttribute="leading" secondItem="8nm-p8-jEI" secondAttribute="leading" constant="44" id="gZU-iQ-Kf6"/>
                             <constraint firstItem="hSw-OS-n08" firstAttribute="top" secondItem="jSN-iF-FV4" secondAttribute="bottom" constant="24" id="iRR-6G-iZk"/>
                             <constraint firstItem="jSN-iF-FV4" firstAttribute="leading" secondItem="8nm-p8-jEI" secondAttribute="leading" constant="44" id="wUQ-nn-6pT"/>
@@ -112,7 +112,7 @@
                             <constraint firstItem="hSw-OS-n08" firstAttribute="leading" secondItem="8nm-p8-jEI" secondAttribute="leading" constant="44" id="zxC-wr-0by"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="기구코치" image="lasso" catalog="system" id="Gda-r4-PhZ"/>
+                    <tabBarItem key="tabBarItem" title="기구코치" image="MachineCoach32" id="Gda-r4-PhZ"/>
                     <navigationItem key="navigationItem" title="기구코치" id="syX-df-HyS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -350,7 +350,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lasso" catalog="system" width="128" height="121"/>
+        <image name="MachineCoach32" width="32" height="32"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
