@@ -384,14 +384,21 @@ extension GameViewController: CameraViewControllerOutputDelegate {
                 do {
                     // 궤적 탐지 요청을 실행합니다.
                     try visionHandler.perform([self.detectTrajectoryRequest])
+                    
                     if let results = self.detectTrajectoryRequest.results {
-                        DispatchQueue.main.async {
-                            // 궤적 관측 결과를 처리
-                            self.processTrajectoryObservations(controller, results)
+                        if results.isEmpty {
+                            // 결과가 비어있는 경우에 대한 처리 (예: 오류 메시지 출력 또는 다른 작업 수행)
+                        } else {
+                            DispatchQueue.main.async {
+                                // 궤적 관측 결과를 처리
+                                self.processTrajectoryObservations(controller, results)
+                            }
                         }
+                    } else {
+                        // results가 nil인 경우에 대한 처리 (예: 오류 메시지 출력 또는 다른 작업 수행)
                     }
                 } catch {
-                    // 오류가 발생하면 오류를 표시
+                    // 오류가 발생하면 오류를 처리
                     AppError.display(error, inViewController: self)
                 }
             }
