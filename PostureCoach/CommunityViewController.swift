@@ -220,7 +220,7 @@ struct RankingToday: Decodable {
 
 struct RankingPhysical: Decodable {
     let machineName: String
-    let exerciseCount: Double
+    let exerciseCount: Int
     
     enum CodingKeys: String, CodingKey {
         case machineName = "machine_name"
@@ -230,7 +230,7 @@ struct RankingPhysical: Decodable {
 
 struct RankingBirth: Decodable {
     let machineName: String
-    let exerciseCount: Double
+    let exerciseCount: Int
     
     enum CodingKeys: String, CodingKey {
         case machineName = "machine_name"
